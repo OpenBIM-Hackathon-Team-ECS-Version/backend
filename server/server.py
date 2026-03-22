@@ -31,6 +31,14 @@ def debug_print(msg):
             pass
 
 from ifc4ingestor import IFC2JSONSimple
+from github_ifc import (
+    GitHubFetchError,
+    GitHubFileNotFoundError,
+    GitHubModelRef,
+    fetch_ifc_bytes,
+    parse_github_model_url,
+)
+from ifc_diff_service import diff_ifc_bytes
 
 
 class IFCProcessingServer:
@@ -376,6 +384,71 @@ class IFCProcessingServer:
                 'timestamp': datetime.now().isoformat(),
                 'version': '0.1.0'
             })
+
+        @self.app.route('/api/ifc/diff', methods=['POST'])
+        def diff_ifc_models():
+            """Compare two GitHub-hosted IFC revisions and return diff metadata."""
+            payload = request.get_json(silent=True) or {}
+            github_token = (payload.get('githubToken') or request.headers.get('X-GitHub-Token') or '').strip()
+
+            def parse_model_ref(name):
+                model_payload = payload.get(name) or {}
+                github_url = str(model_payload.get('githubUrl', '')).strip()
+                if github_url:
+                    return parse_github_model_url(github_url)
+
+                missing = [
+                    field for field in ('repoOwner', 'repoName', 'commitSha', 'filePath')
+                    if not str(model_payload.get(field, '')).strip()
+                ]
+                if missing:
+                    raise ValueError(f"Missing {name} fields: {', '.join(missing)}")
+
+                return GitHubModelRef(
+                    repo_owner=model_payload['repoOwner'].strip(),
+                    repo_name=model_payload['repoName'].strip(),
+                    commit_sha=model_payload['commitSha'].strip(),
+                    file_path=model_payload['filePath'].strip(),
+                    github_url=github_url or None,
+                )
+
+            try:
+                current_ref = parse_model_ref('current')
+                last_ref = parse_model_ref('last')
+
+                current_bytes = fetch_ifc_bytes(current_ref, github_token=github_token)
+                try:
+                    last_bytes = fetch_ifc_bytes(last_ref, github_token=github_token)
+                except GitHubFileNotFoundError:
+                    # If the IFC did not exist at the previous ref, treat the current model as entirely new.
+                    last_bytes = None
+
+                result = diff_ifc_bytes(current_bytes=current_bytes, last_bytes=last_bytes)
+                result.update({
+                    'compareSha': current_ref.commit_sha,
+                    'baseSha': last_ref.commit_sha,
+                    'current': {
+                        'repoOwner': current_ref.repo_owner,
+                        'repoName': current_ref.repo_name,
+                        'commitSha': current_ref.commit_sha,
+                        'filePath': current_ref.file_path,
+                        'githubUrl': current_ref.github_url,
+                    },
+                    'last': {
+                        'repoOwner': last_ref.repo_owner,
+                        'repoName': last_ref.repo_name,
+                        'commitSha': last_ref.commit_sha,
+                        'filePath': last_ref.file_path,
+                        'githubUrl': last_ref.github_url,
+                    },
+                })
+                return jsonify(result)
+            except ValueError as exc:
+                return jsonify({'error': str(exc)}), 400
+            except GitHubFetchError as exc:
+                return jsonify({'error': str(exc)}), exc.status_code
+            except Exception as exc:
+                return jsonify({'error': str(exc)}), 500
         
         @self.app.route('/api/stores', methods=['GET'])
         def list_stores():
@@ -799,6 +872,7 @@ Examples:
     print("🔍 Viewer Page: http://localhost:{}/viewer".format(args.port) if args.host == '0.0.0.0' else f"http://{args.host}:{args.port}/viewer")
     print("\n📡 API Endpoints:")
     print("   POST   /api/upload                  - Upload & process IFC/JSON files")
+    print("   POST   /api/ifc/diff                - Compare two IFC revisions")
     print("   GET    /api/entityGuids             - Query entity GUIDs")
     print("   GET    /api/componentGuids         - Query component GUIDs")
     print("   GET    /api/components              - Retrieve component data")
