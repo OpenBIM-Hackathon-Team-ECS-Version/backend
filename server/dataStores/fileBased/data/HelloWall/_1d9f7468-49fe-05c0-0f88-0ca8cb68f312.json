@@ -1,0 +1,22 @@
+{
+  "componentGuid": "1d9f7468-49fe-05c0-0f88-0ca8cb68f312",
+  "componentType": "IfcRelAssociatesClassificationComponent",
+  "description": "Exterior Walls:B2010",
+  "entityGuid": "",
+  "name": "Exterior Walls",
+  "relatedObjects": [
+    "a9c8fe2e-1465-4760-b05d-d3419a1b31af"
+  ],
+  "relatingClassification": {
+    "componentType": "IfcClassificationReferenceComponent",
+    "itemReference": "B2010",
+    "location": "https://www.csiresources.org/standards/uniformat",
+    "name": "Exterior Walls",
+    "referencedSource": {
+      "componentType": "IfcClassificationComponent",
+      "edition": "1998",
+      "name": "Uniformat",
+      "source": "CSI (Construction Specifications Institute)"
+    }
+  }
+}
