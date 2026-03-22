@@ -149,6 +149,21 @@ def list_commits(repo_owner, repo_name, ref_name, github_token=None, per_page=35
     return [_to_commit_payload(commit, ref_name) for commit in data if isinstance(commit, dict)]
 
 
+def get_commit_details(repo_owner, repo_name, ref_name, github_token=None):
+    url = (
+        f"https://api.github.com/repos/{repo_owner}/{repo_name}/commits/"
+        f"{parse.quote(ref_name, safe='')}"
+    )
+    commit = _request_json(url, github_token=github_token)
+    if not isinstance(commit, dict):
+        raise GitHubProxyError("Invalid commit response from GitHub")
+
+    payload = _to_commit_payload(commit, ref_name)
+    tree = ((commit.get("commit") or {}).get("tree") or {})
+    payload["treeSha"] = (tree.get("sha") or "").strip()
+    return payload
+
+
 def get_repo_tree(repo_owner, repo_name, tree_sha, github_token=None):
     query = parse.urlencode({"recursive": "1"})
     url = (

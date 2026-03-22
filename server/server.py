@@ -3,12 +3,16 @@
 import os
 import sys
 import json
+import re
 import argparse
 from pathlib import Path
 from datetime import datetime
 from werkzeug.utils import secure_filename
-from flask import Flask, render_template, request, jsonify, Response
+from flask import Flask, render_template, request, jsonify, Response, has_request_context
 from flask_cors import CORS
+
+
+_SHA_REF_RE = re.compile(r'^[0-9a-fA-F]{7,40}$')
 
 
 def _load_env_file(path):
@@ -87,11 +91,14 @@ from github_ifc import (
 from github_proxy import (
     GitHubProxyError,
     fetch_file_bytes,
+    get_commit_details,
     get_repo_tree,
     list_branches as proxy_list_branches,
     list_commits as proxy_list_commits,
 )
 from ifc_diff_service import diff_ifc_bytes, summarize_ifc_bytes
+from indexed_artifacts import IndexedArtifactStore
+from preindex_service import DemoPreindexService
 
 
 class IFCProcessingServer:
@@ -109,6 +116,8 @@ class IFCProcessingServer:
         self.memory_tree = None
         self._descendants_exporter = None
         self.git_manager = None
+        self.indexed_artifacts = None
+        self.preindex_service = None
         
         # Configure Flask app
         self._configure_app()
@@ -164,6 +173,7 @@ class IFCProcessingServer:
             self._refresh_memory_tree()
             print(f"[OK] Initialized file-based data store at: {self.file_store.base_path}")
             self._init_git_versioning()
+            self._init_preindexing()
 
         elif self.data_store_type == 'mongodbBased':
             from mongodbBased import MongoDBStore
@@ -208,6 +218,38 @@ class IFCProcessingServer:
             print(f'[WARN] Git versioning unavailable: {e}')
             self.git_manager = None
 
+    def _init_preindexing(self):
+        """Initialise additive demo preindexing."""
+        try:
+            artifact_path = os.environ.get("PREINDEX_ARTIFACTS_PATH")
+            max_workers = int(os.environ.get("PREINDEX_MAX_WORKERS", "1"))
+            self.indexed_artifacts = IndexedArtifactStore(
+                memory_tree_class=type(self.memory_tree),
+                base_path=artifact_path,
+            )
+            self.preindex_service = DemoPreindexService(
+                self.indexed_artifacts,
+                github_token_resolver=self._resolve_github_token,
+                max_workers=max_workers,
+            )
+
+            if not self.preindex_service.is_enabled():
+                print("[OK] Demo preindex disabled (no tracked manifest configured)")
+                return
+
+            auto_start = os.environ.get("PREINDEX_AUTOSTART", "true").lower() not in (
+                "0",
+                "false",
+                "no",
+            )
+            if auto_start:
+                summary = self.preindex_service.enqueue_manifest(force=False)
+                print(f"[OK] Demo preindex scheduled: {summary}")
+        except Exception as e:
+            print(f"[WARN] Demo preindex unavailable: {e}")
+            self.indexed_artifacts = None
+            self.preindex_service = None
+
     def _get_memory_tree(self, version=None):
         """Return the MemoryTree for *version* (a git SHA), or the live tree.
 
@@ -215,6 +257,17 @@ class IFCProcessingServer:
         """
         if not version or version.lower() in ('latest', 'head'):
             return self.memory_tree
+        if self.preindex_service:
+            preindexed_tree = self.preindex_service.load_memory_tree(version)
+            if preindexed_tree is not None:
+                return preindexed_tree
+            if self.indexed_artifacts:
+                preindexed_entry = self.indexed_artifacts.get_entry(version)
+                if preindexed_entry and preindexed_entry.get("state") != "ready":
+                    raise ValueError(
+                        f"Indexed version {version!r} is currently "
+                        f"{preindexed_entry.get('state') or 'unavailable'}."
+                    )
         if self.git_manager is None:
             raise ValueError('Git versioning is not available for this backend')
         if not self.git_manager.is_valid_sha(version):
@@ -374,9 +427,12 @@ class IFCProcessingServer:
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in self.app.config.get('ALLOWED_EXTENSIONS', [])
 
     def _resolve_github_token(self, explicit_token=None):
+        header_token = ''
+        if has_request_context():
+            header_token = request.headers.get('X-GitHub-Token') or ''
         token = (
             explicit_token
-            or request.headers.get('X-GitHub-Token')
+            or header_token
             or os.environ.get('GITHUB_TOKEN')
             or ''
         )
@@ -408,6 +464,9 @@ class IFCProcessingServer:
             return None
         values = [item.strip() for item in value.split(',') if item.strip()]
         return values or None
+
+    def _looks_like_git_sha(self, value):
+        return bool(_SHA_REF_RE.match((value or '').strip()))
 
     def _model_management_enabled(self):
         if not os.getenv('VERCEL'):
@@ -561,15 +620,73 @@ class IFCProcessingServer:
             latest_version = None
             if self.git_manager:
                 latest_version = self.git_manager.get_latest_sha()
+            preindex_status = (
+                self.preindex_service.get_status(limit=10)
+                if self.preindex_service
+                else {
+                    "enabled": False,
+                    "trackedCount": 0,
+                    "runningCount": 0,
+                    "artifacts": {
+                        "counts": {"ready": 0, "pending": 0, "failed": 0, "missing": 0},
+                        "latestReadyVersion": None,
+                        "totalEntries": 0,
+                    },
+                    "entries": [],
+                }
+            )
             return jsonify({
                 'status': 'running',
                 'data_store': self.data_store_type,
                 'timestamp': datetime.now().isoformat(),
                 'version': '0.1.0',
                 'latestVersion': latest_version,
+                'latestIndexedVersion': (
+                    preindex_status.get("artifacts", {}).get("latestReadyVersion")
+                ),
                 'storageMode': 'ephemeral' if os.getenv('VERCEL') else 'local',
                 'modelManagementMode': 'internal-only' if os.getenv('VERCEL') else 'local-admin',
+                'indexingMode': 'demo-preindex' if preindex_status.get('enabled') else 'lazy-only',
+                'preindex': preindex_status,
             })
+
+        @self.app.route('/api/preindex/status', methods=['GET'])
+        def preindex_status():
+            """Return demo preindex readiness and tracked artifact state."""
+            if not self.preindex_service:
+                return jsonify({
+                    'enabled': False,
+                    'trackedCount': 0,
+                    'runningCount': 0,
+                    'artifacts': {
+                        'counts': {'ready': 0, 'pending': 0, 'failed': 0, 'missing': 0},
+                        'latestReadyVersion': None,
+                        'totalEntries': 0,
+                    },
+                    'entries': [],
+                })
+            try:
+                limit = int(request.args.get('limit', 25))
+            except ValueError:
+                limit = 25
+            return jsonify(self.preindex_service.get_status(limit=max(1, limit)))
+
+        @self.app.route('/api/preindex/trigger', methods=['POST'])
+        def trigger_preindex():
+            """Queue tracked files for best-effort demo preindexing."""
+            guard_response = self._model_management_guard()
+            if guard_response:
+                return guard_response
+            if not self.preindex_service:
+                return jsonify({'error': 'Demo preindex is not configured'}), 501
+            payload = request.get_json(silent=True) or {}
+            force = bool(payload.get('force')) or request.args.get('force', '').lower() in (
+                '1',
+                'true',
+                'yes',
+            )
+            result = self.preindex_service.enqueue_manifest(force=force)
+            return jsonify(result)
 
         @self.app.route('/api/github/branches', methods=['GET'])
         def github_branches():
@@ -688,6 +805,44 @@ class IFCProcessingServer:
                     require_path=True,
                 )
                 global_ids = self._split_csv_arg(request.args.get('guids', ''))
+                if self.indexed_artifacts:
+                    commit_sha = ref_name
+                    if not self._looks_like_git_sha(ref_name):
+                        commit_payloads = proxy_list_commits(
+                            repo_owner,
+                            repo_name,
+                            ref_name,
+                            github_token=self._resolve_github_token(),
+                            per_page=1,
+                            path=file_path,
+                        )
+                        if commit_payloads:
+                            commit_sha = commit_payloads[0].get('sha') or ref_name
+                        else:
+                            commit_details = get_commit_details(
+                                repo_owner,
+                                repo_name,
+                                ref_name,
+                                github_token=self._resolve_github_token(),
+                            )
+                            commit_sha = commit_details.get('sha') or ref_name
+
+                    preindexed_version_id = self.indexed_artifacts.build_version_id(
+                        repo_owner,
+                        repo_name,
+                        commit_sha,
+                        file_path,
+                    )
+                    summary = self.indexed_artifacts.read_summary(preindexed_version_id)
+                    if summary is not None:
+                        if global_ids:
+                            selected_ids = set(global_ids)
+                            summary = {
+                                global_id: payload
+                                for global_id, payload in summary.items()
+                                if global_id in selected_ids
+                            }
+                        return jsonify(summary)
                 file_bytes = fetch_file_bytes(
                     repo_owner,
                     repo_name,
@@ -1116,15 +1271,20 @@ class IFCProcessingServer:
 
             Returns: {latest: sha, versions: [{versionId, shortId, message, timestamp, author}]}
             """
-            if self.git_manager is None:
-                return jsonify({'error': 'Git versioning is not available'}), 501
             try:
                 n = int(request.args.get('limit', 50))
             except ValueError:
                 n = 50
+            if self.preindex_service:
+                versions = self.preindex_service.list_versions(limit=n)
+                if versions:
+                    latest = versions[0].get('versionId')
+                    return jsonify({'latest': latest, 'versions': versions, 'source': 'preindex'})
+            if self.git_manager is None:
+                return jsonify({'error': 'Git versioning is not available'}), 501
             versions = self.git_manager.list_versions(n=n)
             latest = self.git_manager.get_latest_sha()
-            return jsonify({'latest': latest, 'versions': versions})
+            return jsonify({'latest': latest, 'versions': versions, 'source': 'git'})
 
         @self.app.errorhandler(413)
         def too_large(e):

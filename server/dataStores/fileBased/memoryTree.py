@@ -1,6 +1,7 @@
 """In-memory tree structure for component storage and querying (fileBased)"""
 
 import os
+import gzip
 import json
 from pathlib import Path
 from typing import Dict, List, Optional, Set
@@ -14,6 +15,73 @@ class MemoryTree:
         self.by_entity: Dict[str, List[Dict]] = {}
         self.by_componentGuid: Dict[str, List[Dict]] = {}
 
+    def _reset_indexes(self):
+        self.models = {}
+        self.by_entity = {}
+        self.by_componentGuid = {}
+
+    def _ensure_model(self, model_name: str):
+        if model_name not in self.models:
+            self.models[model_name] = {
+                'by_entity': {},
+                'by_type': {},
+                'by_entityType': {},
+                'entity_types': {},
+                'by_componentGuid': {}
+            }
+        return self.models[model_name]
+
+    def _index_component(self, model_name: str, component: Dict):
+        model = self._ensure_model(model_name)
+
+        component_guid = component.get('componentGuid')
+        if not component_guid:
+            return
+
+        model['by_componentGuid'][component_guid] = component
+
+        if component_guid not in self.by_componentGuid:
+            self.by_componentGuid[component_guid] = []
+        self.by_componentGuid[component_guid].append({
+            'model': model_name,
+            'component': component
+        })
+
+        entity_guid = component.get('entityGuid')
+        if entity_guid:
+            if entity_guid not in model['by_entity']:
+                model['by_entity'][entity_guid] = []
+            model['by_entity'][entity_guid].append(component_guid)
+
+            if entity_guid not in self.by_entity:
+                self.by_entity[entity_guid] = []
+            self.by_entity[entity_guid].append({
+                'model': model_name,
+                'componentGuid': component_guid
+            })
+
+            entity_type = component.get('entityType')
+            if entity_type:
+                if entity_guid in model['entity_types']:
+                    existing_type = model['entity_types'][entity_guid]
+                    if existing_type != entity_type:
+                        print(f"⚠️  WARNING: Entity {entity_guid} has conflicting types: '{existing_type}' vs '{entity_type}'")
+                        print(f"   Component 1: {model['by_entity'][entity_guid][0]}")
+                        print(f"   Component 2: {component_guid}")
+                else:
+                    model['entity_types'][entity_guid] = entity_type
+                    if entity_type not in model['by_entityType']:
+                        model['by_entityType'][entity_type] = []
+                    model['by_entityType'][entity_type].append(entity_guid)
+
+        component_type = component.get('componentType', 'Unknown')
+        if component_type.endswith('Component'):
+            component_type = component_type[:-9]
+
+        if component_type not in model['by_type']:
+            model['by_type'][component_type] = []
+        model['by_type'][component_type].append(component_guid)
+
     
     def refresh_from_store(self, store_path: str):
         """Refresh memory tree from file-based store
@@ -21,9 +89,7 @@ class MemoryTree:
         Args:
             store_path: Path to the file-based data store
         """
-        self.models = {}
-        self.by_entity = {}
-        self.by_componentGuid = {}
+        self._reset_indexes()
         
         if not os.path.isdir(store_path):
             return
@@ -35,14 +101,7 @@ class MemoryTree:
             if not os.path.isdir(model_path):
                 continue
             
-            # Initialize model structure
-            self.models[model_name] = {
-                'by_entity': {},      # entity_guid -> [componentGuids]
-                'by_type': {},        # component_type -> [componentGuids]
-                'by_entityType': {},  # entity_type -> [entity_guids]
-                'entity_types': {},   # entity_guid -> entity_type
-                'by_componentGuid': {}         # componentGuid -> component_data
-            }
+            self._ensure_model(model_name)
             
             # Load all components for this model
             for filename in os.listdir(model_path):
@@ -54,65 +113,43 @@ class MemoryTree:
                     with open(component_path, 'r') as f:
                         component = json.load(f)
                     
-                    # Get component GUID
-                    component_guid = component.get('componentGuid')
-                    if not component_guid:
-                        continue
-                    
-                    # Store by GUID
-                    self.models[model_name]['by_componentGuid'][component_guid] = component
-
-                    if component_guid not in self.by_componentGuid:
-                        self.by_componentGuid[component_guid] = []
-                    self.by_componentGuid[component_guid].append({
-                        'model': model_name,
-                        'component': component
-                    })
-                    
-                    # Index by entity GUID
-                    entity_guid = component.get('entityGuid')
-                    if entity_guid:
-                        if entity_guid not in self.models[model_name]['by_entity']:
-                            self.models[model_name]['by_entity'][entity_guid] = []
-                        self.models[model_name]['by_entity'][entity_guid].append(component_guid)
-
-                        if entity_guid not in self.by_entity:
-                            self.by_entity[entity_guid] = []
-                        self.by_entity[entity_guid].append({
-                            'model': model_name,
-                            'componentGuid': component_guid
-                        })
-
-                        # Track entity type from component's entityType field
-                        entity_type = component.get('entityType')
-                        if entity_type:
-                            # Check for conflicts (same entity with different types)
-                            if entity_guid in self.models[model_name]['entity_types']:
-                                existing_type = self.models[model_name]['entity_types'][entity_guid]
-                                if existing_type != entity_type:
-                                    print(f"⚠️  WARNING: Entity {entity_guid} has conflicting types: '{existing_type}' vs '{entity_type}'")
-                                    print(f"   Component 1: {self.models[model_name]['by_entity'][entity_guid][0]}")
-                                    print(f"   Component 2: {component_guid}")
-                            else:
-                                # Store the entity type
-                                self.models[model_name]['entity_types'][entity_guid] = entity_type
-                                
-                                # Index entity GUID by type
-                                if entity_type not in self.models[model_name]['by_entityType']:
-                                    self.models[model_name]['by_entityType'][entity_type] = []
-                                self.models[model_name]['by_entityType'][entity_type].append(entity_guid)
-                    
-                    # Index by component type (remove trailing "Component")
-                    component_type = component.get('componentType', 'Unknown')
-                    if component_type.endswith('Component'):
-                        component_type = component_type[:-9]  # Remove 'Component'
-                    
-                    if component_type not in self.models[model_name]['by_type']:
-                        self.models[model_name]['by_type'][component_type] = []
-                    self.models[model_name]['by_type'][component_type].append(component_guid)
+                    self._index_component(model_name, component)
                     
                 except Exception as e:
                     print(f"Error loading component {filename}: {e}")
+
+    def refresh_from_components(self, model_name: str, components: List[Dict]):
+        """Refresh indexes from a list of in-memory components for one model."""
+        self._reset_indexes()
+        self._ensure_model(model_name)
+        for component in components or []:
+            if isinstance(component, dict):
+                self._index_component(model_name, component)
+
+    def refresh_from_snapshot(self, snapshot_path: str):
+        """Refresh indexes from a packed JSON or JSON.GZ snapshot."""
+        self._reset_indexes()
+
+        if not snapshot_path or not os.path.isfile(snapshot_path):
+            return
+
+        opener = gzip.open if snapshot_path.endswith('.gz') else open
+        with opener(snapshot_path, 'rt', encoding='utf-8') as handle:
+            payload = json.load(handle)
+
+        models = payload.get('models') if isinstance(payload, dict) else None
+        if not isinstance(models, dict):
+            return
+
+        for model_name, components in models.items():
+            if not isinstance(model_name, str):
+                continue
+            self._ensure_model(model_name)
+            if not isinstance(components, list):
+                continue
+            for component in components:
+                if isinstance(component, dict):
+                    self._index_component(model_name, component)
     
     def get_entity_guids(self, 
                         models: Optional[List[str]] = None,
