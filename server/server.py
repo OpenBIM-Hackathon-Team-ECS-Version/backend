@@ -771,8 +771,8 @@ Examples:
     parser.add_argument(
         '--port', '-p',
         type=int,
-        default=5000,
-        help='Port to listen on (default: 5000)'
+        default=5001,
+        help='Port to listen on (default: 5001)'
     )
     
     parser.add_argument(
