@@ -1987,6 +1987,12 @@
 
         try {
             const apiData = await fetchJson(url);
+            state.rawQueryResults.set(queryId, {
+                url,
+                data: apiData,
+                loadedAt: new Date().toISOString(),
+                error: null
+            });
             const components = await normalizeApiToComponents(url, apiData);
             const withMeta = components.map(component => ({
                 ...component,
@@ -2004,9 +2010,24 @@
             updateMeshesForVisibility();
             if (!fromRepeat) zoomToVisible();
 
+            if (state.upperViewMode === 'raw') {
+                if (!state.rawActiveQueryId) state.rawActiveQueryId = queryId;
+                renderRawDataTabs();
+            }
+
             setStatus(`Loaded ${state.flat.instancesById.size} component instances from ${state.queryResults.size} query line(s)`);
         } catch (error) {
+            state.rawQueryResults.set(queryId, {
+                url,
+                data: null,
+                loadedAt: new Date().toISOString(),
+                error: error.message
+            });
             if (statusEl) statusEl.textContent = 'Error';
+            if (state.upperViewMode === 'raw') {
+                if (!state.rawActiveQueryId) state.rawActiveQueryId = queryId;
+                renderRawDataTabs();
+            }
             setStatus(`Error in query ${line.index + 1}: ${error.message}`);
         }
     }
@@ -2086,6 +2107,10 @@
 
             container.appendChild(row);
         });
+
+        if (state.upperViewMode === 'raw') {
+            renderRawDataTabs();
+        }
     }
 
     function addQueryLine(address = 'http://localhost:5000/api/components', repeatEnabled = false) {
@@ -2104,6 +2129,11 @@
         if (repeatEnabled) {
             line.repeatTimer = setInterval(() => executeQueryLine(line.id, true), 60000);
         }
+
+        if (state.upperViewMode === 'raw') {
+            state.rawActiveQueryId = line.id;
+            renderRawDataTabs();
+        }
     }
 
     function deleteQueryLine(queryId) {
@@ -2113,6 +2143,11 @@
         const [line] = state.queryLines.splice(idx, 1);
         stopRepeatTimer(line);
         state.queryResults.delete(queryId);
+        state.rawQueryResults.delete(queryId);
+
+        if (state.rawActiveQueryId === queryId) {
+            state.rawActiveQueryId = state.queryLines.length ? state.queryLines[0].id : null;
+        }
 
         if (!state.queryLines.length) {
             addQueryLine('http://localhost:5000/api/components');
@@ -2124,6 +2159,9 @@
         syncTreeCheckboxes();
         updateMeshesForVisibility();
         clearDataView();
+        if (state.upperViewMode === 'raw') {
+            renderRawDataTabs();
+        }
     }
 
     function saveQueryState() {
@@ -2156,6 +2194,8 @@
         state.queryLines.forEach(stopRepeatTimer);
         state.queryLines = [];
         state.queryResults.clear();
+        state.rawQueryResults.clear();
+        state.rawActiveQueryId = null;
         state.flat = { entities: new Map(), componentsByGuid: new Map(), instancesById: new Map() };
         state.visibleInstanceIds.clear();
         state.selectedInstanceId = null;
@@ -2166,6 +2206,7 @@
         renderQueryLines();
         renderTree();
         clearDataView();
+        if (state.upperViewMode === 'raw') renderRawDataTabs();
         setStatus('Loaded query state JSON');
     }
 
@@ -2247,6 +2288,8 @@
     }
 
     function setupMenuActions() {
+        document.getElementById('treeViewTabBtn').addEventListener('click', () => setUpperViewMode('tree'));
+        document.getElementById('rawViewTabBtn').addEventListener('click', () => setUpperViewMode('raw'));
         document.getElementById('addQueryBtn').addEventListener('click', () => addQueryLine('http://localhost:5000/api/components'));
         document.getElementById('saveQueriesBtn').addEventListener('click', saveQueryState);
         document.getElementById('openQueriesBtn').addEventListener('click', () => document.getElementById('openQueriesInput').click());
@@ -2271,6 +2314,7 @@
         setupHorizontalSplitter();
         setupMenuActions();
         addQueryLine('http://localhost:5000/api/components');
+        setUpperViewMode('tree');
         renderTree();
         clearDataView();
     });
