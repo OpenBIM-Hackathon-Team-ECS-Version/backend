@@ -496,3 +496,675 @@
      Model HelloWall: found 61 guids
   Found 61 total components
   Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['HelloWall']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['HelloWall']
+     Calling _expand_entity_types_for_models(None, ['HelloWall'])
+     expanded_types={}
+     Model HelloWall: calling get_component_guids with entity_types=None
+     Model HelloWall: found 51 guids
+  Found 51 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['HelloWall']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['HelloWall']
+     Calling _expand_entity_types_for_models(None, ['HelloWall'])
+     expanded_types={}
+     Model HelloWall: calling get_component_guids with entity_types=None
+     Model HelloWall: found 37 guids
+  Found 37 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['HelloWall']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['HelloWall']
+     Calling _expand_entity_types_for_models(None, ['HelloWall'])
+     expanded_types={}
+     Model HelloWall: calling get_component_guids with entity_types=None
+     Model HelloWall: found 61 guids
+  Found 61 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+
+[GET_COMPONENTS] New request
+
+[GET_COMPONENTS] New request
+  models=['HelloWall']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['HelloWall']
+     Calling _expand_entity_types_for_models(None, ['HelloWall'])
+     expanded_types={}
+     Model HelloWall: calling get_component_guids with entity_types=None
+     Model HelloWall: found 37 guids
+  Found 37 total components
+  Returning 1 models
+  models=['HelloWall']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['HelloWall']
+     Calling _expand_entity_types_for_models(None, ['HelloWall'])
+     expanded_types={}
+     Model HelloWall: calling get_component_guids with entity_types=None
+     Model HelloWall: found 51 guids
+  Found 51 total components
+  Returning 1 models
+  models=['HelloWall']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['HelloWall']
+     Calling _expand_entity_types_for_models(None, ['HelloWall'])
+     expanded_types={}
+     Model HelloWall: calling get_component_guids with entity_types=None
+     Model HelloWall: found 37 guids
+  Found 37 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Electrical']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Electrical']
+     Calling _expand_entity_types_for_models(None, ['RE1-Electrical'])
+     expanded_types={}
+     Model RE1-Electrical: calling get_component_guids with entity_types=None
+     Model RE1-Electrical: found 615 guids
+  Found 615 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models

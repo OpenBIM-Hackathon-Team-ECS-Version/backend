@@ -534,7 +534,7 @@
             if (modelExists(modelName)) {
                 const confirmed = await confirmModal(
                     'Overwrite existing model?',
-                    `A model named "${modelName}" already exists. Overwrite it? This will delete the current data.`
+                    `A model named "${modelName}" already exists. Overwrite it? This will replace the current data and create a new git version.`
                 );
                 if (!confirmed) {
                     return;
@@ -570,7 +570,7 @@
                 } else if (response.status === 409 && data.model_exists) {
                     const confirmed = await confirmModal(
                         'Overwrite existing model?',
-                        `A model named "${data.model}" already exists. Overwrite it? This will delete the current data.`
+                        `A model named "${data.model}" already exists. Overwrite it? This will replace the current data and create a new git version.`
                     );
                     if (confirmed) {
                         await performUpload(file, true);
@@ -619,7 +619,11 @@
                     html += `<p><strong>Store path:</strong> <code>${data.store_path}</code></p>`;
                 }
                 if (data.versionId) {
-                    html += `<p><strong>Version ID:</strong> <code>${data.versionId}</code></p>`;
+                    const shortVersionId = (data.versionShortId || data.versionId).slice(0, 7);
+                    html += `<p><strong>Version ID:</strong> <code>${shortVersionId}</code></p>`;
+                    if (data.versionId.length > shortVersionId.length) {
+                        html += `<p><strong>Full version:</strong> <code>${data.versionId}</code></p>`;
+                    }
                 }
             }
             
