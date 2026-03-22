@@ -3,7 +3,8 @@
   "componentType": "IfcRelDefinesByTypeComponent",
   "entityGuid": "488a96a1-5b16-5dde-855b-986797d91f12",
   "relatedObjects": [
-    "a9c8fe2e-1465-4760-b05d-d3419a1b3194"
+    "a9c8fe2e-1465-4760-b05d-d3419a1b3194",
+    "a9c8fe2e-1465-4760-b05d-d3419a1b31d7"
   ],
   "relatingType": "488a96a1-5b16-5dde-855b-986797d91f12"
 }

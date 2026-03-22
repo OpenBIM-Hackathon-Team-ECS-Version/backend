@@ -5,7 +5,8 @@
   "entityGuid": "",
   "name": "Solid Exterior Doors",
   "relatedObjects": [
-    "a9c8fe2e-1465-4760-b05d-d3419a1b3194"
+    "a9c8fe2e-1465-4760-b05d-d3419a1b3194",
+    "a9c8fe2e-1465-4760-b05d-d3419a1b31d7"
   ],
   "relatingClassification": {
     "componentType": "IfcClassificationReferenceComponent",
