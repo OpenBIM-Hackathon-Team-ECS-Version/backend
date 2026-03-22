@@ -618,6 +618,9 @@
                 if (data.store_path) {
                     html += `<p><strong>Store path:</strong> <code>${data.store_path}</code></p>`;
                 }
+                if (data.versionId) {
+                    html += `<p><strong>Version ID:</strong> <code>${data.versionId}</code></p>`;
+                }
             }
             
             resultDiv.innerHTML = html;
@@ -775,7 +778,7 @@
                 const response = await fetch('/api/status');
                 if (response.ok) {
                     const data = await response.json();
-                    statusText.textContent = `Server running • Version ${data.version}`;
+                    statusText.textContent = `Server running • Version ${data.version}${data.latestVersion ? ' • Latest: ' + data.latestVersion.slice(0, 8) : ''}`;
                     if (modelsSubtitle && data.data_store) {
                         modelsSubtitle.textContent = `Loaded from ${data.data_store} store`;
                     }
