@@ -86,17 +86,44 @@ def _build_api_url(model_ref: GitHubModelRef):
 def fetch_ifc_bytes(model_ref: GitHubModelRef, github_token=None):
     """Fetch IFC bytes from GitHub using either raw or API endpoints."""
 
-    headers = {
+    raw_headers = {
         "User-Agent": "HackPorto-IFC-Diff",
         "Accept": "application/octet-stream",
     }
-    url = _build_raw_url(model_ref)
+    raw_url = _build_raw_url(model_ref)
 
-    # The GitHub contents API is more reliable for authenticated/private access.
-    if github_token and github_token.strip():
-        headers["Authorization"] = f"Bearer {github_token.strip()}"
-        headers["Accept"] = "application/vnd.github.raw"
-        url = _build_api_url(model_ref)
+    # Prefer raw file delivery first to avoid burning REST API quota on public repos.
+    try:
+        req = request.Request(raw_url, headers=raw_headers)
+        with request.urlopen(req) as response:
+            return response.read()
+    except error.HTTPError as exc:
+        if not github_token or not github_token.strip():
+            if exc.code == 404:
+                raise GitHubFileNotFoundError(
+                    f"IFC file not found for {model_ref.repo_owner}/{model_ref.repo_name} "
+                    f"at {model_ref.commit_sha[:7]}:{model_ref.file_path}"
+                ) from exc
+
+            message = exc.read().decode("utf-8", errors="ignore").strip()
+            raise GitHubFetchError(
+                message
+                or (
+                    f"GitHub request failed with HTTP {exc.code} for "
+                    f"{model_ref.repo_owner}/{model_ref.repo_name}:{model_ref.file_path}"
+                ),
+                status_code=exc.code,
+            ) from exc
+    except error.URLError as exc:
+        if not github_token or not github_token.strip():
+            raise GitHubFetchError(f"Unable to reach GitHub: {exc.reason}") from exc
+
+    headers = {
+        "User-Agent": "HackPorto-IFC-Diff",
+        "Accept": "application/vnd.github.raw",
+        "Authorization": f"Bearer {github_token.strip()}",
+    }
+    url = _build_api_url(model_ref)
 
     try:
         req = request.Request(url, headers=headers)

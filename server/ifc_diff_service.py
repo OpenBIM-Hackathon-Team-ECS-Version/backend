@@ -10,7 +10,6 @@ import ifcopenshell
 EXCLUDED_FIELDS = {
     "globalid",
     "id",
-    "objectplacement",
     "ownerhistory",
     "representation",
     "representationmaps",
