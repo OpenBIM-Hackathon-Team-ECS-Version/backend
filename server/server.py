@@ -10,6 +10,52 @@ from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 
+
+def _load_env_file(path):
+    """Load simple KEY=VALUE entries from a .env file into os.environ.
+
+    Existing environment variables are preserved.
+    """
+    if not os.path.isfile(path):
+        return
+
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            for raw_line in f:
+                line = raw_line.strip()
+                if not line or line.startswith('#') or '=' not in line:
+                    continue
+
+                key, value = line.split('=', 1)
+                key = key.strip()
+                value = value.strip()
+
+                # Remove optional single/double quotes around values.
+                if ((value.startswith('"') and value.endswith('"')) or
+                        (value.startswith("'") and value.endswith("'"))):
+                    value = value[1:-1]
+
+                if key and key not in os.environ:
+                    os.environ[key] = value
+    except Exception as e:
+        print(f"[WARN] Failed to load env file {path}: {e}")
+
+
+def _load_env():
+    """Load .env from likely locations.
+
+    Priority is current process environment, then file values.
+    """
+    server_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.dirname(server_dir)
+
+    # Allow both server/.env and repo-root/.env.
+    _load_env_file(os.path.join(server_dir, '.env'))
+    _load_env_file(os.path.join(repo_root, '.env'))
+
+
+_load_env()
+
 # Add ingestors to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'ingestors'))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'dataStores', 'fileBased'))
@@ -47,6 +93,7 @@ class IFCProcessingServer:
         self.file_store = None
         self.memory_tree = None
         self._descendants_exporter = None
+        self.git_manager = None
         
         # Configure Flask app
         self._configure_app()
@@ -91,7 +138,8 @@ class IFCProcessingServer:
             # Refresh memory tree on startup
             self._refresh_memory_tree()
             print(f"[OK] Initialized file-based data store at: {self.file_store.base_path}")
-            
+            self._init_git_versioning()
+
         elif self.data_store_type == 'mongodbBased':
             from mongodbBased import MongoDBStore
             from mongodbMemoryTree import MongoDBMemoryTree
@@ -103,6 +151,54 @@ class IFCProcessingServer:
         else:
             raise ValueError(f"Unknown data store type: {self.data_store_type}")
     
+    def _init_git_versioning(self):
+        """Initialise GitVersionManager for the file-based backend."""
+        try:
+            from git_versioning import GitVersionManager
+            repo_root = os.environ.get(
+                'VERSION_REPO_ROOT',
+                os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            )
+            data_rel_path = os.environ.get(
+                'VERSION_DATA_REL_PATH',
+                'server/dataStores/fileBased/data'
+            )
+            push_remote_url = os.environ.get('GIT_PUSH_REMOTE_URL')
+            push_branch = os.environ.get('GIT_PUSH_BRANCH')
+            self.git_manager = GitVersionManager(
+                repo_root=repo_root,
+                memory_tree_class=type(self.memory_tree),
+                data_rel_path=data_rel_path,
+                push_remote_url=push_remote_url,
+                push_branch=push_branch
+            )
+            if self.git_manager._git_available:
+                sha = self.git_manager.get_latest_sha()
+                print(f"[OK] Git versioning enabled. HEAD: {sha[:8] if sha else 'none'}")
+                if push_remote_url:
+                    print(f"[OK] Push target: {push_remote_url} ({push_branch or 'main'})")
+            else:
+                print('[WARN] Git versioning: git not available or not a repository')
+        except Exception as e:
+            print(f'[WARN] Git versioning unavailable: {e}')
+            self.git_manager = None
+
+    def _get_memory_tree(self, version=None):
+        """Return the MemoryTree for *version* (a git SHA), or the live tree.
+
+        Raises ValueError for invalid or unresolvable version strings.
+        """
+        if not version or version.lower() in ('latest', 'head'):
+            return self.memory_tree
+        if self.git_manager is None:
+            raise ValueError('Git versioning is not available for this backend')
+        if not self.git_manager.is_valid_sha(version):
+            raise ValueError(
+                f'Invalid version format: {version!r}. '
+                'Expected a 7-40 character hex git commit SHA.'
+            )
+        return self.git_manager.get_memory_tree_for_version(version)
+
     def _refresh_memory_tree(self):
         """Refresh the in-memory component tree"""
         try:
@@ -118,14 +214,15 @@ class IFCProcessingServer:
             print(f"❌ Error refreshing memory tree: {e}")
             return 0
 
-    def _expand_entity_types_for_models(self, entity_types, models):
+    def _expand_entity_types_for_models(self, entity_types, models, tree=None):
         """Expand entity types to include all descendants, filtered by model."""
         if not entity_types:
             return {}
 
         print(f"[EXPAND] Input: entity_types={entity_types}, models={models}")
         
-        search_models = models if models else self.memory_tree.get_models()
+        mt = tree or self.memory_tree
+        search_models = models if models else mt.get_models()
         descendants = set()
 
         try:
@@ -158,14 +255,14 @@ class IFCProcessingServer:
         
         per_model = {}
         for model_name in search_models:
-            model_types = set(self.memory_tree.get_entity_types(models=[model_name]))
+            model_types = set(mt.get_entity_types(models=[model_name]))
             intersection = model_types.intersection(descendants)
             per_model[model_name] = sorted(list(intersection))
             print(f"[EXPAND] Model {model_name}: available={len(model_types)}, intersection={per_model[model_name]}")
 
         return per_model
     
-    def _expand_component_types_for_models(self, component_types, models):
+    def _expand_component_types_for_models(self, component_types, models, tree=None):
         """Expand component types to include all descendants, filtered by model.
         
         Component types are stored WITHOUT the "Component" suffix (e.g., IfcWall, IfcWallStandardCase).
@@ -177,7 +274,8 @@ class IFCProcessingServer:
         print(f"\n🔍 _expand_component_types_for_models:")
         print(f"   Input component_types: {component_types}")
 
-        search_models = models if models else self.memory_tree.get_models()
+        mt = tree or self.memory_tree
+        search_models = models if models else mt.get_models()
         descendants = set()
 
         try:
@@ -239,7 +337,7 @@ class IFCProcessingServer:
         
         per_model = {}
         for model_name in search_models:
-            model_types = set(self.memory_tree.get_component_types(models=[model_name]))
+            model_types = set(mt.get_component_types(models=[model_name]))
             intersection = model_types.intersection(descendants)
             per_model[model_name] = sorted(list(intersection))
             print(f"   Model '{model_name}': available types {len(model_types)}, intersection {len(intersection)}: {per_model[model_name]}")
@@ -320,12 +418,18 @@ class IFCProcessingServer:
                     # Clean up uploads
                     os.remove(file_path)
                     os.remove(json_path)
+
+                    # Commit and push to git; get version ID
+                    version_id = None
+                    if self.git_manager:
+                        version_id = self.git_manager.commit_and_push(model_name)
                     
                     return jsonify({
                         'filename': json_filename,
                         'entities_count': len(json_objects),
                         'stored_count': result.get('count', 0),
                         'store_path': result.get('path', ''),
+                        'versionId': version_id,
                         'message': f"Successfully processed {len(json_objects)} entities"
                     })
                 
@@ -352,6 +456,11 @@ class IFCProcessingServer:
                     
                     # Refresh memory tree with new data
                     self._refresh_memory_tree()
+
+                    # Commit and push to git; get version ID
+                    version_id = None
+                    if self.git_manager:
+                        version_id = self.git_manager.commit_and_push(model_name)
                     
                     # Clean up upload
                     os.remove(file_path)
@@ -361,6 +470,7 @@ class IFCProcessingServer:
                         'entities_count': len(json_objects),
                         'stored_count': result.get('count', 0),
                         'store_path': result.get('path', ''),
+                        'versionId': version_id,
                         'message': f"Successfully stored {len(json_objects)} entities"
                     })
                 
@@ -370,11 +480,15 @@ class IFCProcessingServer:
         @self.app.route('/api/status', methods=['GET'])
         def status():
             """Get server status"""
+            latest_version = None
+            if self.git_manager:
+                latest_version = self.git_manager.get_latest_sha()
             return jsonify({
                 'status': 'running',
                 'data_store': self.data_store_type,
                 'timestamp': datetime.now().isoformat(),
-                'version': '0.1.0'
+                'version': '0.1.0',
+                'latestVersion': latest_version
             })
         
         @self.app.route('/api/stores', methods=['GET'])
@@ -400,22 +514,26 @@ class IFCProcessingServer:
             Parameters:
             - models: comma-separated list of model names (optional)
             - entityTypes: comma-separated list of entity types (optional)
+            - version: git commit SHA to query historical data (optional)
             
             Returns: Dictionary mapping model names to arrays of entity GUIDs
             """
             try:
                 # Parse query parameters
+                version = request.args.get('version')
                 models = request.args.get('models', '')
                 entity_types = request.args.get('entityTypes', '')
                 
                 models = [m.strip() for m in models.split(',')] if models else None
                 entity_types = [t.strip() for t in entity_types.split(',')] if entity_types else None
+
+                tree = self._get_memory_tree(version)
                 
                 # If no specific models requested, use all available models
                 if not models:
-                    models = self.memory_tree.get_models()
+                    models = tree.get_models()
 
-                expanded_types = self._expand_entity_types_for_models(entity_types, models) if entity_types else {}
+                expanded_types = self._expand_entity_types_for_models(entity_types, models, tree=tree) if entity_types else {}
 
                 # Query and organize results by model
                 result_by_model = {}
@@ -426,7 +544,7 @@ class IFCProcessingServer:
                         if not model_entity_types and not entity_guids:
                             continue
 
-                    entity_guids = self.memory_tree.get_entity_guids(
+                    entity_guids = tree.get_entity_guids(
                         models=[model_name],
                         entity_types=model_entity_types
                     )
@@ -446,11 +564,13 @@ class IFCProcessingServer:
             - entityGuids: comma-separated list of entity GUIDs (optional)
             - entityTypes: comma-separated list of entity types (optional)
             - componentTypes: comma-separated list of component types (optional)
+            - version: git commit SHA to query historical data (optional)
             
             Returns: Dictionary mapping model names to arrays of component GUIDs
             """
             try:
                 # Parse query parameters
+                version = request.args.get('version')
                 models = request.args.get('models', '')
                 entity_guids = request.args.get('entityGuids', '')
                 entity_types = request.args.get('entityTypes', '')
@@ -460,19 +580,21 @@ class IFCProcessingServer:
                 entity_guids = [e.strip() for e in entity_guids.split(',')] if entity_guids else None
                 entity_types = [t.strip() for t in entity_types.split(',')] if entity_types else None
                 component_types = [t.strip() for t in component_types.split(',')] if component_types else None
+
+                tree = self._get_memory_tree(version)
                 
                 # If no specific models requested, use all available models
                 if not models:
-                    models = self.memory_tree.get_models()
+                    models = tree.get_models()
 
                 # Expand component types if provided
                 if component_types:
-                    expanded_comp_types = self._expand_component_types_for_models(component_types, models)
+                    expanded_comp_types = self._expand_component_types_for_models(component_types, models, tree=tree)
                     result_by_model = {}
                     for model_name in models:
                         model_comp_types = expanded_comp_types.get(model_name, [])
                         if model_comp_types:
-                            component_guids = self.memory_tree.get_component_guids_by_type(
+                            component_guids = tree.get_component_guids_by_type(
                                 component_types=model_comp_types,
                                 models=[model_name]
                             )
@@ -481,7 +603,7 @@ class IFCProcessingServer:
                     return jsonify(result_by_model)
                 
                 # Otherwise expand entity types
-                expanded_types = self._expand_entity_types_for_models(entity_types, models) if entity_types else {}
+                expanded_types = self._expand_entity_types_for_models(entity_types, models, tree=tree) if entity_types else {}
 
                 # Query and organize results by model
                 result_by_model = {}
@@ -492,7 +614,7 @@ class IFCProcessingServer:
                         if not model_entity_types:
                             continue
 
-                    component_guids = self.memory_tree.get_component_guids(
+                    component_guids = tree.get_component_guids(
                         models=[model_name],
                         entity_guids=entity_guids,
                         entity_types=model_entity_types
@@ -514,6 +636,7 @@ class IFCProcessingServer:
             - entityTypes: comma-separated list of entity types (optional)
             - entityGuids: comma-separated list of entity GUIDs (optional)
             - componentTypes: comma-separated list of component types (optional)
+            - version: git commit SHA to query historical data (optional)
             
             Returns: Dictionary mapping model names to arrays of component objects
             """
@@ -522,6 +645,7 @@ class IFCProcessingServer:
                     f.write(f"\n[GET_COMPONENTS] New request\n")
                 
                 # Parse query parameters
+                version = request.args.get('version')
                 component_guids_param = request.args.get('componentGuids', '')
                 models = request.args.get('models', '')
                 entity_types = request.args.get('entityTypes', '')
@@ -534,6 +658,8 @@ class IFCProcessingServer:
                 entity_types = [t.strip() for t in entity_types.split(',')] if entity_types else None
                 entity_guids = [g.strip() for g in entity_guids.split(',')] if entity_guids else None
                 component_types = [t.strip() for t in component_types.split(',')] if component_types else None
+
+                tree = self._get_memory_tree(version)
                 
                 with open('api_debug.log', 'a') as f:
                     f.write(f"  models={models}\n")
@@ -545,34 +671,34 @@ class IFCProcessingServer:
                 if component_guids:
                     with open('api_debug.log', 'a') as f:
                         f.write(f"  -> Branch 1: component_guids\n")
-                    components, guid_to_model = self.memory_tree.get_components(component_guids)
+                    components, guid_to_model = tree.get_components(component_guids)
                 # If component types provided, use those
                 elif component_types:
                     with open('api_debug.log', 'a') as f:
                         f.write(f"  -> Branch 2: component_types\n")
-                    search_models = models if models else self.memory_tree.get_models()
-                    expanded_comp_types = self._expand_component_types_for_models(component_types, search_models)
+                    search_models = models if models else tree.get_models()
+                    expanded_comp_types = self._expand_component_types_for_models(component_types, search_models, tree=tree)
                     
                     found_guids = set()
                     for model_name in search_models:
                         model_comp_types = expanded_comp_types.get(model_name, [])
                         if model_comp_types:
-                            model_guids = self.memory_tree.get_component_guids_by_type(
+                            model_guids = tree.get_component_guids_by_type(
                                 component_types=model_comp_types,
                                 models=[model_name]
                             )
                             found_guids.update(model_guids)
                     
-                    components, guid_to_model = self.memory_tree.get_components(list(found_guids), models=search_models)
+                    components, guid_to_model = tree.get_components(list(found_guids), models=search_models)
                 # Otherwise, use query filters to find components
                 elif models or entity_types or entity_guids:
                     with open('api_debug.log', 'a') as f:
                         f.write(f"  -> Branch 3: query filters (models OR entity_types OR entity_guids)\n")
-                    search_models = models if models else self.memory_tree.get_models()
+                    search_models = models if models else tree.get_models()
                     with open('api_debug.log', 'a') as f:
                         f.write(f"     search_models={search_models}\n")
                         f.write(f"     Calling _expand_entity_types_for_models({entity_types}, {search_models})\n")
-                    expanded_types = self._expand_entity_types_for_models(entity_types, search_models) if entity_types else {}
+                    expanded_types = self._expand_entity_types_for_models(entity_types, search_models, tree=tree) if entity_types else {}
                     with open('api_debug.log', 'a') as f:
                         f.write(f"     expanded_types={expanded_types}\n")
 
@@ -587,7 +713,7 @@ class IFCProcessingServer:
                         with open('api_debug.log', 'a') as f:
                             f.write(f"     Model {model_name}: calling get_component_guids with entity_types={model_entity_types}\n")
                         
-                        model_guids = self.memory_tree.get_component_guids(
+                        model_guids = tree.get_component_guids(
                             models=[model_name],
                             entity_types=model_entity_types,
                             entity_guids=entity_guids
@@ -597,11 +723,11 @@ class IFCProcessingServer:
                         found_guids.update(model_guids)
 
                     # Get components, restricting search to the filtered models
-                    components, guid_to_model = self.memory_tree.get_components(list(found_guids), models=search_models)
+                    components, guid_to_model = tree.get_components(list(found_guids), models=search_models)
                 else:
                     # No filters specified - return all components from all models
-                    all_guids = self.memory_tree.get_component_guids()
-                    components, guid_to_model = self.memory_tree.get_components(all_guids)
+                    all_guids = tree.get_component_guids()
+                    components, guid_to_model = tree.get_components(all_guids)
                 
                 with open('api_debug.log', 'a') as f:
                     f.write(f"  Found {len(components)} total components\n")
@@ -637,8 +763,17 @@ class IFCProcessingServer:
         
         @self.app.route('/api/models', methods=['GET'])
         def list_models():
-            """List all loaded models"""
-            models = self.memory_tree.get_models()
+            """List all loaded models
+            
+            Parameters:
+            - version: git commit SHA to query historical data (optional)
+            """
+            version = request.args.get('version')
+            try:
+                tree = self._get_memory_tree(version)
+                models = tree.get_models()
+            except Exception as e:
+                return jsonify({'error': str(e)}), 400
             return jsonify(models)
 
         @self.app.route('/api/models/details', methods=['GET'])
@@ -676,6 +811,8 @@ class IFCProcessingServer:
 
             if deleted:
                 self._refresh_memory_tree()
+                if self.git_manager:
+                    self.git_manager.commit_deletion_and_push(deleted)
 
             return jsonify({
                 'deleted': deleted,
@@ -689,14 +826,17 @@ class IFCProcessingServer:
             
             Parameters:
             - models: comma-separated list of model names (optional)
+            - version: git commit SHA to query historical data (optional)
             
             Returns: List of entity types
             """
             try:
+                version = request.args.get('version')
                 models = request.args.get('models', '')
                 models = [m.strip() for m in models.split(',')] if models else None
-                
-                types = self.memory_tree.get_entity_types(models=models)
+
+                tree = self._get_memory_tree(version)
+                types = tree.get_entity_types(models=models)
                 
                 return jsonify(types)
             except Exception as e:
@@ -708,19 +848,41 @@ class IFCProcessingServer:
             
             Parameters:
             - models: comma-separated list of model names (optional)
+            - version: git commit SHA to query historical data (optional)
             
             Returns: List of component types
             """
             try:
+                version = request.args.get('version')
                 models = request.args.get('models', '')
                 models = [m.strip() for m in models.split(',')] if models else None
-                
-                types = self.memory_tree.get_component_types(models=models)
+
+                tree = self._get_memory_tree(version)
+                types = tree.get_component_types(models=models)
                 
                 return jsonify(types)
             except Exception as e:
                 return jsonify({'error': str(e)}), 400
-        
+
+        @self.app.route('/api/versions', methods=['GET'])
+        def list_versions():
+            """List recent versions (git commits that added/removed models).
+
+            Parameters:
+            - limit: maximum number of versions to return (default: 50)
+
+            Returns: {latest: sha, versions: [{versionId, shortId, message, timestamp, author}]}
+            """
+            if self.git_manager is None:
+                return jsonify({'error': 'Git versioning is not available'}), 501
+            try:
+                n = int(request.args.get('limit', 50))
+            except ValueError:
+                n = 50
+            versions = self.git_manager.list_versions(n=n)
+            latest = self.git_manager.get_latest_sha()
+            return jsonify({'latest': latest, 'versions': versions})
+
         @self.app.errorhandler(413)
         def too_large(e):
             """Handle file too large error"""
