@@ -1,0 +1,9 @@
+{
+  "componentGuid": "8fc3927c-0bdb-2ea2-a1e5-4fc51882a069",
+  "componentType": "IfcSpaceTypeComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-7801584957a8",
+  "entityType": "IfcSpaceType",
+  "name": "Meeting Room 3:467013",
+  "predefinedType": "NOTDEFINED",
+  "tag": "467013"
+}

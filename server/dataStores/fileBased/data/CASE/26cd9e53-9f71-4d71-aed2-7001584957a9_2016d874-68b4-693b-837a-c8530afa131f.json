@@ -1,0 +1,10 @@
+{
+  "componentGuid": "2016d874-68b4-693b-837a-c8530afa131f",
+  "componentType": "IfcSpaceComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-7001584957a9",
+  "entityType": "IfcSpace",
+  "interiorOrExteriorSpace": "INTERNAL",
+  "longName": "Work Area & Storage",
+  "name": "4"
+}

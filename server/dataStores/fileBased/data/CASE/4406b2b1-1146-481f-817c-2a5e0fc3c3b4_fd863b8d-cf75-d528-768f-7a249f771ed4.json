@@ -1,0 +1,16 @@
+{
+  "componentGuid": "fd863b8d-cf75-d528-768f-7a249f771ed4",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c3b4",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Radius Elbows / Tees"
+      }
+    }
+  ],
+  "name": "Pset_DistributionFlowElementCommon"
+}

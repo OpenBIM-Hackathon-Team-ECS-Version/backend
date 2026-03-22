@@ -1,0 +1,31 @@
+{
+  "componentGuid": "86a6cc6a-ae55-089f-f05a-e34aaacbce22",
+  "componentType": "IfcRelAssignsToGroupComponent",
+  "entityGuid": "4d3f7378-ee95-45f9-b1ec-c19c6372d2bd",
+  "relatedObjects": [
+    "4e2f671e-5514-4ff7-9613-126f0c9e323a",
+    "4d3f7378-ee95-45f9-b1ec-c19c6372d2bf",
+    "4d3f7378-ee95-45f9-b1ec-c19c6372d231",
+    "4d3f7378-ee95-45f9-b1ec-c19c6372d228",
+    "4d3f7378-ee95-45f9-b1ec-c19c6372d22e",
+    "4d3f7378-ee95-45f9-b1ec-c19c6372d223",
+    "4d3f7378-ee95-45f9-b1ec-c19c6372d3d6",
+    "4d3f7378-ee95-45f9-b1ec-c19c6372d3d4",
+    "24f66da9-8178-3cdd-121d-88d815b2395e",
+    "19cb5566-4b6e-2538-7cf2-8df6f1469ed2",
+    "5706519f-90fc-c849-693c-78ba4ad2a440",
+    "cbf3ecef-086d-303d-8ced-301ed8a9b642",
+    "4c8eb4d9-d72a-9bb0-dbea-d92c86fa7b18",
+    "b8529c77-0358-f14c-ef09-763705915531",
+    "9e05449e-b6f3-18ae-a0f3-eb32d3b66cb6",
+    "e092b29d-73bf-8121-9446-ec9096b25c90",
+    "9284174f-86cb-f06f-cb19-a94de81c5934",
+    "e4318901-26a0-28a8-a36c-6c8450727691",
+    "f8f78cb3-6369-a140-9c30-98c75b36e963",
+    "6e5d870d-a7d7-5c94-b62a-bbb72ef4cb65",
+    "ea5ca5d0-be75-06db-9607-2fdbcafea87d",
+    "8607e61a-5366-eb0d-f238-a6777ed1a059",
+    "0ede93c5-b09f-4d87-f278-38d9c61ccce6"
+  ],
+  "relatingGroup": "4d3f7378-ee95-45f9-b1ec-c19c6372d2bd"
+}

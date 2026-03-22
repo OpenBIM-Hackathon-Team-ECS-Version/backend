@@ -1,0 +1,9 @@
+{
+  "componentGuid": "83df313f-99b6-3505-b06a-bc24095a54e3",
+  "componentType": "IfcFlowFittingComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c39f",
+  "entityType": "IfcFlowFitting",
+  "name": "Rectangular Elbow - Radius:1.5 W:590945",
+  "objectType": "Rectangular Elbow - Radius:1.5 W",
+  "tag": "590945"
+}

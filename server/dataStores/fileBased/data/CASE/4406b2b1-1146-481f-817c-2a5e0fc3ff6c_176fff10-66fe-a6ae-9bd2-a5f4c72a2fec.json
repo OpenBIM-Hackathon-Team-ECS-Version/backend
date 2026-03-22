@@ -1,0 +1,9 @@
+{
+  "componentGuid": "176fff10-66fe-a6ae-9bd2-a5f4c72a2fec",
+  "componentType": "IfcDuctFittingTypeComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3ff6c",
+  "entityType": "IfcDuctFittingType",
+  "name": "Rectangular Elbow - Radius:1.5 W",
+  "predefinedType": "NOTDEFINED",
+  "tag": "591360"
+}

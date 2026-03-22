@@ -1,0 +1,16 @@
+{
+  "componentGuid": "3cc19748-8c46-6cdd-011b-c8b04f0cbdee",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c36e",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Radius Elbows / Tees"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

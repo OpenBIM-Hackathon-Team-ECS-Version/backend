@@ -1,0 +1,18 @@
+{
+  "componentGuid": "f1a0e147-4a0f-d6ff-66d8-06c82032900f",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d86735",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertyListValueComponent",
+      "listValues": [
+        {
+          "componentType": "IfcTextComponent",
+          "wrappedValue": "Generic"
+        }
+      ],
+      "name": "ConnectionType"
+    }
+  ],
+  "name": "Pset_DuctConnection"
+}

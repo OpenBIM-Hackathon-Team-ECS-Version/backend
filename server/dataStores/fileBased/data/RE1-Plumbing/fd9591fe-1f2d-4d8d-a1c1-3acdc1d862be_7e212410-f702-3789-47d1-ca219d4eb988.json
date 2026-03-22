@@ -1,0 +1,16 @@
+{
+  "componentGuid": "7e212410-f702-3789-47d1-ca219d4eb988",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d862be",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Tub_M"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

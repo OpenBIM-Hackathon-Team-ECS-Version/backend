@@ -1,0 +1,22 @@
+{
+  "componentGuid": "5a7e2674-0357-528c-564c-1a94608f7f1a",
+  "componentType": "IfcDoorStyleComponent",
+  "constructionType": "WOOD",
+  "entityGuid": "657769ac-0c1e-3e72-403e-27d9d8376872",
+  "entityType": "IfcDoorStyle",
+  "hasPropertySets": [
+    "372a24b0-48a2-41d1-b9f0-6514cf736fa5",
+    "372a24b0-48a2-41d1-b9f0-6517cf736fa5",
+    "1844fc86-362d-1387-813d-3f5062395536",
+    "5bb0362b-dcd9-8bf8-18a9-1fbefbf63cb5",
+    "b4ff2621-3872-0a36-a771-7785b1cf5e90",
+    "496f8ec5-1508-fa77-63f2-9d8fa5107431",
+    "43660eb0-4723-3ee1-9e7b-b95316f8f083",
+    "9492aaa3-e9cb-c643-7cbe-62521fa36d26"
+  ],
+  "name": "NBS_HalspanLtd_DrsetSym_HALSPAN90FireRatedInteriorGradeDoorBlanks_DoubleActingDoubleDoorsWithOverpanel:DoubleActingDoubleDoorswithOverpanel",
+  "operationType": "DOUBLE_DOOR_DOUBLE_SWING",
+  "parameterTakesPrecedence": false,
+  "sizeable": false,
+  "tag": "690083"
+}

@@ -1,0 +1,18 @@
+{
+  "componentGuid": "68aa360d-1f06-6ea5-2045-4af377e3c67d",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a725bbe",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertyListValueComponent",
+      "listValues": [
+        {
+          "componentType": "IfcLabelComponent",
+          "wrappedValue": "Generic"
+        }
+      ],
+      "name": "ConnectionType"
+    }
+  ],
+  "name": "Pset_PipeConnection"
+}

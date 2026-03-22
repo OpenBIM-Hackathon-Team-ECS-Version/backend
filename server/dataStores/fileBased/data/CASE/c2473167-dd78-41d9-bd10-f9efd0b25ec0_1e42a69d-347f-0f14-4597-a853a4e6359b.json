@@ -1,0 +1,17 @@
+{
+  "assemblyPlace": "NOTDEFINED",
+  "componentGuid": "1e42a69d-347f-0f14-4597-a853a4e6359b",
+  "componentType": "IfcFurnitureTypeComponent",
+  "entityGuid": "c2473167-dd78-41d9-bd10-f9efd0b25ec0",
+  "entityType": "IfcFurnitureType",
+  "hasPropertySets": [
+    "8d95dc09-b864-8548-66c3-f9bb1a9b3958",
+    "7bbd9423-6089-a6a6-7ad6-a0a99a331214",
+    "5a009931-ba9a-4985-c09a-ba9255593df8",
+    "67d9cd81-3775-a95d-69cb-dfe9af3d1154",
+    "b5d7d9e5-e361-ec36-1579-1c590d744ed9",
+    "52d157e9-f595-3732-0272-6ff1068f17a9"
+  ],
+  "name": "NBS_OffcTbls_Table_60:1200x800x750mm",
+  "tag": "491440"
+}

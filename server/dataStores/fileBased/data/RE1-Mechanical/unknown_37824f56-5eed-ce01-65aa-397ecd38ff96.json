@@ -1,0 +1,15 @@
+{
+  "componentGuid": "37824f56-5eed-ce01-65aa-397ecd38ff96",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Manufacturer",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "CARRIER"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerTypeInformation"
+}

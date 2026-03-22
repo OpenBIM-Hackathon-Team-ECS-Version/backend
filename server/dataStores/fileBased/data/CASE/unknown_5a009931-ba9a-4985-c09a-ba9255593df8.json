@@ -1,0 +1,15 @@
+{
+  "componentGuid": "5a009931-ba9a-4985-c09a-ba9255593df8",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "WorksurfaceArea",
+      "nominalValue": {
+        "componentType": "IfcAreaMeasureComponent",
+        "wrappedValue": 0.96
+      }
+    }
+  ],
+  "name": "Pset_FurnitureTypeDesk"
+}

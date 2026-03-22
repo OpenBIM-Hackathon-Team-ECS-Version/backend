@@ -1,0 +1,55 @@
+{
+  "componentGuid": "45151674-51dc-9778-62ca-851e07f598b9",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Description",
+      "nominalValue": {
+        "componentType": "IfcTextComponent",
+        "wrappedValue": "Generic three shelf bookcase"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Style",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "n/a"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalHeight",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 3.772965879265092
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalLength",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 1.968503937007874
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalDepth",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 1.3123359580052494
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "MainColor",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "n/a"
+      }
+    }
+  ],
+  "name": "Pset_FurnitureTypeCommon"
+}

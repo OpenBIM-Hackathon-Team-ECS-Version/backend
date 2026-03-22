@@ -1,0 +1,9 @@
+{
+  "componentGuid": "8a5c6736-f14d-bb6b-cf2d-2e997dfd5b21",
+  "componentType": "IfcFlowSegmentComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d86984",
+  "entityType": "IfcFlowSegment",
+  "name": "Pipe Types:221116-WTR:444525",
+  "objectType": "Pipe Types:221116-WTR",
+  "tag": "444525"
+}

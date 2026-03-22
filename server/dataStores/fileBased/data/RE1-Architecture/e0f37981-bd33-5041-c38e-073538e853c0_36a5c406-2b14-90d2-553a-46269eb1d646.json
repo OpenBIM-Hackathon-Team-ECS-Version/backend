@@ -1,0 +1,16 @@
+{
+  "componentGuid": "36a5c406-2b14-90d2-553a-46269eb1d646",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "e0f37981-bd33-5041-c38e-073538e853c0",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "-"
+      }
+    }
+  ],
+  "name": "Pset_OpeningElementCommon"
+}

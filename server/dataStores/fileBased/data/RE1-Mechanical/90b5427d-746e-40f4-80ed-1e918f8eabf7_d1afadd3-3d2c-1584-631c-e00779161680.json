@@ -1,0 +1,9 @@
+{
+  "componentGuid": "d1afadd3-3d2c-1584-631c-e00779161680",
+  "componentType": "IfcDuctFittingTypeComponent",
+  "entityGuid": "90b5427d-746e-40f4-80ed-1e918f8eabf7",
+  "entityType": "IfcDuctFittingType",
+  "name": "Rect Endcap:-",
+  "predefinedType": "NOTDEFINED",
+  "tag": "53296"
+}

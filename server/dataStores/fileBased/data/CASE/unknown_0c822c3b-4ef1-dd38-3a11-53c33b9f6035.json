@@ -1,0 +1,15 @@
+{
+  "componentGuid": "0c822c3b-4ef1-dd38-3a11-53c33b9f6035",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "ClassroomDesksAndTables_EN-AA35-760_Gopak"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

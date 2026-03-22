@@ -1,0 +1,79 @@
+{
+  "componentGuid": "21051e6b-0ab4-a2bc-2075-9cba339da127",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalCurrent",
+      "nominalValue": {
+        "componentType": "IfcElectricCurrentMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "UsageCurrent",
+      "nominalValue": {
+        "componentType": "IfcElectricCurrentMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertyBoundedValueComponent",
+      "name": "NominalVoltage",
+      "upperBoundValue": {
+        "componentType": "IfcElectricVoltageMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ElectricalDeviceNominalPower",
+      "nominalValue": {
+        "componentType": "IfcPowerMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NumberOfPoles",
+      "nominalValue": {
+        "componentType": "IfcIntegerComponent",
+        "wrappedValue": 0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "HasProtectiveEarth",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": true
+      }
+    },
+    {
+      "componentType": "IfcPropertyBoundedValueComponent",
+      "name": "NominalFrequencyRange",
+      "upperBoundValue": {
+        "componentType": "IfcFrequencyMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "IP_Code",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "User to Populate"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "PhaseReference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "User to Populate"
+      }
+    }
+  ],
+  "name": "Pset_ElectricalDeviceCommon"
+}

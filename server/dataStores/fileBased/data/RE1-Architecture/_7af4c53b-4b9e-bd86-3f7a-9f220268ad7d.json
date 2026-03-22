@@ -1,0 +1,16 @@
+{
+  "componentGuid": "7af4c53b-4b9e-bd86-3f7a-9f220268ad7d",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "c1104319-15e9-42d2-b2f7-40d05b0e7562",
+    "c1104319-15e9-42d2-b2f7-40d05b0e7551",
+    "c1104319-15e9-42d2-b2f7-40d05b0e7552",
+    "c1104319-15e9-42d2-b2f7-40d05b0e7553",
+    "c1104319-15e9-42d2-b2f7-40d05b0e754c"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialComponent",
+    "name": "Grey"
+  }
+}

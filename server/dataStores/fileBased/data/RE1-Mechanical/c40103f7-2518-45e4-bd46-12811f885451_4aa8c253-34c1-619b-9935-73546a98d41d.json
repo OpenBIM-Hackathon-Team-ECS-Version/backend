@@ -1,0 +1,12 @@
+{
+  "componentGuid": "4aa8c253-34c1-619b-9935-73546a98d41d",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "c40103f7-2518-45e4-bd46-12811f885451",
+  "entityType": "IfcBuildingElementProxyType",
+  "hasPropertySets": [
+    "37824f56-5eed-ce01-65aa-397ecd38ff96"
+  ],
+  "name": "237313-AHU:7kw",
+  "predefinedType": "NOTDEFINED",
+  "tag": "427529"
+}

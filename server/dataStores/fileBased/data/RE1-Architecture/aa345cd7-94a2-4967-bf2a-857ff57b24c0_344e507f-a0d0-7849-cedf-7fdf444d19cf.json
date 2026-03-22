@@ -1,0 +1,12 @@
+{
+  "componentGuid": "344e507f-a0d0-7849-cedf-7fdf444d19cf",
+  "componentType": "IfcPlateTypeComponent",
+  "entityGuid": "aa345cd7-94a2-4967-bf2a-857ff57b24c0",
+  "entityType": "IfcPlateType",
+  "hasPropertySets": [
+    "be667b92-384f-df52-dd08-e117ed41a692"
+  ],
+  "name": "System Panel:-",
+  "predefinedType": "CURTAIN_PANEL",
+  "tag": "445962"
+}

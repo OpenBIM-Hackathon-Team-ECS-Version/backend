@@ -1,0 +1,16 @@
+{
+  "componentGuid": "3a31dde0-6a59-df2d-12cf-37cbb1e90431",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-7001584957ab",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Office 1"
+      }
+    }
+  ],
+  "name": "Pset_SpaceCommon"
+}

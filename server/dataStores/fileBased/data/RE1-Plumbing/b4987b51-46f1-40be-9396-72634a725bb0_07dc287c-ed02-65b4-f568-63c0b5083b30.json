@@ -1,0 +1,19 @@
+{
+  "componentGuid": "07dc287c-ed02-65b4-f568-63c0b5083b30",
+  "componentType": "IfcRelAssignsToGroupComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a725bb0",
+  "relatedObjects": [
+    "fd9591fe-1f2d-4d8d-a1c1-3acdc1d862be",
+    "b4987b51-46f1-40be-9396-72634a725bbe",
+    "b4987b51-46f1-40be-9396-72634a725baf",
+    "b4987b51-46f1-40be-9396-72634a725ba1",
+    "88f46fac-3bc5-4a15-a6c2-d763c816c8cf",
+    "9d4a7785-622d-b799-a404-7d9c62ff78ef",
+    "b5243e39-6ab1-8014-26d9-61209093a82d",
+    "d86f2a0d-235d-0f25-7f0c-d7b130d9cf71",
+    "1c085bf1-bd20-ec93-8cb2-b5243ef26d29",
+    "035c0537-064f-e8f2-28b5-f6ea739e7265",
+    "15ca140d-0627-9d75-3025-9811ae6db808"
+  ],
+  "relatingGroup": "b4987b51-46f1-40be-9396-72634a725bb0"
+}

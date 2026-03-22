@@ -1,0 +1,16 @@
+{
+  "componentGuid": "93b2e6ad-47ba-2d05-69e1-f8fca9de3d7c",
+  "componentType": "IfcDoorStyleComponent",
+  "constructionType": "NOTDEFINED",
+  "entityGuid": "fe14bbca-9af2-3e53-9b00-abc1fca04ff1",
+  "entityType": "IfcDoorStyle",
+  "hasPropertySets": [
+    "aa345cd7-94a2-4967-bf2a-857ef57ae646",
+    "aa345cd7-94a2-4967-bf2a-857df57ae646"
+  ],
+  "name": "Door-Curtain-Wall-Double-Glas:69\" x 72\"",
+  "operationType": "NOTDEFINED",
+  "parameterTakesPrecedence": false,
+  "sizeable": false,
+  "tag": "480990"
+}

@@ -1,0 +1,16 @@
+{
+  "componentGuid": "23761cf0-408c-92a3-b762-18c094927b16",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "debc2895-068d-48bd-b00e-f4c059553f44",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SerialNumber",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "H2938"
+      }
+    }
+  ],
+  "name": "Pset_PrecastConcreteElementGeneral"
+}

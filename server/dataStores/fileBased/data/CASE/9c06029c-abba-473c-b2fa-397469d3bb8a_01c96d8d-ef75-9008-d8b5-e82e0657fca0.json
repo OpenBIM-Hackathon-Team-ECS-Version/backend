@@ -1,0 +1,32 @@
+{
+  "componentGuid": "01c96d8d-ef75-9008-d8b5-e82e0657fca0",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "9c06029c-abba-473c-b2fa-397469d3bb8a",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "IsExternal",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": true
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "n/a"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "FireRating",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "n/a"
+      }
+    }
+  ],
+  "name": "Pset_WindowCommon"
+}

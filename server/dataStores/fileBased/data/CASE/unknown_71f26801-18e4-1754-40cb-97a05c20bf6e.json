@@ -1,0 +1,39 @@
+{
+  "componentGuid": "71f26801-18e4-1754-40cb-97a05c20bf6e",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ModelReference",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "User to Populate"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ModelLabel",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "User to Populate"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Manufacturer",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "User to Populate"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ProductionYear",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "User to Populate"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerTypeInformation"
+}

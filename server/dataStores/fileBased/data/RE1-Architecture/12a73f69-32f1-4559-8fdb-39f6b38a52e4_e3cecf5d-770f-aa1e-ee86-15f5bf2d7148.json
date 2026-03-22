@@ -1,0 +1,16 @@
+{
+  "componentGuid": "e3cecf5d-770f-aa1e-ee86-15f5bf2d7148",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "12a73f69-32f1-4559-8fdb-39f6b38a52e4",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "-"
+      }
+    }
+  ],
+  "name": "Pset_ReinforcementBarPitchOfWall"
+}

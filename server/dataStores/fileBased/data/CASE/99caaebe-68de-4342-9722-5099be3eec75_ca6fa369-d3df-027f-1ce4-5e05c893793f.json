@@ -1,0 +1,40 @@
+{
+  "componentGuid": "ca6fa369-d3df-027f-1ce4-5e05c893793f",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "99caaebe-68de-4342-9722-5099be3eec75",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "IsExternal",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": true
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ExtendToStructure",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "LoadBearing",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "CASE - 24\" Concrete"
+      }
+    }
+  ],
+  "name": "Pset_WallCommon"
+}

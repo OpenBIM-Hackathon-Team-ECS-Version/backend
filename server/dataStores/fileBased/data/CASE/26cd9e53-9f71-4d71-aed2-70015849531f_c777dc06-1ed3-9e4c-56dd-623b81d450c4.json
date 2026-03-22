@@ -1,0 +1,16 @@
+{
+  "componentGuid": "c777dc06-1ed3-9e4c-56dd-623b81d450c4",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-70015849531f",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Work Area & Storage"
+      }
+    }
+  ],
+  "name": "Pset_AirSideSystemInformation"
+}

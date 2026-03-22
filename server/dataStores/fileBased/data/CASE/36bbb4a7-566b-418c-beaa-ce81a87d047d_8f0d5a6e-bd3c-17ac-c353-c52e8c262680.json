@@ -1,0 +1,16 @@
+{
+  "componentGuid": "8f0d5a6e-bd3c-17ac-c353-c52e8c262680",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "36bbb4a7-566b-418c-beaa-ce81a87d047d",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Family_Column_rectangle"
+      }
+    }
+  ],
+  "name": "Pset_ReinforcementBarPitchOfColumn"
+}

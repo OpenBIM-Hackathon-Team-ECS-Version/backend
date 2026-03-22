@@ -1,0 +1,13 @@
+{
+  "componentGuid": "1a5a28fc-98ce-4e91-fe12-edc986f1cf23",
+  "componentType": "IfcLightFixtureTypeComponent",
+  "entityGuid": "d4eb05a0-e2b3-480e-a698-ed1b6273afd2",
+  "entityType": "IfcLightFixtureType",
+  "hasPropertySets": [
+    "92242507-48a7-e870-87c0-eccbce2a9fab",
+    "4a8bed16-a9fb-7205-1f4d-2a4ebdcaf79a"
+  ],
+  "name": "265100-LIGHT-CAN:6\"",
+  "predefinedType": "NOTDEFINED",
+  "tag": "439260"
+}

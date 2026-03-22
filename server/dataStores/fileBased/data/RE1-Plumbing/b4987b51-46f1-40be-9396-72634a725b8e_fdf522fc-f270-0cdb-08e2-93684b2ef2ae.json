@@ -1,0 +1,9 @@
+{
+  "componentGuid": "fdf522fc-f270-0cdb-08e2-93684b2ef2ae",
+  "componentType": "IfcFlowFittingComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a725b8e",
+  "entityType": "IfcFlowFitting",
+  "name": "PIPE-Elbow - Welded:-:445111",
+  "objectType": "PIPE-Elbow - Welded:-",
+  "tag": "445111"
+}

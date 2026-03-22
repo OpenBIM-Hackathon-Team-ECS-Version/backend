@@ -1,0 +1,16 @@
+{
+  "componentGuid": "134fc35f-7969-2dc5-e175-667c0b8fbacc",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "e3b94832-e4c7-464a-b026-fc0854df7e2f",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Occupancy Sensor"
+      }
+    }
+  ],
+  "name": "Pset_BuildingElementProxyCommon"
+}

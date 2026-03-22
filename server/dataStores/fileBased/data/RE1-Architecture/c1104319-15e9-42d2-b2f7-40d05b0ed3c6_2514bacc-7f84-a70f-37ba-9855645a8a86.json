@@ -1,0 +1,16 @@
+{
+  "componentGuid": "2514bacc-7f84-a70f-37ba-9855645a8a86",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0ed3c6",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "-"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

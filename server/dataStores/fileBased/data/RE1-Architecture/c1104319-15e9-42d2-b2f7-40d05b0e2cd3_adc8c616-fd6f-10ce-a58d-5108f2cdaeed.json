@@ -1,0 +1,10 @@
+{
+  "componentGuid": "adc8c616-fd6f-10ce-a58d-5108f2cdaeed",
+  "componentType": "IfcSpaceComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0e2cd3",
+  "entityType": "IfcSpace",
+  "interiorOrExteriorSpace": "INTERNAL",
+  "longName": "Bath and Shower Small",
+  "name": "RE-2"
+}

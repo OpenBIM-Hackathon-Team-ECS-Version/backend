@@ -1,0 +1,18 @@
+{
+  "componentGuid": "150c00a9-b659-7087-934d-5ba244a68620",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d86956",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertyListValueComponent",
+      "listValues": [
+        {
+          "componentType": "IfcPositiveLengthMeasureComponent",
+          "wrappedValue": 15.0
+        }
+      ],
+      "name": "NominalDiameter"
+    }
+  ],
+  "name": "Pset_PipeFittingTypeCommon"
+}

@@ -1,0 +1,16 @@
+{
+  "componentGuid": "ee587a9f-e505-3b2f-128a-9254ee8dfc7b",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "372a24b0-48a2-41d1-b9f0-6515cf736fa5",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "FireRating",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Fire rated to 90 minutes"
+      }
+    }
+  ],
+  "name": "Pset_ConcreteElementGeneral"
+}

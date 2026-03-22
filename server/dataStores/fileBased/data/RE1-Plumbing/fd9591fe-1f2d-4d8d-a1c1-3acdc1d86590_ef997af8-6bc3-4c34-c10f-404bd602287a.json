@@ -1,0 +1,16 @@
+{
+  "componentGuid": "ef997af8-6bc3-4c34-c10f-404bd602287a",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d86590",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Whirlpool Washer_M"
+      }
+    }
+  ],
+  "name": "Pset_DistributionFlowElementCommon"
+}

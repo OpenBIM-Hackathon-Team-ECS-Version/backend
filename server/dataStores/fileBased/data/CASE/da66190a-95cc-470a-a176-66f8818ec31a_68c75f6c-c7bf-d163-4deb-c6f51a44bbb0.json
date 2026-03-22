@@ -1,0 +1,16 @@
+{
+  "componentGuid": "68c75f6c-c7bf-d163-4deb-c6f51a44bbb0",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "da66190a-95cc-470a-a176-66f8818ec31a",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Plotter"
+      }
+    }
+  ],
+  "name": "Pset_BuildingElementProxyCommon"
+}

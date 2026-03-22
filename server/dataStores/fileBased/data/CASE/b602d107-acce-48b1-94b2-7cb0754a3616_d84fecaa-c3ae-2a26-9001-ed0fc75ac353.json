@@ -1,0 +1,9 @@
+{
+  "componentGuid": "d84fecaa-c3ae-2a26-9001-ed0fc75ac353",
+  "componentType": "IfcFlowTerminalComponent",
+  "entityGuid": "b602d107-acce-48b1-94b2-7cb0754a3616",
+  "entityType": "IfcFlowTerminal",
+  "name": "20231011_Sensor family:ArduinoSet:729406",
+  "objectType": "20231011_Sensor family:ArduinoSet",
+  "tag": "729406"
+}

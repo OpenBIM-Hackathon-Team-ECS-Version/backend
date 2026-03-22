@@ -1,0 +1,9 @@
+{
+  "componentGuid": "1ba468fe-317e-5f5b-a9c4-fda6601f75da",
+  "componentType": "IfcPipeFittingTypeComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a724455",
+  "entityType": "IfcPipeFittingType",
+  "name": "Tee Vent:-",
+  "predefinedType": "NOTDEFINED",
+  "tag": "53319"
+}

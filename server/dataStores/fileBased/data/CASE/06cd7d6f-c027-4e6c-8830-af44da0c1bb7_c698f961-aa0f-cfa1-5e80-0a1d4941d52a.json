@@ -1,0 +1,11 @@
+{
+  "componentGuid": "c698f961-aa0f-cfa1-5e80-0a1d4941d52a",
+  "componentType": "IfcDoorComponent",
+  "entityGuid": "06cd7d6f-c027-4e6c-8830-af44da0c1bb7",
+  "entityType": "IfcDoor",
+  "name": "NBS_NorwoodGroupLimited_SldDoorAndPrtnSets_SlidingDoors:SlidingDoors_No window:711959",
+  "objectType": "NBS_NorwoodGroupLimited_SldDoorAndPrtnSets_SlidingDoors:SlidingDoors_No window",
+  "overallHeight": 6.889763779527559,
+  "overallWidth": 5.5774278215223205,
+  "tag": "711959"
+}

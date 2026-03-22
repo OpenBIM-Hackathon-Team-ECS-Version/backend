@@ -1,0 +1,55 @@
+{
+  "componentGuid": "933be468-98be-e2c0-6294-d2c845566eff",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Description",
+      "nominalValue": {
+        "componentType": "IfcTextComponent",
+        "wrappedValue": "Fixed leg table"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Style",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Fixed leg, lightweight"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalHeight",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 2.493438320209974
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalLength",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 5.905511811023622
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalDepth",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 2.4606299212598426
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "MainColor",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "n/a"
+      }
+    }
+  ],
+  "name": "Pset_FurnitureTypeCommon"
+}

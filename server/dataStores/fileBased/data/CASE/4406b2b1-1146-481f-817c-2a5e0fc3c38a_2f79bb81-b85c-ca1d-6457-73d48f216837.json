@@ -1,0 +1,16 @@
+{
+  "componentGuid": "2f79bb81-b85c-ca1d-6457-73d48f216837",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c38a",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "1.5 W"
+      }
+    }
+  ],
+  "name": "Pset_DistributionFlowElementCommon"
+}

@@ -1,0 +1,9 @@
+{
+  "componentGuid": "ec1d49fc-6285-eef6-a40e-3417926a096b",
+  "componentType": "IfcOpeningElementComponent",
+  "entityGuid": "30844c70-9f52-9d26-7fbd-52dad9d8124f",
+  "entityType": "IfcOpeningElement",
+  "name": "NBS_NorwoodGroupLimited_SldDoorAndPrtnSets_SlidingDoors:SlidingDoors_No window:711959:1",
+  "objectType": "Opening",
+  "tag": "711959"
+}

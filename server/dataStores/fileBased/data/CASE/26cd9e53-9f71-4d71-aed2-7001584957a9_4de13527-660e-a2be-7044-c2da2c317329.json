@@ -1,0 +1,16 @@
+{
+  "componentGuid": "4de13527-660e-a2be-7044-c2da2c317329",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-7001584957a9",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Work Area & Storage"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

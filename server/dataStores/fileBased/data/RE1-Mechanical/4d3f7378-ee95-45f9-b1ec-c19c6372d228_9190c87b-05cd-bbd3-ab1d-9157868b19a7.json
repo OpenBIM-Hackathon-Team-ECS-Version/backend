@@ -1,0 +1,26 @@
+{
+  "componentGuid": "9190c87b-05cd-bbd3-ab1d-9157868b19a7",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "4d3f7378-ee95-45f9-b1ec-c19c6372d228",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertyEnumeratedValueComponent",
+      "enumerationValues": [
+        {
+          "componentType": "IfcLabelComponent",
+          "wrappedValue": "ROUND"
+        }
+      ],
+      "name": "Shape"
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Length",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 51.95078125001127
+      }
+    }
+  ],
+  "name": "Pset_DuctSegmentTypeCommon"
+}

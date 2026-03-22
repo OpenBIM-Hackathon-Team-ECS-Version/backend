@@ -1,0 +1,22 @@
+{
+  "componentGuid": "591332fb-72f7-2b8d-e4a3-769a56769b6e",
+  "componentType": "IfcRelAssociatesClassificationComponent",
+  "description": "Flooring - Tile:C3020430",
+  "entityGuid": "",
+  "name": "Flooring - Tile",
+  "relatedObjects": [
+    "12a73f69-32f1-4559-8fdb-39f6b38a5312"
+  ],
+  "relatingClassification": {
+    "componentType": "IfcClassificationReferenceComponent",
+    "itemReference": "C3020430",
+    "location": "https://www.csiresources.org/standards/uniformat",
+    "name": "Flooring - Tile",
+    "referencedSource": {
+      "componentType": "IfcClassificationComponent",
+      "edition": "1998",
+      "name": "Uniformat",
+      "source": "CSI (Construction Specifications Institute)"
+    }
+  }
+}

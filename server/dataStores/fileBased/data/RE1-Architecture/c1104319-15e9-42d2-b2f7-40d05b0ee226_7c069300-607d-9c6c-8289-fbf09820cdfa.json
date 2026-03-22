@@ -1,0 +1,24 @@
+{
+  "componentGuid": "7c069300-607d-9c6c-8289-fbf09820cdfa",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0ee226",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Storage Medium RE-8"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "FloorCovering",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Wood"
+      }
+    }
+  ],
+  "name": "Pset_SpaceCommon"
+}

@@ -1,0 +1,24 @@
+{
+  "componentGuid": "67c17311-56d7-4571-daa2-1d1fe4326d6c",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0e012a",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Laundry Washroom2 RE-6"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "FloorCovering",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Linoleum"
+      }
+    }
+  ],
+  "name": "Pset_SpaceCommon"
+}

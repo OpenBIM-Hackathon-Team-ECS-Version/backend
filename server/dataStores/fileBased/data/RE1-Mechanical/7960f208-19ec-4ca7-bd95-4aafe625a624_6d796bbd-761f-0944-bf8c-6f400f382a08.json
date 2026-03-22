@@ -1,0 +1,9 @@
+{
+  "componentGuid": "6d796bbd-761f-0944-bf8c-6f400f382a08",
+  "componentType": "IfcDuctFittingTypeComponent",
+  "entityGuid": "7960f208-19ec-4ca7-bd95-4aafe625a624",
+  "entityType": "IfcDuctFittingType",
+  "name": "Rect Duct Elbow - Mitered:-",
+  "predefinedType": "NOTDEFINED",
+  "tag": "53367"
+}

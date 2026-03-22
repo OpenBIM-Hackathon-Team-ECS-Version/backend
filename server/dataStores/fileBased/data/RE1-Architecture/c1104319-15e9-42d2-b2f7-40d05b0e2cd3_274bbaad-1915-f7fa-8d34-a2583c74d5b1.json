@@ -1,0 +1,14 @@
+{
+  "componentGuid": "274bbaad-1915-f7fa-8d34-a2583c74d5b1",
+  "componentType": "IfcRelContainedInSpatialStructureComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0e2cd3",
+  "relatedElements": [
+    "c1104319-15e9-42d2-b2f7-40d05b0e1044",
+    "c1104319-15e9-42d2-b2f7-40d05b0e1397",
+    "c1104319-15e9-42d2-b2f7-40d05b0e1757",
+    "c1104319-15e9-42d2-b2f7-40d05b0e1adf",
+    "c1104319-15e9-42d2-b2f7-40d05b0e1d99",
+    "c1104319-15e9-42d2-b2f7-40d05b0e0128"
+  ],
+  "relatingStructure": "c1104319-15e9-42d2-b2f7-40d05b0e2cd3"
+}

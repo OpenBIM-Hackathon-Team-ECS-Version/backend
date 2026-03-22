@@ -1,0 +1,24 @@
+{
+  "componentGuid": "04a3756c-8f0f-2413-ac9f-22c923f96c89",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "aa345cd7-94a2-4967-bf2a-857ff57ae64a",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "-"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "IsExternal",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    }
+  ],
+  "name": "Pset_MemberCommon"
+}

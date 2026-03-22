@@ -1,0 +1,10 @@
+{
+  "componentGuid": "856cb3a0-31d3-c1f3-2af4-18d926e3ac2d",
+  "componentType": "IfcRailingComponent",
+  "entityGuid": "aa345cd7-94a2-4967-bf2a-857ff57b268d",
+  "entityType": "IfcRailing",
+  "name": "Railing:-:462556",
+  "objectType": "Railing:-",
+  "predefinedType": "NOTDEFINED",
+  "tag": "462556"
+}

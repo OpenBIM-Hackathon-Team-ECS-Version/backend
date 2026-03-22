@@ -1,0 +1,16 @@
+{
+  "componentGuid": "10461ee8-a06f-5a58-8074-e56fa7e1eb84",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-7001584957a8",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Meeting Room 3"
+      }
+    }
+  ],
+  "name": "Pset_SpaceCommon"
+}

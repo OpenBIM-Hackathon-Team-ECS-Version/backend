@@ -1,0 +1,16 @@
+{
+  "componentGuid": "f88708a4-4015-0e53-2073-8e15c62b8da3",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "06cd7d6f-c027-4e6c-8830-af44da0c1bb7",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "FireRating",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Class O Spread of Flame"
+      }
+    }
+  ],
+  "name": "Pset_ConcreteElementGeneral"
+}

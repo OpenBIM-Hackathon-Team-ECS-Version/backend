@@ -1,0 +1,15 @@
+{
+  "componentGuid": "0038e845-667a-4048-165c-9f000c6fc902",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "SlidingDoorAndPartitionSets_SlidingDoors_NorwoodGroupLimited"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

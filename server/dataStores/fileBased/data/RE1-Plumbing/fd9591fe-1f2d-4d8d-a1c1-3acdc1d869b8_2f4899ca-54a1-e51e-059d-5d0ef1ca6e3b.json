@@ -1,0 +1,9 @@
+{
+  "componentGuid": "2f4899ca-54a1-e51e-059d-5d0ef1ca6e3b",
+  "componentType": "IfcFlowFittingComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d869b8",
+  "entityType": "IfcFlowFitting",
+  "name": "PIPE-Tee - Welded:-:444497",
+  "objectType": "PIPE-Tee - Welded:-",
+  "tag": "444497"
+}

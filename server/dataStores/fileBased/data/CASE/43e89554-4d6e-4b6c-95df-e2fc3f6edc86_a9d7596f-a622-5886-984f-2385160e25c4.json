@@ -1,0 +1,16 @@
+{
+  "componentGuid": "a9d7596f-a622-5886-984f-2385160e25c4",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "43e89554-4d6e-4b6c-95df-e2fc3f6edc86",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "ArduinoSet"
+      }
+    }
+  ],
+  "name": "Pset_DistributionFlowElementCommon"
+}

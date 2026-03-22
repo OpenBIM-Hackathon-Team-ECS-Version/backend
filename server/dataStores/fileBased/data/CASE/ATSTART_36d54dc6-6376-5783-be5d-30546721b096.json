@@ -1,0 +1,13 @@
+{
+  "componentGuid": "36d54dc6-6376-5783-be5d-30546721b096",
+  "componentType": "IfcRelConnectsPathElementsComponent",
+  "description": "Structural",
+  "entityGuid": "ATSTART",
+  "name": "3$xWz9ZST2cxYILuvOA9Q6|2kYgU4m_98$R3sF0JLs0ed",
+  "relatedConnectionType": "ATEND",
+  "relatedElement": "ae8aa784-c3e2-48fd-b0f6-3c04d5d80a27",
+  "relatedPriorities": [],
+  "relatingConnectionType": "ATSTART",
+  "relatingElement": "ffee0f49-8dc7-429b-b892-578e58289686",
+  "relatingPriorities": []
+}

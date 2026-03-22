@@ -1,0 +1,9 @@
+{
+  "componentGuid": "bdb819f9-fcff-0506-f628-bf44ab1a40dd",
+  "componentType": "IfcSpaceTypeComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-48d05b0ee226",
+  "entityType": "IfcSpaceType",
+  "name": "Storage Medium RE-8:348762",
+  "predefinedType": "NOTDEFINED",
+  "tag": "348762"
+}

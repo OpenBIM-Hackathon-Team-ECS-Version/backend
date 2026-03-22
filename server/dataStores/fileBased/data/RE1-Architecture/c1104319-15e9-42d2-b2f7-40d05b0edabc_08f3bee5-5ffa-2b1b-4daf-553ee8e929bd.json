@@ -1,0 +1,10 @@
+{
+  "componentGuid": "08f3bee5-5ffa-2b1b-4daf-553ee8e929bd",
+  "componentType": "IfcSpaceComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0edabc",
+  "entityType": "IfcSpace",
+  "interiorOrExteriorSpace": "INTERNAL",
+  "longName": "Dining Extra Small",
+  "name": "RE-3"
+}

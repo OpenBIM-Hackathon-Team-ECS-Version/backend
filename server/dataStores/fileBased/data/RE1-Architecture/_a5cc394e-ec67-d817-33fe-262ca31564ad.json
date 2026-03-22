@@ -1,0 +1,15 @@
+{
+  "componentGuid": "a5cc394e-ec67-d817-33fe-262ca31564ad",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "aa345cd7-94a2-4967-bf2a-857ff57b24c0",
+    "aa345cd7-94a2-4967-bf2a-857ff57ae65b",
+    "aa345cd7-94a2-4967-bf2a-857ff57b2426",
+    "aa345cd7-94a2-4967-bf2a-857ff57ae65f"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialComponent",
+    "name": "Glass"
+  }
+}

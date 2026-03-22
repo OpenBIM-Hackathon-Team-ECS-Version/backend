@@ -1,0 +1,9 @@
+{
+  "componentGuid": "57571557-cf41-22f5-955f-2392246162bd",
+  "componentType": "IfcFlowSegmentComponent",
+  "entityGuid": "4d3f7378-ee95-45f9-b1ec-c19c6372d118",
+  "entityType": "IfcFlowSegment",
+  "name": "Pipe Types:WTR-Copper D:441731",
+  "objectType": "Pipe Types:WTR-Copper D",
+  "tag": "441731"
+}

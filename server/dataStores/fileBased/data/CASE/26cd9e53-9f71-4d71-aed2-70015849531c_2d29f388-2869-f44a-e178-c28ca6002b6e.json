@@ -1,0 +1,16 @@
+{
+  "componentGuid": "2d29f388-2869-f44a-e178-c28ca6002b6e",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-70015849531c",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Reception 6"
+      }
+    }
+  ],
+  "name": "Pset_SpaceCommon"
+}

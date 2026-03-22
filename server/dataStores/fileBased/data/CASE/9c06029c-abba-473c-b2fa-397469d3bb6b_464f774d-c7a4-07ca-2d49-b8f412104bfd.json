@@ -1,0 +1,11 @@
+{
+  "componentGuid": "464f774d-c7a4-07ca-2d49-b8f412104bfd",
+  "componentType": "IfcWindowComponent",
+  "entityGuid": "9c06029c-abba-473c-b2fa-397469d3bb6b",
+  "entityType": "IfcWindow",
+  "name": "NBS_DeceuninckLtd_PVCUWndwUnits_Traditional2500CasementWindow_C34:1500x1000mm_FrameProfile52mm-DoubleGlazed:472854",
+  "objectType": "NBS_DeceuninckLtd_PVCUWndwUnits_Traditional2500CasementWindow_C34:1500x1000mm_FrameProfile52mm-DoubleGlazed",
+  "overallHeight": 3.303780852082561,
+  "overallWidth": 4.921259842519699,
+  "tag": "472854"
+}

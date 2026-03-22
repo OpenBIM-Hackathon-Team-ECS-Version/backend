@@ -1,0 +1,16 @@
+{
+  "componentGuid": "d90c91fd-41d4-4611-807e-ef9a2b408f18",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "debc2895-068d-48bd-b00e-f4c059553f44",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "JBox"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

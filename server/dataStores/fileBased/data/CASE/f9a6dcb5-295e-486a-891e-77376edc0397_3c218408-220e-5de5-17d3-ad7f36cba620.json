@@ -1,0 +1,13 @@
+{
+  "assemblyPlace": "NOTDEFINED",
+  "componentGuid": "3c218408-220e-5de5-17d3-ad7f36cba620",
+  "componentType": "IfcFurnitureTypeComponent",
+  "entityGuid": "f9a6dcb5-295e-486a-891e-77376edc0397",
+  "entityType": "IfcFurnitureType",
+  "hasPropertySets": [
+    "7387a025-a294-417b-0cb6-dd3b8882e490",
+    "ae46f31b-c26a-a6fc-19d8-c1995b2f6a0b"
+  ],
+  "name": "HermanMiller_Seating_Setu_LoungeChair:Lyris Suspension Ribbon Arms",
+  "tag": "489596"
+}

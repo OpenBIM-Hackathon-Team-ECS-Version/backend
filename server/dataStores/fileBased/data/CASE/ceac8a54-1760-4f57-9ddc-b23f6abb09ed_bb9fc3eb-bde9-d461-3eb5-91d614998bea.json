@@ -1,0 +1,16 @@
+{
+  "componentGuid": "bb9fc3eb-bde9-d461-3eb5-91d614998bea",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "ceac8a54-1760-4f57-9ddc-b23f6abb09ed",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Kitchen 5"
+      }
+    }
+  ],
+  "name": "Pset_SpaceCommon"
+}

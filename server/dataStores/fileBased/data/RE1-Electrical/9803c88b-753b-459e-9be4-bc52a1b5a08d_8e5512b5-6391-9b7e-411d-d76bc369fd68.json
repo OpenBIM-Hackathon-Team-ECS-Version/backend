@@ -1,0 +1,16 @@
+{
+  "componentGuid": "8e5512b5-6391-9b7e-411d-d76bc369fd68",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5a08d",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SerialNumber",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "H2647"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerOccurrence"
+}

@@ -1,0 +1,15 @@
+{
+  "componentGuid": "43660eb0-4723-3ee1-9e7b-b95316f8f083",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "DoorsetSystem_HALSPAN90FireRatedInteriorGradeDoorBlanks_DoubleActingDoubleDoorswithOverpanel_HalspanLtd"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

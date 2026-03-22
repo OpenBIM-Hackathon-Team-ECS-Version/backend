@@ -1,0 +1,24 @@
+{
+  "componentGuid": "d12d8cb4-bb0b-8bf2-f08c-8a38c837e176",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "12a73f69-32f1-4559-8fdb-39f6b38a6bc9",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "IsExternal",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "60\" x 94\""
+      }
+    }
+  ],
+  "name": "Pset_DoorCommon"
+}

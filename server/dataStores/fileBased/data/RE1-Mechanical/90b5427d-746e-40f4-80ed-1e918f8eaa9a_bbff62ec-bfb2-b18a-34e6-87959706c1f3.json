@@ -1,0 +1,9 @@
+{
+  "componentGuid": "bbff62ec-bfb2-b18a-34e6-87959706c1f3",
+  "componentType": "IfcFlowSegmentComponent",
+  "entityGuid": "90b5427d-746e-40f4-80ed-1e918f8eaa9a",
+  "entityType": "IfcFlowSegment",
+  "name": "Rectangular Duct:233113-DUCT-Tees:439203",
+  "objectType": "Rectangular Duct:233113-DUCT-Tees",
+  "tag": "439203"
+}

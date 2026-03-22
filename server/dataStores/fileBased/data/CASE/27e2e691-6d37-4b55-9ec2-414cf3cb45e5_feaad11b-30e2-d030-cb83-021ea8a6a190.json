@@ -1,0 +1,9 @@
+{
+  "componentGuid": "feaad11b-30e2-d030-cb83-021ea8a6a190",
+  "componentType": "IfcFlowMovingDeviceComponent",
+  "entityGuid": "27e2e691-6d37-4b55-9ec2-414cf3cb45e5",
+  "entityType": "IfcFlowMovingDevice",
+  "name": "nbl_PropellerFan:PropellerFan:639202",
+  "objectType": "nbl_PropellerFan:PropellerFan",
+  "tag": "639202"
+}

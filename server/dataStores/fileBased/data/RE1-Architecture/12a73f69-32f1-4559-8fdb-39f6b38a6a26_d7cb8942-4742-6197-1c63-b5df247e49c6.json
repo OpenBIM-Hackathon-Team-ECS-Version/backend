@@ -1,0 +1,11 @@
+{
+  "componentGuid": "d7cb8942-4742-6197-1c63-b5df247e49c6",
+  "componentType": "IfcDoorComponent",
+  "entityGuid": "12a73f69-32f1-4559-8fdb-39f6b38a6a26",
+  "entityType": "IfcDoor",
+  "name": "Door-Double-Sliding:84\" x 94\":416336",
+  "objectType": "Door-Double-Sliding:84\" x 94\"",
+  "overallHeight": 2399.999999999997,
+  "overallWidth": 2149.9999999999964,
+  "tag": "416336"
+}

@@ -1,0 +1,28 @@
+{
+  "componentGuid": "6aab3710-698c-b2d4-040b-94b7db40f71c",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "da66190a-95cc-470a-a176-66f88182555d"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialLayerSetUsageComponent",
+    "directionSense": "POSITIVE",
+    "forLayerSet": {
+      "componentType": "IfcMaterialLayerSetComponent",
+      "layerSetName": "Floor:Generic - 12\"",
+      "materialLayers": [
+        {
+          "componentType": "IfcMaterialLayerComponent",
+          "layerThickness": 1.0,
+          "material": {
+            "componentType": "IfcMaterialComponent",
+            "name": "Default Floor"
+          }
+        }
+      ]
+    },
+    "layerSetDirection": "AXIS3",
+    "offsetFromReferenceLine": 0.0
+  }
+}

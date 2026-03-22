@@ -1,0 +1,9 @@
+{
+  "componentGuid": "59e8a2b6-afdb-8031-5b5a-6532a56fb449",
+  "componentType": "IfcRelDefinesByPropertiesComponent",
+  "entityGuid": "c60ca6d4-4158-dbca-b25d-7341cee0be79",
+  "relatedObjects": [
+    "6f73fcd4-a93e-4f9c-ac92-3ed9b4fec18d"
+  ],
+  "relatingPropertyDefinition": "c60ca6d4-4158-dbca-b25d-7341cee0be79"
+}

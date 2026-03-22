@@ -1,0 +1,37 @@
+{
+  "componentGuid": "cff3d571-7123-d0b2-f1b9-1dcb0d7ee433",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "36bbb4a7-566b-418c-beaa-c681a87d1fdd",
+    "36bbb4a7-566b-418c-beaa-ce81a87d1fdd",
+    "36bbb4a7-566b-418c-beaa-c681a87d1a4a",
+    "36bbb4a7-566b-418c-beaa-ce81a87d1a4a",
+    "36bbb4a7-566b-418c-beaa-c681a87d1bdb",
+    "36bbb4a7-566b-418c-beaa-ce81a87d1bdb",
+    "36bbb4a7-566b-418c-beaa-c681a87d052c",
+    "36bbb4a7-566b-418c-beaa-ce81a87d052c",
+    "d6339f84-e8c5-4791-90b1-c0337e371e83",
+    "d6339f84-e8c5-4791-90b1-c8337e371e83",
+    "d6339f84-e8c5-4791-90b1-c0337e371b74",
+    "d6339f84-e8c5-4791-90b1-c8337e371b74",
+    "d6339f84-e8c5-4791-90b1-c0337e371a23",
+    "d6339f84-e8c5-4791-90b1-c8337e371a23",
+    "d6339f84-e8c5-4791-90b1-c0337e371500",
+    "d6339f84-e8c5-4791-90b1-c8337e371500",
+    "d6339f84-e8c5-4791-90b1-c0337e371771",
+    "d6339f84-e8c5-4791-90b1-c8337e371771",
+    "d6339f84-e8c5-4791-90b1-c0337e371794",
+    "d6339f84-e8c5-4791-90b1-c8337e371794",
+    "d6339f84-e8c5-4791-90b1-c0337e371699",
+    "d6339f84-e8c5-4791-90b1-c8337e371699",
+    "63fe84cb-4a25-40bd-8cca-756278a93374",
+    "63fe84cb-4a25-40bd-8cca-7d6278a93374",
+    "63fe84cb-4a25-40bd-8cca-756278a933b3",
+    "63fe84cb-4a25-40bd-8cca-7d6278a933b3"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialComponent",
+    "name": "Concrete, Cast-in-Place gray"
+  }
+}

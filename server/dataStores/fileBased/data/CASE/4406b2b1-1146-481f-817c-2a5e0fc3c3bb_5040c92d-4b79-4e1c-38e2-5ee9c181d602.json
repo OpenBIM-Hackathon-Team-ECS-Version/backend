@@ -1,0 +1,16 @@
+{
+  "componentGuid": "5040c92d-4b79-4e1c-38e2-5ee9c181d602",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c3bb",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "24 x 24 Face 12 x 12 Connection"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

@@ -1,0 +1,55 @@
+{
+  "componentGuid": "7bbd9423-6089-a6a6-7ad6-a0a99a331214",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Description",
+      "nominalValue": {
+        "componentType": "IfcTextComponent",
+        "wrappedValue": "Generic rectangular table"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Style",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "n/a"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalHeight",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 2.460629925
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalLength",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 5.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalDepth",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 5.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "MainColor",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "n/a"
+      }
+    }
+  ],
+  "name": "Pset_FurnitureTypeCommon"
+}

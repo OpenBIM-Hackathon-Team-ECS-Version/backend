@@ -1,0 +1,16 @@
+{
+  "componentGuid": "d593202e-7dde-ffb3-158a-4f6c6c564378",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0e7189",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "4 Tatami"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

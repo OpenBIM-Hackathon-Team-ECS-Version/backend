@@ -1,0 +1,15 @@
+{
+  "componentGuid": "c3a67c4c-ff2c-504c-a817-358aba8c8c54",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "OperationalCriteria",
+      "nominalValue": {
+        "componentType": "IfcTimeMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    }
+  ],
+  "name": "Pset_FanTypeSmokeControl"
+}

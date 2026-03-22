@@ -1,0 +1,16 @@
+{
+  "componentGuid": "3b799e53-a655-350b-5ae9-ea9e20755de1",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "12a73f69-32f1-4559-8fdb-39f6b38a66b1",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "FireRating",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "2"
+      }
+    }
+  ],
+  "name": "Pset_ConcreteElementGeneral"
+}

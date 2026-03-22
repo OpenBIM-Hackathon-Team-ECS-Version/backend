@@ -1,0 +1,119 @@
+{
+  "componentGuid": "3bb4a71e-2b7d-589a-c311-5199b26eb4c7",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "IsTempered",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "IsLaminated",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "IsCoated",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": true
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "IsWired",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Translucency",
+      "nominalValue": {
+        "componentType": "IfcPositiveRatioMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reflectivity",
+      "nominalValue": {
+        "componentType": "IfcPositiveRatioMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "BeamRadiationTransmittance",
+      "nominalValue": {
+        "componentType": "IfcPositiveRatioMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SolarHeatGainTransmittance",
+      "nominalValue": {
+        "componentType": "IfcPositiveRatioMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ThermalTransmittanceSummer",
+      "nominalValue": {
+        "componentType": "IfcThermalTransmittanceMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ThermalTransmittanceWinter",
+      "nominalValue": {
+        "componentType": "IfcThermalTransmittanceMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "GlassLayers",
+      "nominalValue": {
+        "componentType": "IfcCountMeasureComponent",
+        "wrappedValue": 2.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "GlassThickness1",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 0.0131233596
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "GlassThickness2",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 0.0131233596
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "FillGas",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Argon"
+      }
+    }
+  ],
+  "name": "Pset_DoorWindowGlazingType"
+}

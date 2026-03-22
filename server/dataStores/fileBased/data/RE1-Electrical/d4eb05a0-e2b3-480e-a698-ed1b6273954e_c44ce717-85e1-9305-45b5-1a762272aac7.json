@@ -1,0 +1,16 @@
+{
+  "componentGuid": "c44ce717-85e1-9305-45b5-1a762272aac7",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "d4eb05a0-e2b3-480e-a698-ed1b6273954e",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "120/208V_1P_125A_42 Circuits"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

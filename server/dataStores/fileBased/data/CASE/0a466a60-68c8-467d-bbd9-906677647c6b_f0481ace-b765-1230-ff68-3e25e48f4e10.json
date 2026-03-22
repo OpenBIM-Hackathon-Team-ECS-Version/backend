@@ -1,0 +1,16 @@
+{
+  "componentGuid": "f0481ace-b765-1230-ff68-3e25e48f4e10",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "0a466a60-68c8-467d-bbd9-906677647c6b",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Aspvik_Printer_Table"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

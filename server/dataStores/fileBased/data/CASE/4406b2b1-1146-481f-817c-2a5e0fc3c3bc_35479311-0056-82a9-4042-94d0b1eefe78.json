@@ -1,0 +1,16 @@
+{
+  "componentGuid": "35479311-0056-82a9-4042-94d0b1eefe78",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c3bc",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "24 x 24 Face 12 x 12 Connection"
+      }
+    }
+  ],
+  "name": "Pset_DistributionFlowElementCommon"
+}

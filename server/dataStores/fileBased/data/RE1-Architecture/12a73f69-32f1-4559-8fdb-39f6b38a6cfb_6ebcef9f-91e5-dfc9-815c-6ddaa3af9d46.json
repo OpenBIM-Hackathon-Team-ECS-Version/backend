@@ -1,0 +1,11 @@
+{
+  "componentGuid": "6ebcef9f-91e5-dfc9-815c-6ddaa3af9d46",
+  "componentType": "IfcDoorComponent",
+  "entityGuid": "12a73f69-32f1-4559-8fdb-39f6b38a6cfb",
+  "entityType": "IfcDoor",
+  "name": "Single-Flush:Single-Flush:416909",
+  "objectType": "Single-Flush:Single-Flush",
+  "overallHeight": 2400.0,
+  "overallWidth": 750.0000000000027,
+  "tag": "416909"
+}

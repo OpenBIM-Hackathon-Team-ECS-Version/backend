@@ -1,0 +1,13 @@
+{
+  "componentGuid": "4d0012c7-4c26-25be-0ffa-598e35989cc1",
+  "componentType": "IfcLightFixtureTypeComponent",
+  "entityGuid": "d4eb05a0-e2b3-480e-a698-ed1b6273daca",
+  "entityType": "IfcLightFixtureType",
+  "hasPropertySets": [
+    "8bb5ccdf-06ad-2b77-24f1-55cd7891a0a5",
+    "a79d27b2-83e2-402c-6e62-bd28f0cd5b0f"
+  ],
+  "name": "265100-LIGHT-LED:24\"x24\"",
+  "predefinedType": "NOTDEFINED",
+  "tag": "444100"
+}

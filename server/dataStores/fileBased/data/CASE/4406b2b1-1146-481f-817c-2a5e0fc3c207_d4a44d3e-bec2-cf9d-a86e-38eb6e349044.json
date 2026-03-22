@@ -1,0 +1,9 @@
+{
+  "componentGuid": "d4a44d3e-bec2-cf9d-a86e-38eb6e349044",
+  "componentType": "IfcAirTerminalTypeComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c207",
+  "entityType": "IfcAirTerminalType",
+  "name": "Supply Diffuser:24 x 24 Face 12 x 12 Connection",
+  "predefinedType": "NOTDEFINED",
+  "tag": "591353"
+}

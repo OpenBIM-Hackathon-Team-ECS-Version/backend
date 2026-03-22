@@ -1,0 +1,16 @@
+{
+  "componentGuid": "6564e88f-ae97-50c7-8e78-77d55cb94154",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "b88fa2d9-c6e8-468a-a5d7-a229f01cfe17",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SerialNumber",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "SW6933"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerOccurrence"
+}

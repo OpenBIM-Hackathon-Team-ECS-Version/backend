@@ -1,0 +1,16 @@
+{
+  "componentGuid": "7d28ce5a-b43c-28b1-f511-81a16db879a9",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "b602d107-acce-48b1-94b2-7cb0754a08f3",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "ArduinoSet"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

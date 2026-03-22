@@ -1,0 +1,15 @@
+{
+  "componentGuid": "8d95dc09-b864-8548-66c3-f9bb1a9b3958",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Color",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "n/a"
+      }
+    }
+  ],
+  "name": "Pset_ElementShading"
+}

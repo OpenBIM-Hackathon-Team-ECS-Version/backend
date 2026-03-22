@@ -1,0 +1,16 @@
+{
+  "componentGuid": "c2ba679b-e0d3-0a8c-c2d8-141c5fc1c663",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-70015849531c",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Reception"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

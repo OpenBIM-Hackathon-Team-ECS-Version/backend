@@ -1,0 +1,9 @@
+{
+  "componentGuid": "35ad3dc8-036f-2412-6f70-78a217e64cbb",
+  "componentType": "IfcColumnTypeComponent",
+  "entityGuid": "d6339f84-e8c5-4791-90b1-c0337e371699",
+  "entityType": "IfcColumnType",
+  "name": "Family_Column_square12:Family_Column_square12",
+  "predefinedType": "COLUMN",
+  "tag": "394014"
+}

@@ -1,0 +1,22 @@
+{
+  "componentGuid": "8cd3689c-9c9d-0ac8-11e5-ce080fb34ff4",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "933c4a06-93b8-11d3-80f8-00c04f8efcd0"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialLayerSetComponent",
+    "layerSetName": "Floor:Generic - 12\"",
+    "materialLayers": [
+      {
+        "componentType": "IfcMaterialLayerComponent",
+        "layerThickness": 1.0,
+        "material": {
+          "componentType": "IfcMaterialComponent",
+          "name": "Default Floor"
+        }
+      }
+    ]
+  }
+}

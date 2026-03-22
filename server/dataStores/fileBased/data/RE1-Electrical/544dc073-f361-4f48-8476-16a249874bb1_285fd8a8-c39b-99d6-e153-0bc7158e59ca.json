@@ -1,0 +1,9 @@
+{
+  "componentGuid": "285fd8a8-c39b-99d6-e153-0bc7158e59ca",
+  "componentType": "IfcFlowTerminalComponent",
+  "entityGuid": "544dc073-f361-4f48-8476-16a249874bb1",
+  "entityType": "IfcFlowTerminal",
+  "name": "230913-Thermostat:230913-Thermostat:928758",
+  "objectType": "230913-Thermostat:230913-Thermostat",
+  "tag": "928758"
+}

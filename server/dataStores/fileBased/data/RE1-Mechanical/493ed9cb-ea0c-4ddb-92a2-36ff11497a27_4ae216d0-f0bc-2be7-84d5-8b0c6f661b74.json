@@ -1,0 +1,12 @@
+{
+  "componentGuid": "4ae216d0-f0bc-2be7-84d5-8b0c6f661b74",
+  "componentType": "IfcAirTerminalTypeComponent",
+  "entityGuid": "493ed9cb-ea0c-4ddb-92a2-36ff11497a27",
+  "entityType": "IfcAirTerminalType",
+  "hasPropertySets": [
+    "043e984a-6449-04c8-b03d-2962b54b66a7"
+  ],
+  "name": "233713-AIRTRM-Return Grille:600x600",
+  "predefinedType": "NOTDEFINED",
+  "tag": "430613"
+}

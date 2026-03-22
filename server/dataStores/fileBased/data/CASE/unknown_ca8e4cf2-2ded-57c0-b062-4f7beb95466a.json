@@ -1,0 +1,15 @@
+{
+  "componentGuid": "ca8e4cf2-2ded-57c0-b062-4f7beb95466a",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Color",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Available in a variety of fabrics and finishes, please contact 01525376181 or sales@pledgechairs.co.uk for details"
+      }
+    }
+  ],
+  "name": "Pset_ElementShading"
+}

@@ -1,0 +1,9 @@
+{
+  "componentGuid": "0239d697-4bb6-e097-1e8b-fbf05d4b79a3",
+  "componentType": "IfcAlarmTypeComponent",
+  "entityGuid": "fc30c002-40a8-449b-bce4-24323ee75cac",
+  "entityType": "IfcAlarmType",
+  "name": "284631-CO:Carbon Monoxide Detector Ceiling",
+  "predefinedType": "NOTDEFINED",
+  "tag": "943901"
+}

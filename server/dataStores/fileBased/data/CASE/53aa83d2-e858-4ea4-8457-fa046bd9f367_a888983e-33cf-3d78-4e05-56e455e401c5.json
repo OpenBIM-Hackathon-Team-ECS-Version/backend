@@ -1,0 +1,16 @@
+{
+  "componentGuid": "a888983e-33cf-3d78-4e05-56e455e401c5",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "53aa83d2-e858-4ea4-8457-fa046bd9f367",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Active Health"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

@@ -1,0 +1,16 @@
+{
+  "componentGuid": "78c2b668-d6c6-7eee-16dd-863154e72faf",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "06cd7d6f-c027-4e6c-8830-af44da0c1bb7",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "SlidingDoors_No window"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

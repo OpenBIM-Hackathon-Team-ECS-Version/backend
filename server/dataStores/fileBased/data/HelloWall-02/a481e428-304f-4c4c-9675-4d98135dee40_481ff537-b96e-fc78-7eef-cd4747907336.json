@@ -1,0 +1,19 @@
+{
+  "buildingAddress": {
+    "addressLines": [
+      "Enter address hereAddress Line 2"
+    ],
+    "componentType": "IfcPostalAddressComponent",
+    "country": "MA",
+    "postalCode": "",
+    "region": "Boston",
+    "town": ""
+  },
+  "componentGuid": "481ff537-b96e-fc78-7eef-cd4747907336",
+  "componentType": "IfcBuildingComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "a481e428-304f-4c4c-9675-4d98135dee40",
+  "entityType": "IfcBuilding",
+  "longName": "Building Name",
+  "name": "Building Name"
+}

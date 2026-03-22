@@ -1,0 +1,16 @@
+{
+  "componentGuid": "cebccb26-d68e-7d0d-7273-06eea780b418",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "94d28e1e-bd87-43f7-92a1-dd6bf47df05b",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Lyris Suspension Ribbon Arms"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

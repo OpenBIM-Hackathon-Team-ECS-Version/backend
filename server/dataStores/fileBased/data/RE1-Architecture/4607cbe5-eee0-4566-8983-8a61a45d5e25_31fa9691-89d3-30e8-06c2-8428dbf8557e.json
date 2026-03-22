@@ -1,0 +1,24 @@
+{
+  "componentGuid": "31fa9691-89d3-30e8-06c2-8428dbf8557e",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "4607cbe5-eee0-4566-8983-8a61a45d5e25",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NumberOfStoreys",
+      "nominalValue": {
+        "componentType": "IfcIntegerComponent",
+        "wrappedValue": 2
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "IsLandmarked",
+      "nominalValue": {
+        "componentType": "IfcLogicalComponent",
+        "wrappedValue": "UNKNOWN"
+      }
+    }
+  ],
+  "name": "Pset_BuildingCommon"
+}

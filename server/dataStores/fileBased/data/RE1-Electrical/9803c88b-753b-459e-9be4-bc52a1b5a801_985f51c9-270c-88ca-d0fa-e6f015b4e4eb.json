@@ -1,0 +1,12 @@
+{
+  "componentGuid": "985f51c9-270c-88ca-d0fa-e6f015b4e4eb",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5a801",
+  "entityType": "IfcBuildingElementProxyType",
+  "hasPropertySets": [
+    "afb758c7-01bd-11ae-524c-c987fddd16c7"
+  ],
+  "name": "262726-RECEPT:120V Duplex GFCI Above Counter",
+  "predefinedType": "NOTDEFINED",
+  "tag": "476017"
+}

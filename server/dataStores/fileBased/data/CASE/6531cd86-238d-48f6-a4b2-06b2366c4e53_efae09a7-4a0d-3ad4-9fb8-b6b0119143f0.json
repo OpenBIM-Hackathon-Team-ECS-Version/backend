@@ -1,0 +1,24 @@
+{
+  "componentGuid": "efae09a7-4a0d-3ad4-9fb8-b6b0119143f0",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "6531cd86-238d-48f6-a4b2-06b2366c4e53",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "BarCode",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "n/a"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SerialNumber",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "n/a"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerOccurrence"
+}

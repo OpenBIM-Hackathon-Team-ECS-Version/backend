@@ -1,0 +1,9 @@
+{
+  "componentGuid": "517038f1-fcec-d501-7e99-85c5b07641e4",
+  "componentType": "IfcFlowSegmentComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d868c9",
+  "entityType": "IfcFlowSegment",
+  "name": "Pipe Types:221316-SAN:444704",
+  "objectType": "Pipe Types:221316-SAN",
+  "tag": "444704"
+}

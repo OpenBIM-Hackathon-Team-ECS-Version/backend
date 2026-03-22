@@ -1,0 +1,12 @@
+{
+  "componentGuid": "ff5640a2-b209-8937-1c3d-708596d7d955",
+  "componentType": "IfcAirTerminalTypeComponent",
+  "entityGuid": "7960f208-19ec-4ca7-bd95-4aafe6259d46",
+  "entityType": "IfcAirTerminalType",
+  "hasPropertySets": [
+    "02a519c6-1afc-e34d-5c27-06ee35612875"
+  ],
+  "name": "233713-AIRTRM-Supply Diffuser:300x150",
+  "predefinedType": "NOTDEFINED",
+  "tag": "432269"
+}

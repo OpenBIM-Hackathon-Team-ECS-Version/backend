@@ -1,0 +1,22 @@
+{
+  "componentGuid": "6d922757-49b3-886d-5bea-501951c4931f",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "87d9725c-6074-4179-bcd8-08b7e697db8d"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialLayerSetComponent",
+    "layerSetName": "Basic Wall:CASE - 24\" Concrete",
+    "materialLayers": [
+      {
+        "componentType": "IfcMaterialLayerComponent",
+        "layerThickness": 2.0,
+        "material": {
+          "componentType": "IfcMaterialComponent",
+          "name": "Concrete, Cast-in-Place gray"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "componentGuid": "31d70beb-77a7-2966-e95e-e12dfaa0a10a",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5af04",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SerialNumber",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "H1116"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerOccurrence"
+}

@@ -1,0 +1,9 @@
+{
+  "componentGuid": "c841b130-7707-f961-1799-82d0b3b75ecd",
+  "componentType": "IfcDuctFittingTypeComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3ff6b",
+  "entityType": "IfcDuctFittingType",
+  "name": "Rectangular Tee:Standard",
+  "predefinedType": "NOTDEFINED",
+  "tag": "591365"
+}

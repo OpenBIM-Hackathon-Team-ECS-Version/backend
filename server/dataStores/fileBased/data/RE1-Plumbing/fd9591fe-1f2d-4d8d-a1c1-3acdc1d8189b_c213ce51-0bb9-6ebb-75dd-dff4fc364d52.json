@@ -1,0 +1,11 @@
+{
+  "componentGuid": "c213ce51-0bb9-6ebb-75dd-dff4fc364d52",
+  "componentType": "IfcDistributionElementTypeComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d8189b",
+  "entityType": "IfcDistributionElementType",
+  "hasPropertySets": [
+    "117242f6-6ef9-8081-6f1f-6572decccce9"
+  ],
+  "name": "224200-FIXT-Rough In Tub-Wall:Tub_M",
+  "tag": "440690"
+}

@@ -1,0 +1,9 @@
+{
+  "componentGuid": "0cbddce6-916e-425d-7343-36bbfead62c5",
+  "componentType": "IfcOpeningElementComponent",
+  "entityGuid": "6e10b385-3aa6-96df-b44c-5327b8db81b1",
+  "entityType": "IfcOpeningElement",
+  "name": "Basic Wall:-:415911:1",
+  "objectType": "Opening",
+  "tag": "415911"
+}

@@ -1,0 +1,10 @@
+{
+  "componentGuid": "e4193393-e552-016e-e8cb-95ec142a8ce7",
+  "componentType": "IfcSpaceComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "ceac8a54-1760-4f57-9ddc-b23f6abb09ed",
+  "entityType": "IfcSpace",
+  "interiorOrExteriorSpace": "INTERNAL",
+  "longName": "Kitchen",
+  "name": "5"
+}

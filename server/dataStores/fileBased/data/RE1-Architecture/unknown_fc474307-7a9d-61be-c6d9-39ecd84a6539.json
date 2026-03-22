@@ -1,0 +1,15 @@
+{
+  "componentGuid": "fc474307-7a9d-61be-c6d9-39ecd84a6539",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Description",
+      "nominalValue": {
+        "componentType": "IfcTextComponent",
+        "wrappedValue": "75mm FINISH T&G FLOORING OVER 25x50mm SLEEPERS AT 400mm O.C."
+      }
+    }
+  ],
+  "name": "Pset_ReinforcementBarPitchOfSlab"
+}

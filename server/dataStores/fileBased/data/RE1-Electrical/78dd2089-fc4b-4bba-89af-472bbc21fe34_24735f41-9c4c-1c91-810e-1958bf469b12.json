@@ -1,0 +1,16 @@
+{
+  "componentGuid": "24735f41-9c4c-1c91-810e-1958bf469b12",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "78dd2089-fc4b-4bba-89af-472bbc21fe34",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Default"
+      }
+    }
+  ],
+  "name": "Pset_BuildingElementProxyCommon"
+}

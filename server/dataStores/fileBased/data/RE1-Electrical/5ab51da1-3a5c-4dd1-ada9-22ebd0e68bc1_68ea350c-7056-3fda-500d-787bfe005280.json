@@ -1,0 +1,9 @@
+{
+  "componentGuid": "68ea350c-7056-3fda-500d-787bfe005280",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "5ab51da1-3a5c-4dd1-ada9-22ebd0e68bc1",
+  "entityType": "IfcBuildingElementProxyType",
+  "name": "284621-FirePanel:Default",
+  "predefinedType": "NOTDEFINED",
+  "tag": "930176"
+}

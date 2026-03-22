@@ -1,0 +1,103 @@
+{
+  "componentGuid": "5bb0362b-dcd9-8bf8-18a9-1fbefbf63cb5",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "IsExternal",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "n/a"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Infiltration",
+      "nominalValue": {
+        "componentType": "IfcVolumetricFlowRateMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "GlazingAreaFraction",
+      "nominalValue": {
+        "componentType": "IfcPositiveRatioMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SmokeStop",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "FireRating",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Fire rated to 90 minutes"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "AcousticRating",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "33 dB (double door unglazed), 35 dB (double door glazed)"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SecurityRating",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Security testing PAS 23/24"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ThermalTransmittance",
+      "nominalValue": {
+        "componentType": "IfcThermalTransmittanceMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "HandicapAccessible",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "FireExit",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SelfClosing",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    }
+  ],
+  "name": "Pset_DoorCommon"
+}

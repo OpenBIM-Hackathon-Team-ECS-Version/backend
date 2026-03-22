@@ -1,0 +1,30 @@
+{
+  "componentGuid": "c29fccab-8f67-8e8c-3d95-9572f36c3cdd",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "aa345cd7-94a2-4967-bf2a-857ff57b2427",
+    "aa345cd7-94a2-4967-bf2a-857ff57ae65a",
+    "aa345cd7-94a2-4967-bf2a-857ff57b24de",
+    "aa345cd7-94a2-4967-bf2a-857ff57ae65d",
+    "aa345cd7-94a2-4967-bf2a-857ff57b243e",
+    "aa345cd7-94a2-4967-bf2a-857ff57ae65e",
+    "aa345cd7-94a2-4967-bf2a-857ff57b2421",
+    "aa345cd7-94a2-4967-bf2a-857ff57ae641",
+    "aa345cd7-94a2-4967-bf2a-857ff57b2428",
+    "aa345cd7-94a2-4967-bf2a-857ff57ae645",
+    "aa345cd7-94a2-4967-bf2a-857ff57b2420",
+    "aa345cd7-94a2-4967-bf2a-857ff57ae644",
+    "aa345cd7-94a2-4967-bf2a-857ff57b2423",
+    "aa345cd7-94a2-4967-bf2a-857ff57ae648",
+    "aa345cd7-94a2-4967-bf2a-857ff57b2422",
+    "aa345cd7-94a2-4967-bf2a-857ff57ae64b",
+    "aa345cd7-94a2-4967-bf2a-857ff57ae64a",
+    "aa345cd7-94a2-4967-bf2a-857ff57b24c1",
+    "aa345cd7-94a2-4967-bf2a-857ff57ae64d"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialComponent",
+    "name": "Aluminum 2"
+  }
+}

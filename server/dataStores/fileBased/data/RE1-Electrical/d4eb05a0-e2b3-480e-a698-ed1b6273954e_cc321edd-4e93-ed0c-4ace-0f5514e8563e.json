@@ -1,0 +1,16 @@
+{
+  "componentGuid": "cc321edd-4e93-ed0c-4ace-0f5514e8563e",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "d4eb05a0-e2b3-480e-a698-ed1b6273954e",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "120/208V_1P_125A_42 Circuits"
+      }
+    }
+  ],
+  "name": "Pset_BuildingElementProxyCommon"
+}

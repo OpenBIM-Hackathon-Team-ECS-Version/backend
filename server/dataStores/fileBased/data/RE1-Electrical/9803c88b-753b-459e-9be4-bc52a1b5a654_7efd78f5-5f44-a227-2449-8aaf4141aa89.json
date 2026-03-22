@@ -1,0 +1,16 @@
+{
+  "componentGuid": "7efd78f5-5f44-a227-2449-8aaf4141aa89",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5a654",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "120V Duplex"
+      }
+    }
+  ],
+  "name": "Pset_BuildingElementProxyCommon"
+}

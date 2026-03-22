@@ -1,0 +1,28 @@
+{
+  "componentGuid": "9263bcb2-4fb5-9ec0-153c-4cc02350b854",
+  "componentType": "IfcRelAssociatesClassificationComponent",
+  "description": "Air Distribution Systems:D3040100",
+  "entityGuid": "",
+  "name": "Air Distribution Systems",
+  "relatedObjects": [
+    "7960f208-19ec-4ca7-bd95-4aafe6259820",
+    "7960f208-19ec-4ca7-bd95-4aafe6259831",
+    "7960f208-19ec-4ca7-bd95-4aafe6259bc0",
+    "7960f208-19ec-4ca7-bd95-4aafe6259bd1",
+    "7960f208-19ec-4ca7-bd95-4aafe6259bf3",
+    "7960f208-19ec-4ca7-bd95-4aafe6259b98",
+    "7960f208-19ec-4ca7-bd95-4aafe6259aaa"
+  ],
+  "relatingClassification": {
+    "componentType": "IfcClassificationReferenceComponent",
+    "itemReference": "D3040100",
+    "location": "https://www.csiresources.org/standards/uniformat",
+    "name": "Air Distribution Systems",
+    "referencedSource": {
+      "componentType": "IfcClassificationComponent",
+      "edition": "1998",
+      "name": "Uniformat",
+      "source": "CSI (Construction Specifications Institute)"
+    }
+  }
+}

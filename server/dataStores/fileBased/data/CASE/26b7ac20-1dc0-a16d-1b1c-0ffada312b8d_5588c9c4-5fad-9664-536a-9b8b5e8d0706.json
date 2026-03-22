@@ -1,0 +1,17 @@
+{
+  "componentGuid": "5588c9c4-5fad-9664-536a-9b8b5e8d0706",
+  "componentType": "IfcDoorStyleComponent",
+  "constructionType": "NOTDEFINED",
+  "entityGuid": "26b7ac20-1dc0-a16d-1b1c-0ffada312b8d",
+  "entityType": "IfcDoorStyle",
+  "hasPropertySets": [
+    "ffad80c8-78e3-4105-9221-c3e5618b165e",
+    "ffad80c8-78e3-4105-9221-c3e6618b165e",
+    "c25fde78-21f2-b64c-bae5-a761e56ffd94"
+  ],
+  "name": "Single-Flush:36\" x 84\"_No door",
+  "operationType": "SINGLE_SWING_RIGHT",
+  "parameterTakesPrecedence": false,
+  "sizeable": false,
+  "tag": "678975"
+}

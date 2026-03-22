@@ -1,0 +1,9 @@
+{
+  "componentGuid": "6cc41816-55d9-1ac0-19e1-8c970086fdbf",
+  "componentType": "IfcDuctFittingTypeComponent",
+  "entityGuid": "90b5427d-746e-40f4-80ed-1e918f8eaa08",
+  "entityType": "IfcDuctFittingType",
+  "name": "Rect Duct Tee:-",
+  "predefinedType": "NOTDEFINED",
+  "tag": "53359"
+}

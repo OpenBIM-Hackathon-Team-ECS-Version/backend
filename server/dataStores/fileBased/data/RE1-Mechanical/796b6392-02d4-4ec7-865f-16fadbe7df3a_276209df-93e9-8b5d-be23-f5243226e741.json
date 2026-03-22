@@ -1,0 +1,9 @@
+{
+  "componentGuid": "276209df-93e9-8b5d-be23-f5243226e741",
+  "componentType": "IfcPipeSegmentTypeComponent",
+  "entityGuid": "796b6392-02d4-4ec7-865f-16fadbe7df3a",
+  "entityType": "IfcPipeSegmentType",
+  "name": "Pipe Types:SANWST-PVC",
+  "predefinedType": "NOTDEFINED",
+  "tag": "53456"
+}

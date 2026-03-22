@@ -1,0 +1,16 @@
+{
+  "assemblyPlace": "NOTDEFINED",
+  "componentGuid": "d0460906-9791-d5b2-633b-f6453986f958",
+  "componentType": "IfcFurnitureTypeComponent",
+  "entityGuid": "e1f4f61e-8fb8-4b60-965e-7ad13f2a5429",
+  "entityType": "IfcFurnitureType",
+  "hasPropertySets": [
+    "4514de8d-2a59-5dc7-62e3-5c90c7541cc5",
+    "32621d04-1654-0afe-e0eb-844bf9d072a9",
+    "f0ecc1a3-08da-7533-0a8b-16c6a17ced3f",
+    "ad5f4cdd-0ead-200d-a4cd-8404b5c6b410",
+    "3a9079b5-9e9f-a788-7dd1-f0c6c5500e2a"
+  ],
+  "name": "NBS_DmstcChrs_Sofa:TwoSeaterSofa",
+  "tag": "500088"
+}

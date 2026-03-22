@@ -1,0 +1,16 @@
+{
+  "componentGuid": "6225cad6-dce8-259c-977b-80e0a872fb4b",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "2019a77f-963b-414b-b4bf-d28f6165f3c8",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "HIKVISION_ 32\u201d Monitor"
+      }
+    }
+  ],
+  "name": "Pset_BuildingElementProxyCommon"
+}

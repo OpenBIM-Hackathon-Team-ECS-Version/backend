@@ -1,0 +1,9 @@
+{
+  "componentGuid": "bcc40bc8-fd3e-d67e-874e-2e1574a43cbf",
+  "componentType": "IfcFurnishingElementComponent",
+  "entityGuid": "e1f4f61e-8fb8-4b60-965e-7ad13f2a54d9",
+  "entityType": "IfcFurnishingElement",
+  "name": "NBS_DmstcChrs_Sofa:TwoSeaterSofa:500104",
+  "objectType": "NBS_DmstcChrs_Sofa:TwoSeaterSofa",
+  "tag": "500104"
+}

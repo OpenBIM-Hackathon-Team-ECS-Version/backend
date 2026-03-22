@@ -1,0 +1,16 @@
+{
+  "componentGuid": "2477883b-cda0-9718-9de4-ee3ed99a23d4",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5a654",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "120V Duplex"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

@@ -1,0 +1,9 @@
+{
+  "componentGuid": "9454eb89-7d56-5828-c61b-bceb68df3137",
+  "componentType": "IfcBuildingElementProxyComponent",
+  "entityGuid": "da66190a-95cc-470a-a176-66f8818ec31a",
+  "entityType": "IfcBuildingElementProxy",
+  "name": "bimstore-specialityequipment-plotter:Plotter:663279",
+  "objectType": "bimstore-specialityequipment-plotter:Plotter",
+  "tag": "663279"
+}

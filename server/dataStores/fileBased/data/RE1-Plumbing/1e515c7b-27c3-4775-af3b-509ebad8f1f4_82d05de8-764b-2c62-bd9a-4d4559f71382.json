@@ -1,0 +1,9 @@
+{
+  "componentGuid": "82d05de8-764b-2c62-bd9a-4d4559f71382",
+  "componentType": "IfcPipeSegmentTypeComponent",
+  "entityGuid": "1e515c7b-27c3-4775-af3b-509ebad8f1f4",
+  "entityType": "IfcPipeSegmentType",
+  "name": "Pipe Types:221116-WTR",
+  "predefinedType": "NOTDEFINED",
+  "tag": "191045"
+}

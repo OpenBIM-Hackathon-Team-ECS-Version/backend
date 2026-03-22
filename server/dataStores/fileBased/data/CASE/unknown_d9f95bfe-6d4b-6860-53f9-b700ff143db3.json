@@ -1,0 +1,15 @@
+{
+  "componentGuid": "d9f95bfe-6d4b-6860-53f9-b700ff143db3",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "OfficeTables_Table"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

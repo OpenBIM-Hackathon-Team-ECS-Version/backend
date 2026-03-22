@@ -1,0 +1,15 @@
+{
+  "componentGuid": "096f6d2d-8bef-ccaa-146c-cab51a1c2e56",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Manufacturer",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "HIKVISION"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerTypeInformation"
+}

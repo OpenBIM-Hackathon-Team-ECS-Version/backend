@@ -1,0 +1,24 @@
+{
+  "componentGuid": "b125e737-68ad-2e45-c3f5-b975f5cae490",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "da66190a-95cc-470a-a176-66f8818ec31a",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "BarCode",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Please Record On Commissioning."
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SerialNumber",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Please Record On Commissioning."
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerOccurrence"
+}

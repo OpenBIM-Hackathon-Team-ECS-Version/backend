@@ -1,0 +1,16 @@
+{
+  "componentGuid": "e9fb00cb-1949-1b33-6f22-afb529a9b953",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-7001584957a8",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Meeting Room"
+      }
+    }
+  ],
+  "name": "Pset_AirSideSystemInformation"
+}

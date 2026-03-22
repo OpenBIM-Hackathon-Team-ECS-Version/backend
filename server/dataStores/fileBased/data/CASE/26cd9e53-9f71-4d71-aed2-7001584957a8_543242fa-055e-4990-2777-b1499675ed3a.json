@@ -1,0 +1,10 @@
+{
+  "componentGuid": "543242fa-055e-4990-2777-b1499675ed3a",
+  "componentType": "IfcSpaceComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-7001584957a8",
+  "entityType": "IfcSpace",
+  "interiorOrExteriorSpace": "INTERNAL",
+  "longName": "Meeting Room",
+  "name": "3"
+}

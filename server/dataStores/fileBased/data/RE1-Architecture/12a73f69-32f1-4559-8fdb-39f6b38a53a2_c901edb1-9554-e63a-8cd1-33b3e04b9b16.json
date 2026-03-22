@@ -1,0 +1,10 @@
+{
+  "componentGuid": "c901edb1-9554-e63a-8cd1-33b3e04b9b16",
+  "componentType": "IfcSlabComponent",
+  "entityGuid": "12a73f69-32f1-4559-8fdb-39f6b38a53a2",
+  "entityType": "IfcSlab",
+  "name": "Floor:--:418772",
+  "objectType": "Floor:--",
+  "predefinedType": "FLOOR",
+  "tag": "418772"
+}

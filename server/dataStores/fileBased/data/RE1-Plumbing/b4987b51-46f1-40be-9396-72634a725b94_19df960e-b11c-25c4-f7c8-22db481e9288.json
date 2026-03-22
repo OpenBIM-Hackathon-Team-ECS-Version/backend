@@ -1,0 +1,8 @@
+{
+  "componentGuid": "19df960e-b11c-25c4-f7c8-22db481e9288",
+  "componentType": "IfcSystemComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a725b94",
+  "entityType": "IfcSystem",
+  "name": "SAN 4",
+  "objectType": "Sanitary"
+}

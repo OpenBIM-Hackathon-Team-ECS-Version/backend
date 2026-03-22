@@ -1,0 +1,9 @@
+{
+  "componentGuid": "b5e5f2ef-ab77-4f82-f3cf-45598df44ffe",
+  "componentType": "IfcFlowFittingComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d867dc",
+  "entityType": "IfcFlowFitting",
+  "name": "PIPE-Cap:-:443957",
+  "objectType": "PIPE-Cap:-",
+  "tag": "443957"
+}

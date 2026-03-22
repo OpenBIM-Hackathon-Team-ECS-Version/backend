@@ -1,0 +1,11 @@
+{
+  "componentGuid": "1c4ad7cf-a2d1-f5ed-c238-1b5fbbed11f7",
+  "componentType": "IfcDistributionElementTypeComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d8659b",
+  "entityType": "IfcDistributionElementType",
+  "hasPropertySets": [
+    "fb411b90-f63e-398c-bc15-e29f12612689"
+  ],
+  "name": "224200-FIXT-Rough In Sink-Wall:Whirlpool Washer_M",
+  "tag": "443506"
+}

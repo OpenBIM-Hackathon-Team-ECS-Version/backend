@@ -1,0 +1,17 @@
+{
+  "componentGuid": "8a2b91a7-8750-74ca-35ef-97a1bce97163",
+  "componentType": "IfcDoorStyleComponent",
+  "constructionType": "NOTDEFINED",
+  "entityGuid": "1bc9cd5f-0868-4224-c032-a7a35a3d82d2",
+  "entityType": "IfcDoorStyle",
+  "hasPropertySets": [
+    "12a73f69-32f1-4559-8fdb-39f7b38a6bc9",
+    "12a73f69-32f1-4559-8fdb-39f4b38a6bc9",
+    "7322e2f7-d0b8-3fc8-4d93-4a1ba20e3b9e"
+  ],
+  "name": "Door-Double-Sliding:60\" x 94\"",
+  "operationType": "NOTDEFINED",
+  "parameterTakesPrecedence": false,
+  "sizeable": false,
+  "tag": "479427"
+}

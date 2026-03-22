@@ -1,0 +1,16 @@
+{
+  "componentGuid": "56bd95c3-3de1-9bf3-7ec9-a0364dc5f25f",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "32342ede-0a48-472c-a3d4-9cb66242d25b",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "CASE - 6\" Concrete"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

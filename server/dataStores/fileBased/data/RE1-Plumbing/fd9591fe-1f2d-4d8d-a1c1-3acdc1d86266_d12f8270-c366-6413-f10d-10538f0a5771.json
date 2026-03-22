@@ -1,0 +1,16 @@
+{
+  "componentGuid": "d12f8270-c366-6413-f10d-10538f0a5771",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d86266",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Shower_M"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

@@ -1,0 +1,22 @@
+{
+  "componentGuid": "7117362f-e061-b6a4-177f-0b3a197ff1c3",
+  "componentType": "IfcRelAssociatesClassificationComponent",
+  "description": "Glazed Doors & Entrances:B2030100",
+  "entityGuid": "",
+  "name": "Glazed Doors & Entrances",
+  "relatedObjects": [
+    "aa345cd7-94a2-4967-bf2a-857ff57ae646"
+  ],
+  "relatingClassification": {
+    "componentType": "IfcClassificationReferenceComponent",
+    "itemReference": "B2030100",
+    "location": "https://www.csiresources.org/standards/uniformat",
+    "name": "Glazed Doors & Entrances",
+    "referencedSource": {
+      "componentType": "IfcClassificationComponent",
+      "edition": "1998",
+      "name": "Uniformat",
+      "source": "CSI (Construction Specifications Institute)"
+    }
+  }
+}

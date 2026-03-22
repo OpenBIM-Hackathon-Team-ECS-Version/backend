@@ -1,0 +1,16 @@
+{
+  "componentGuid": "d8665886-cdd6-d4c7-7f76-a9c9ac2d4651",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "4d3f7378-ee95-45f9-b1ec-c19c6372d231",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "SANWST-PVC"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

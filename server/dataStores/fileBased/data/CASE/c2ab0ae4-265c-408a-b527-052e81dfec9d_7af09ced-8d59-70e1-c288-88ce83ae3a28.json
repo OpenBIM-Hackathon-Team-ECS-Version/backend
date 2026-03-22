@@ -1,0 +1,16 @@
+{
+  "componentGuid": "7af09ced-8d59-70e1-c288-88ce83ae3a28",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "c2ab0ae4-265c-408a-b527-052e81dfec9d",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "AboveGround",
+      "nominalValue": {
+        "componentType": "IfcLogicalComponent",
+        "wrappedValue": "UNKNOWN"
+      }
+    }
+  ],
+  "name": "Pset_BuildingStoreyCommon"
+}

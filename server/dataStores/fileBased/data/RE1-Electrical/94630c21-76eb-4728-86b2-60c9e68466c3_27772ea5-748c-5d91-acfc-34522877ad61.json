@@ -1,0 +1,9 @@
+{
+  "componentGuid": "27772ea5-748c-5d91-acfc-34522877ad61",
+  "componentType": "IfcAlarmTypeComponent",
+  "entityGuid": "94630c21-76eb-4728-86b2-60c9e68466c3",
+  "entityType": "IfcAlarmType",
+  "name": "284641-Horn Fire:Horn Ceiling",
+  "predefinedType": "NOTDEFINED",
+  "tag": "1021772"
+}

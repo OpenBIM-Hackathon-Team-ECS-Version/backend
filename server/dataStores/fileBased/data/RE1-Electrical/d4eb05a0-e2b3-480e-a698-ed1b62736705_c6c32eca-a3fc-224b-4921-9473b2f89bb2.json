@@ -1,0 +1,16 @@
+{
+  "componentGuid": "c6c32eca-a3fc-224b-4921-9473b2f89bb2",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "d4eb05a0-e2b3-480e-a698-ed1b62736705",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Level 2"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

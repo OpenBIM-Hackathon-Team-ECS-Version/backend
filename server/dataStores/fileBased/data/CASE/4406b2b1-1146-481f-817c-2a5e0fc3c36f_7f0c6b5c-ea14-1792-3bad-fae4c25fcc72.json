@@ -1,0 +1,9 @@
+{
+  "componentGuid": "7f0c6b5c-ea14-1792-3bad-fae4c25fcc72",
+  "componentType": "IfcFlowFittingComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c36f",
+  "entityType": "IfcFlowFitting",
+  "name": "Rectangular Transition - Angle:45 Degree:590993",
+  "objectType": "Rectangular Transition - Angle:45 Degree",
+  "tag": "590993"
+}

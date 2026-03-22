@@ -1,0 +1,9 @@
+{
+  "componentGuid": "f46d0bbf-8caf-e51f-57ad-05e4ed8b4ad1",
+  "componentType": "IfcFlowTerminalComponent",
+  "entityGuid": "7960f208-19ec-4ca7-bd95-4aafe6259bd1",
+  "entityType": "IfcFlowTerminal",
+  "name": "233713-AIRTRM-Supply Diffuser:300x150:433690",
+  "objectType": "233713-AIRTRM-Supply Diffuser:300x150",
+  "tag": "433690"
+}

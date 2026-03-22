@@ -1,0 +1,9 @@
+{
+  "componentGuid": "18f03daa-0ef3-2086-fc98-fda2296a3c9d",
+  "componentType": "IfcBuildingElementProxyComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5a7b0",
+  "entityType": "IfcBuildingElementProxy",
+  "name": "262726-RECEPT:120V Duplex:478400",
+  "objectType": "262726-RECEPT:120V Duplex",
+  "tag": "478400"
+}

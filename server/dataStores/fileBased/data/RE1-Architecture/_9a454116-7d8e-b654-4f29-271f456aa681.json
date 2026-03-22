@@ -1,0 +1,36 @@
+{
+  "componentGuid": "9a454116-7d8e-b654-4f29-271f456aa681",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "12a73f69-32f1-4559-8fdb-39f6b38a53a2"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialLayerSetUsageComponent",
+    "directionSense": "POSITIVE",
+    "forLayerSet": {
+      "componentType": "IfcMaterialLayerSetComponent",
+      "layerSetName": "Floor:--",
+      "materialLayers": [
+        {
+          "componentType": "IfcMaterialLayerComponent",
+          "layerThickness": 20.0,
+          "material": {
+            "componentType": "IfcMaterialComponent",
+            "name": "Red Oak 75mm Running"
+          }
+        },
+        {
+          "componentType": "IfcMaterialLayerComponent",
+          "layerThickness": 20.0,
+          "material": {
+            "componentType": "IfcMaterialComponent",
+            "name": "Sleepers"
+          }
+        }
+      ]
+    },
+    "layerSetDirection": "AXIS3",
+    "offsetFromReferenceLine": 0.0
+  }
+}

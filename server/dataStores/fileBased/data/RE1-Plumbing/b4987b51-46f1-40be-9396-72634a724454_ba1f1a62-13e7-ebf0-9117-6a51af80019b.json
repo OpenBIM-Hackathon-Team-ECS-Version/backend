@@ -1,0 +1,9 @@
+{
+  "componentGuid": "ba1f1a62-13e7-ebf0-9117-6a51af80019b",
+  "componentType": "IfcFlowFittingComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a724454",
+  "entityType": "IfcFlowFitting",
+  "name": "Tee Vent:-:447853",
+  "objectType": "Tee Vent:-",
+  "tag": "447853"
+}

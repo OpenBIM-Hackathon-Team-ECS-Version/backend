@@ -1,0 +1,7 @@
+{
+  "componentGuid": "37917dec-2939-f9b8-dbb2-001ba8ce3475",
+  "componentType": "IfcRelVoidsElementComponent",
+  "entityGuid": "2224301a-205e-43be-8b69-668f1a1561b8",
+  "relatedOpeningElement": "bce71422-001a-f789-e875-7823337a96ed",
+  "relatingBuildingElement": "2224301a-205e-43be-8b69-668f1a1561b8"
+}

@@ -1,0 +1,12 @@
+{
+  "componentGuid": "ef906db9-0649-2a3c-a31f-5dc3a2873ed4",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "241f27e0-31f7-4765-8b19-ffa315412a5b",
+  "entityType": "IfcBuildingElementProxyType",
+  "hasPropertySets": [
+    "3b1f9c86-658a-7cb5-4228-5b972382426a"
+  ],
+  "name": "Office_Equipment-Generic-Commercial_Copy_Machine:Commercial Copy Machine",
+  "predefinedType": "NOTDEFINED",
+  "tag": "629869"
+}

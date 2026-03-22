@@ -1,0 +1,15 @@
+{
+  "componentGuid": "92242507-48a7-e870-87c0-eccbce2a9fab",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NumberOfPoles",
+      "nominalValue": {
+        "componentType": "IfcIntegerComponent",
+        "wrappedValue": 1
+      }
+    }
+  ],
+  "name": "Pset_ElectricalDeviceCommon"
+}

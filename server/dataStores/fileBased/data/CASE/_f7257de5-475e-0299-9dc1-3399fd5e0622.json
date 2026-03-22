@@ -1,0 +1,21 @@
+{
+  "componentGuid": "f7257de5-475e-0299-9dc1-3399fd5e0622",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "241f27e0-31f7-4765-8b19-ffa315412a5b"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialListComponent",
+    "materials": [
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Plastic - Generic - White"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Plastic - Generic - Opaque Black"
+      }
+    ]
+  }
+}

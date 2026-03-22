@@ -1,0 +1,13 @@
+{
+  "componentGuid": "95a87595-910b-739f-9bf0-fef8d44df4d3",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "1e74df68-742d-4e7a-97f9-4fe9bcc4090b",
+  "entityType": "IfcBuildingElementProxyType",
+  "hasPropertySets": [
+    "422517c3-d302-4573-8ffa-094682384f74",
+    "3d35bbf4-a7c3-96e8-1c96-57213820c972"
+  ],
+  "name": "bimstore-specialityequipment-plotter:Plotter",
+  "predefinedType": "NOTDEFINED",
+  "tag": "631495"
+}

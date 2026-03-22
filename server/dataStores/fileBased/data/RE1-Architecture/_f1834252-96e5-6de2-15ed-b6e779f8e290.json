@@ -1,0 +1,22 @@
+{
+  "componentGuid": "f1834252-96e5-6de2-15ed-b6e779f8e290",
+  "componentType": "IfcRelAssociatesClassificationComponent",
+  "description": "Water Closets - Single:D2010110",
+  "entityGuid": "",
+  "name": "Water Closets - Single",
+  "relatedObjects": [
+    "c1104319-15e9-42d2-b2f7-40d05b0ecc56"
+  ],
+  "relatingClassification": {
+    "componentType": "IfcClassificationReferenceComponent",
+    "itemReference": "D2010110",
+    "location": "https://www.csiresources.org/standards/uniformat",
+    "name": "Water Closets - Single",
+    "referencedSource": {
+      "componentType": "IfcClassificationComponent",
+      "edition": "1998",
+      "name": "Uniformat",
+      "source": "CSI (Construction Specifications Institute)"
+    }
+  }
+}

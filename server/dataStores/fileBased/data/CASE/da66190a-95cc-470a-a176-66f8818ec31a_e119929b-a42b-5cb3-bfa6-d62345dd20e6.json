@@ -1,0 +1,16 @@
+{
+  "componentGuid": "e119929b-a42b-5cb3-bfa6-d62345dd20e6",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "da66190a-95cc-470a-a176-66f8818ec31a",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Plotter"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

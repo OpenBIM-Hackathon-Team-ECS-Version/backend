@@ -1,0 +1,23 @@
+{
+  "componentGuid": "665ad3b6-04ab-57b6-0187-9b2ce7516907",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ModelReference",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Key low back swivel chair"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Manufacturer",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Pledge Office Chairs Ltd,  sales@pledgechairs.co.uk"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerTypeInformation"
+}

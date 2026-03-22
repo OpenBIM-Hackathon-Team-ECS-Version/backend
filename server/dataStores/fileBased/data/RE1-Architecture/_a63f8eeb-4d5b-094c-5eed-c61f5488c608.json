@@ -1,0 +1,22 @@
+{
+  "componentGuid": "a63f8eeb-4d5b-094c-5eed-c61f5488c608",
+  "componentType": "IfcRelAssociatesClassificationComponent",
+  "description": "Flooring - Wood:C3020450",
+  "entityGuid": "",
+  "name": "Flooring - Wood",
+  "relatedObjects": [
+    "12a73f69-32f1-4559-8fdb-39f6b38a53a2"
+  ],
+  "relatingClassification": {
+    "componentType": "IfcClassificationReferenceComponent",
+    "itemReference": "C3020450",
+    "location": "https://www.csiresources.org/standards/uniformat",
+    "name": "Flooring - Wood",
+    "referencedSource": {
+      "componentType": "IfcClassificationComponent",
+      "edition": "1998",
+      "name": "Uniformat",
+      "source": "CSI (Construction Specifications Institute)"
+    }
+  }
+}

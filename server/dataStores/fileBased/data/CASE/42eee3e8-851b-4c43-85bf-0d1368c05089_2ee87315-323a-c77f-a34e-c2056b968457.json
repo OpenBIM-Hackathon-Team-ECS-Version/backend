@@ -1,0 +1,21 @@
+{
+  "componentGuid": "2ee87315-323a-c77f-a34e-c2056b968457",
+  "componentType": "IfcSiteComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "42eee3e8-851b-4c43-85bf-0d1368c05089",
+  "entityType": "IfcSite",
+  "name": "Default",
+  "refElevation": 0.0,
+  "refLatitude": [
+    42,
+    20,
+    27,
+    996826
+  ],
+  "refLongitude": [
+    -71,
+    -5,
+    -55,
+    -50659
+  ]
+}

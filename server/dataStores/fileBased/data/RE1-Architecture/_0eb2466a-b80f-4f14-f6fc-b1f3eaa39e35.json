@@ -1,0 +1,36 @@
+{
+  "componentGuid": "0eb2466a-b80f-4f14-f6fc-b1f3eaa39e35",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "12a73f69-32f1-4559-8fdb-39f6b38a5312"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialLayerSetUsageComponent",
+    "directionSense": "POSITIVE",
+    "forLayerSet": {
+      "componentType": "IfcMaterialLayerSetComponent",
+      "layerSetName": "Floor:-",
+      "materialLayers": [
+        {
+          "componentType": "IfcMaterialLayerComponent",
+          "layerThickness": 10.0,
+          "material": {
+            "componentType": "IfcMaterialComponent",
+            "name": "Tile 300 x 300 Stacked"
+          }
+        },
+        {
+          "componentType": "IfcMaterialLayerComponent",
+          "layerThickness": 10.0,
+          "material": {
+            "componentType": "IfcMaterialComponent",
+            "name": "Grout 2"
+          }
+        }
+      ]
+    },
+    "layerSetDirection": "AXIS3",
+    "offsetFromReferenceLine": 0.0
+  }
+}

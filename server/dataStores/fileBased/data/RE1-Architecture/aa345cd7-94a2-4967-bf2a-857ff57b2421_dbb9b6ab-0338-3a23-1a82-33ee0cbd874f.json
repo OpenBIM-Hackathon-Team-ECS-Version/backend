@@ -1,0 +1,9 @@
+{
+  "componentGuid": "dbb9b6ab-0338-3a23-1a82-33ee0cbd874f",
+  "componentType": "IfcMemberTypeComponent",
+  "entityGuid": "aa345cd7-94a2-4967-bf2a-857ff57b2421",
+  "entityType": "IfcMemberType",
+  "name": "Rectangular Mullion:-",
+  "predefinedType": "MULLION",
+  "tag": "446539"
+}

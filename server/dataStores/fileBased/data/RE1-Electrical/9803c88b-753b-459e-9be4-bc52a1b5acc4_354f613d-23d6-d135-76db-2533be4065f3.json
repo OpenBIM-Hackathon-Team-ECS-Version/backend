@@ -1,0 +1,16 @@
+{
+  "componentGuid": "354f613d-23d6-d135-76db-2533be4065f3",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5acc4",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "240V Special Purpose Outlet - Oven (2 Poles)"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

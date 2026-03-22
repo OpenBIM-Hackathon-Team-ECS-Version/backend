@@ -1,0 +1,9 @@
+{
+  "componentGuid": "db84b1c9-1edf-aefd-0053-515870019bb1",
+  "componentType": "IfcAirTerminalTypeComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c205",
+  "entityType": "IfcAirTerminalType",
+  "name": "Return Diffuser:24 x 24 Face 12 x 12 Connection",
+  "predefinedType": "NOTDEFINED",
+  "tag": "591355"
+}

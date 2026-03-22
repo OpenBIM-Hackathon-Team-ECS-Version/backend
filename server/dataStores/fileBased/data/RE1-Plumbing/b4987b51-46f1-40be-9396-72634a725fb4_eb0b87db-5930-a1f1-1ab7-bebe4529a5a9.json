@@ -1,0 +1,9 @@
+{
+  "componentGuid": "eb0b87db-5930-a1f1-1ab7-bebe4529a5a9",
+  "componentType": "IfcFlowTerminalComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a725fb4",
+  "entityType": "IfcFlowTerminal",
+  "name": "223313-WTRHTR-Tankless Electric:28kW:446093",
+  "objectType": "223313-WTRHTR-Tankless Electric:28kW",
+  "tag": "446093"
+}

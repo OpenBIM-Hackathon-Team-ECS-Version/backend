@@ -1,0 +1,9 @@
+{
+  "componentGuid": "1a6a3256-bfa8-9d68-41fb-571686e0f18d",
+  "componentType": "IfcDuctFittingTypeComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3ff69",
+  "entityType": "IfcDuctFittingType",
+  "name": "Rectangular Transition - Angle:45 Degree",
+  "predefinedType": "NOTDEFINED",
+  "tag": "591371"
+}

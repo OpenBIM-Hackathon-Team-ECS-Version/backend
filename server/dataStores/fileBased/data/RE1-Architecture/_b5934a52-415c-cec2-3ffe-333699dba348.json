@@ -1,0 +1,21 @@
+{
+  "componentGuid": "b5934a52-415c-cec2-3ffe-333699dba348",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "aa345cd7-94a2-4967-bf2a-857ff57b268d"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialListComponent",
+    "materials": [
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Stainless Steel2"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Tempered Glass2"
+      }
+    ]
+  }
+}

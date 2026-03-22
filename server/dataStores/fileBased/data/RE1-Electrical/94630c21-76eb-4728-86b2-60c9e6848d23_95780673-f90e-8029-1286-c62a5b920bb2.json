@@ -1,0 +1,9 @@
+{
+  "componentGuid": "95780673-f90e-8029-1286-c62a5b920bb2",
+  "componentType": "IfcAlarmTypeComponent",
+  "entityGuid": "94630c21-76eb-4728-86b2-60c9e6848d23",
+  "entityType": "IfcAlarmType",
+  "name": "284641-Strobe:Strobe Ceiling",
+  "predefinedType": "NOTDEFINED",
+  "tag": "1014956"
+}

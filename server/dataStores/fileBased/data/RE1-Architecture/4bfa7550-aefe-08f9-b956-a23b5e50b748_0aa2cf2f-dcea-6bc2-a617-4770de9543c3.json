@@ -1,0 +1,16 @@
+{
+  "componentGuid": "0aa2cf2f-dcea-6bc2-a617-4770de9543c3",
+  "componentType": "IfcDoorStyleComponent",
+  "constructionType": "NOTDEFINED",
+  "entityGuid": "4bfa7550-aefe-08f9-b956-a23b5e50b748",
+  "entityType": "IfcDoorStyle",
+  "hasPropertySets": [
+    "12a73f69-32f1-4559-8fdb-39f7b38a6d3f",
+    "12a73f69-32f1-4559-8fdb-39f4b38a6d3f"
+  ],
+  "name": "Single-Flush:Single-Flush",
+  "operationType": "SINGLE_SWING_LEFT",
+  "parameterTakesPrecedence": false,
+  "sizeable": false,
+  "tag": "478291"
+}

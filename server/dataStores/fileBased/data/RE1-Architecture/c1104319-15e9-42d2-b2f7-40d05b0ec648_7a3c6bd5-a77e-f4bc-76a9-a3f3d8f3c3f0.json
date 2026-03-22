@@ -1,0 +1,10 @@
+{
+  "componentGuid": "7a3c6bd5-a77e-f4bc-76a9-a3f3d8f3c3f0",
+  "componentType": "IfcSpaceComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0ec648",
+  "entityType": "IfcSpace",
+  "interiorOrExteriorSpace": "INTERNAL",
+  "longName": "Terrace",
+  "name": "RE-10"
+}

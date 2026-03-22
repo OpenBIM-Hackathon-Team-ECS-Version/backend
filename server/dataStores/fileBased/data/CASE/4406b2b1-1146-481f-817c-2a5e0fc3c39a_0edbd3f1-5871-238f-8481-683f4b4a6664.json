@@ -1,0 +1,16 @@
+{
+  "componentGuid": "0edbd3f1-5871-238f-8481-683f4b4a6664",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c39a",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Length",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 4.720856005715575
+      }
+    }
+  ],
+  "name": "Pset_FlowSegmentDuctSegment"
+}

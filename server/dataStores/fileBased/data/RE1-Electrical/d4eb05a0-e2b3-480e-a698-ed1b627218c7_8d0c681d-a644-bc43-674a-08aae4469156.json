@@ -1,0 +1,16 @@
+{
+  "componentGuid": "8d0c681d-a644-bc43-674a-08aae4469156",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "d4eb05a0-e2b3-480e-a698-ed1b627218c7",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Carbon Monoxide Detector Ceiling"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

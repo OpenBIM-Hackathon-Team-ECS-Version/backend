@@ -1,0 +1,18 @@
+{
+  "componentGuid": "1ad14f2c-4182-0ccd-ee2b-d38bf4538f27",
+  "componentType": "IfcFanTypeComponent",
+  "entityGuid": "8597590d-fd03-46f6-a1e5-838c74216710",
+  "entityType": "IfcFanType",
+  "hasPropertySets": [
+    "de3e4a77-18ce-a8b3-b1af-d5ddcdba5922",
+    "21051e6b-0ab4-a2bc-2075-9cba339da127",
+    "8c0b2406-b8a7-29e9-7c59-ac53e681d2cd",
+    "c3a67c4c-ff2c-504c-a817-358aba8c8c54",
+    "91bd819f-bb01-e15c-a065-f2908e1004e9",
+    "71f26801-18e4-1754-40cb-97a05c20bf6e",
+    "9b71d3df-ec11-93c0-3b43-9feb4c484c70"
+  ],
+  "name": "nbl_PropellerFan:PropellerFan",
+  "predefinedType": "USERDEFINED",
+  "tag": "606284"
+}

@@ -1,0 +1,16 @@
+{
+  "componentGuid": "a8621dfb-6e2f-65e1-5b3a-15839af32fff",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "e3b94832-e4c7-464a-b026-fc0854df7e35",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Occupancy Sensor"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

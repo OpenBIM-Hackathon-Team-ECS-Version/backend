@@ -1,0 +1,16 @@
+{
+  "componentGuid": "8288d341-1426-9aed-f49c-d12ec252a501",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d8613c",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Grohe WB265_M"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

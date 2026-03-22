@@ -1,0 +1,32 @@
+{
+  "componentGuid": "7a874a4d-3583-dc9c-37f9-479bda01bcdb",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "06cd7d6f-c027-4e6c-8830-af44da0c1bb7",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "IsExternal",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "SlidingDoors_No window"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "FireRating",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Class O Spread of Flame"
+      }
+    }
+  ],
+  "name": "Pset_DoorCommon"
+}

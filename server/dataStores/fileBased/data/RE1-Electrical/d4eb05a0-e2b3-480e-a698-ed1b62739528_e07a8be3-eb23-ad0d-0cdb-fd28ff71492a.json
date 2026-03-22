@@ -1,0 +1,12 @@
+{
+  "componentGuid": "e07a8be3-eb23-ad0d-0cdb-fd28ff71492a",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "d4eb05a0-e2b3-480e-a698-ed1b62739528",
+  "entityType": "IfcBuildingElementProxyType",
+  "hasPropertySets": [
+    "7f8a402c-e5c7-159d-6f2c-9347e98ae218"
+  ],
+  "name": "262416-PANEL:120/208V_1P_125A_42 Circuits",
+  "predefinedType": "NOTDEFINED",
+  "tag": "428326"
+}

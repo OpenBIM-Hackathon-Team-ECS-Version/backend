@@ -1,0 +1,9 @@
+{
+  "componentGuid": "04f1cebf-a9d5-54f3-bcf0-ffdd3af55dac",
+  "componentType": "IfcFlowTerminalComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0e050c",
+  "entityType": "IfcFlowTerminal",
+  "name": "Sink, Lavatory, Countertop - NON-COLLECTUS:-:374128",
+  "objectType": "Sink, Lavatory, Countertop - NON-COLLECTUS:-",
+  "tag": "374128"
+}

@@ -1,0 +1,9 @@
+{
+  "componentGuid": "55c76989-ad61-90dc-6b04-ead581522c0c",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "609db597-5377-4b26-93af-fc96902c4704",
+  "entityType": "IfcBuildingElementProxyType",
+  "name": "260900-BAS:Default",
+  "predefinedType": "NOTDEFINED",
+  "tag": "926984"
+}

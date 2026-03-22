@@ -1,0 +1,16 @@
+{
+  "componentGuid": "21da9735-401a-63ee-1967-c71a6f97f9f2",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0e7189",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "4 Tatami"
+      }
+    }
+  ],
+  "name": "Pset_AirSideSystemInformation"
+}

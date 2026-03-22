@@ -1,0 +1,9 @@
+{
+  "componentGuid": "6f12e9af-24d6-687e-c253-b543f78ba7f0",
+  "componentType": "IfcBuildingElementProxyComponent",
+  "entityGuid": "d4eb05a0-e2b3-480e-a698-ed1b6273954e",
+  "entityType": "IfcBuildingElementProxy",
+  "name": "262416-PANEL:RE-1:428352",
+  "objectType": "262416-PANEL:120/208V_1P_125A_42 Circuits",
+  "tag": "428352"
+}

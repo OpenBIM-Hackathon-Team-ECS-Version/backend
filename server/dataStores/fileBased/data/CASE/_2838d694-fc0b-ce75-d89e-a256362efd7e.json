@@ -1,0 +1,42 @@
+{
+  "componentGuid": "2838d694-fc0b-ce75-d89e-a256362efd7e",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "1e74df68-742d-4e7a-97f9-4fe9bcc4090b",
+    "da66190a-95cc-470a-a176-66f8818ec31a"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialListComponent",
+    "materials": [
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Stainless Steel"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Plastic, Opaque Dark Grey"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Plastic, Opaque White"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Plastic, Opaque Black"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Plastic, Opaque Grey"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Paper"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Steel, Paint Finish, Black, Matte"
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "componentGuid": "1560a6f7-94a1-c878-5fc6-dd45c1ca344e",
+  "componentType": "IfcDistributionPortComponent",
+  "description": "Flow",
+  "entityGuid": "e8a9b722-8291-1f1b-cc2a-1e344c54f6a1",
+  "entityType": "IfcDistributionPort",
+  "flowDirection": "SINK",
+  "name": "InPort_590946_3"
+}

@@ -1,0 +1,9 @@
+{
+  "componentGuid": "4e1e5ee1-d68d-fb92-cb5f-816be1557be3",
+  "componentType": "IfcFlowTerminalComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c3bb",
+  "entityType": "IfcFlowTerminal",
+  "name": "Return Diffuser:24 x 24 Face 12 x 12 Connection:590917",
+  "objectType": "Return Diffuser:24 x 24 Face 12 x 12 Connection",
+  "tag": "590917"
+}

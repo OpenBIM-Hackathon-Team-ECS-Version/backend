@@ -1,0 +1,10 @@
+{
+  "componentGuid": "a7857ab4-b530-8cc2-0ab1-ae609c972942",
+  "componentType": "IfcSpaceComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0ee679",
+  "entityType": "IfcSpace",
+  "interiorOrExteriorSpace": "INTERNAL",
+  "longName": "Living Room Small",
+  "name": "RE-7"
+}

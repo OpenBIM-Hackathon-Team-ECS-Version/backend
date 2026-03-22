@@ -1,0 +1,22 @@
+{
+  "componentGuid": "5c886702-0c35-6d83-b6e7-cde42794067f",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "7b8f559f-8b31-42c2-ba44-e16f7a04146e"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialLayerSetComponent",
+    "layerSetName": "Basic Wall:Generic - 8\"",
+    "materialLayers": [
+      {
+        "componentType": "IfcMaterialLayerComponent",
+        "layerThickness": 0.6666666666666666,
+        "material": {
+          "componentType": "IfcMaterialComponent",
+          "name": "Default Wall"
+        }
+      }
+    ]
+  }
+}

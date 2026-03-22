@@ -1,0 +1,12 @@
+{
+  "componentGuid": "aeb93da4-f78b-4ace-3eff-83dc4ddd73db",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5a8ff",
+  "entityType": "IfcBuildingElementProxyType",
+  "hasPropertySets": [
+    "6b8c021b-fbe8-58c1-1ed6-7f214782ab8d"
+  ],
+  "name": "262726-RECEPT:240V Special Purpose Outlet - Oven (2 Poles)",
+  "predefinedType": "NOTDEFINED",
+  "tag": "476047"
+}

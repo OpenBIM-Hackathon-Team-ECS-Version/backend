@@ -1,0 +1,9 @@
+{
+  "componentGuid": "5ef8e889-0396-5bd2-64a0-acd7d2ca146a",
+  "componentType": "IfcSpaceTypeComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-78015849531c",
+  "entityType": "IfcSpaceType",
+  "name": "Reception 6:468209",
+  "predefinedType": "NOTDEFINED",
+  "tag": "468209"
+}

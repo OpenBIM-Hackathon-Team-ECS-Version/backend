@@ -1,0 +1,22 @@
+{
+  "componentGuid": "0efb3d83-4f7c-b14a-585d-69f549851d84",
+  "componentType": "IfcRelAssociatesClassificationComponent",
+  "description": "Floor Construction:B1010",
+  "entityGuid": "",
+  "name": "Floor Construction",
+  "relatedObjects": [
+    "da66190a-95cc-470a-a176-66f88182555d"
+  ],
+  "relatingClassification": {
+    "componentType": "IfcClassificationReferenceComponent",
+    "itemReference": "B1010",
+    "location": "https://www.csiresources.org/standards/uniformat",
+    "name": "Floor Construction",
+    "referencedSource": {
+      "componentType": "IfcClassificationComponent",
+      "edition": "1998",
+      "name": "Uniformat",
+      "source": "CSI (Construction Specifications Institute)"
+    }
+  }
+}

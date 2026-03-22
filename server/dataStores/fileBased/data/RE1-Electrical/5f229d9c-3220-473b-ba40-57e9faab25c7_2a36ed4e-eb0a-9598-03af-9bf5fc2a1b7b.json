@@ -1,0 +1,9 @@
+{
+  "componentGuid": "2a36ed4e-eb0a-9598-03af-9bf5fc2a1b7b",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "5f229d9c-3220-473b-ba40-57e9faab25c7",
+  "entityType": "IfcBuildingElementProxyType",
+  "name": "283513-OCC:Occupancy Sensor",
+  "predefinedType": "NOTDEFINED",
+  "tag": "978818"
+}

@@ -1,0 +1,16 @@
+{
+  "componentGuid": "ce31fdeb-265a-c925-9701-ef92cc089544",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "d4eb05a0-e2b3-480e-a698-ed1b627218b1",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Smoke Detector"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

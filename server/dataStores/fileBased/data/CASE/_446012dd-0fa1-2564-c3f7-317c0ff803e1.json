@@ -1,0 +1,54 @@
+{
+  "componentGuid": "446012dd-0fa1-2564-c3f7-317c0ff803e1",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "58573a74-f60a-50d6-619a-9b62f7e39c05",
+    "87fabca8-6591-4813-84a7-fa1b325f8931",
+    "87fabca8-6591-4813-84a7-fa1b325f8930",
+    "87fabca8-6591-4813-84a7-fa1b325f8914",
+    "87fabca8-6591-4813-84a7-fa1b325f890b",
+    "87fabca8-6591-4813-84a7-fa1b325f89bc",
+    "87fabca8-6591-4813-84a7-fa1b325f89b3",
+    "87fabca8-6591-4813-84a7-fa1b325f89b2",
+    "87fabca8-6591-4813-84a7-fa1b325f89b1",
+    "87fabca8-6591-4813-84a7-fa1b325f8a7e",
+    "87fabca8-6591-4813-84a7-fa1b325f8a7d",
+    "87fabca8-6591-4813-84a7-fa1b325f8a7c",
+    "87fabca8-6591-4813-84a7-fa1b325f8a73",
+    "87fabca8-6591-4813-84a7-fa1b325f8a0f",
+    "87fabca8-6591-4813-84a7-fa1b325f8a0e",
+    "87fabca8-6591-4813-84a7-fa1b325f8a0d",
+    "87fabca8-6591-4813-84a7-fa1b325f8a0c",
+    "01a20a72-2784-fb55-5031-641a06a93313",
+    "9c06029c-abba-473c-b2fa-397469d3bb6e",
+    "9c06029c-abba-473c-b2fa-397469d3bb69",
+    "9c06029c-abba-473c-b2fa-397469d3bb68",
+    "9c06029c-abba-473c-b2fa-397469d3bb6b",
+    "9c06029c-abba-473c-b2fa-397469d3bb89",
+    "9c06029c-abba-473c-b2fa-397469d3bb88",
+    "9c06029c-abba-473c-b2fa-397469d3bb8b",
+    "9c06029c-abba-473c-b2fa-397469d3bb8a",
+    "9c06029c-abba-473c-b2fa-397469d3b425",
+    "9c06029c-abba-473c-b2fa-397469d3b424",
+    "9c06029c-abba-473c-b2fa-397469d3b427",
+    "9c06029c-abba-473c-b2fa-397469d3b426",
+    "5239c630-23d8-47f5-bf28-a1ac22764dc3",
+    "5239c630-23d8-47f5-bf28-a1ac22764d7b",
+    "5239c630-23d8-47f5-bf28-a1ac22764cae",
+    "5239c630-23d8-47f5-bf28-a1ac22764ca9"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialListComponent",
+    "materials": [
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "NBS_Glass_Double"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "NBS_Concept"
+      }
+    ]
+  }
+}

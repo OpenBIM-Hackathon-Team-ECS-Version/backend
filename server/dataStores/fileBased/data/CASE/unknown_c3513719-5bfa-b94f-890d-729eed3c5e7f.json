@@ -1,0 +1,15 @@
+{
+  "componentGuid": "c3513719-5bfa-b94f-890d-729eed3c5e7f",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "ShelfUnits_ActiveHealthBookcaseUnit_600_WorkspaceDesign"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

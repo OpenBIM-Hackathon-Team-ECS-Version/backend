@@ -1,0 +1,11 @@
+{
+  "componentGuid": "696aed58-8bfd-356f-caae-549c09b9bdfc",
+  "componentType": "IfcRelContainedInSpatialStructureComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-70015849531f",
+  "relatedElements": [
+    "4406b2b1-1146-481f-817c-2a5e0fc3c3bb",
+    "4406b2b1-1146-481f-817c-2a5e0fc3c37e",
+    "b602d107-acce-48b1-94b2-7cb0754a3415"
+  ],
+  "relatingStructure": "26cd9e53-9f71-4d71-aed2-70015849531f"
+}

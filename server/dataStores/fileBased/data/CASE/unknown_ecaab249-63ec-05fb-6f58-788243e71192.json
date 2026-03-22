@@ -1,0 +1,23 @@
+{
+  "componentGuid": "ecaab249-63ec-05fb-6f58-788243e71192",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ModelReference",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "EN-AA35"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Manufacturer",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "gopakinfo@gopak.co.uk"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerTypeInformation"
+}

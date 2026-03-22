@@ -1,0 +1,16 @@
+{
+  "componentGuid": "187d075c-4191-92bf-7619-c869beb8b0e7",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "d4eb05a0-e2b3-480e-a698-ed1b6273d254",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SerialNumber",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "G2343"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerOccurrence"
+}

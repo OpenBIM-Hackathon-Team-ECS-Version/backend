@@ -1,0 +1,47 @@
+{
+  "componentGuid": "74997b3f-f233-9b8a-039a-277abcbe28ea",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Description",
+      "nominalValue": {
+        "componentType": "IfcTextComponent",
+        "wrappedValue": "Self Arms, Swivel Chair, Upholstered Low Back, Chrome Frame, Polished Aluminium 4 Star Base, Black Nylon Glides"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Style",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Training & Conference"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalHeight",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 3.050737116277184
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalDepth",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 1.9984655933017321
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "MainColor",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "n/a"
+      }
+    }
+  ],
+  "name": "Pset_FurnitureTypeCommon"
+}

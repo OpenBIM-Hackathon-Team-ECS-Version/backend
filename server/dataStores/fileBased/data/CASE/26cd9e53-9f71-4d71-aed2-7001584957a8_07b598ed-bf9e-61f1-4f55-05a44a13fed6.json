@@ -1,0 +1,16 @@
+{
+  "componentGuid": "07b598ed-bf9e-61f1-4f55-05a44a13fed6",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-7001584957a8",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Meeting Room"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

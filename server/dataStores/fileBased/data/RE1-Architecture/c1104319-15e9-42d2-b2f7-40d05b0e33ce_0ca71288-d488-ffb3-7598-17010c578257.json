@@ -1,0 +1,9 @@
+{
+  "componentGuid": "0ca71288-d488-ffb3-7598-17010c578257",
+  "componentType": "IfcFlowTerminalComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0e33ce",
+  "entityType": "IfcFlowTerminal",
+  "name": "Sink, Kitchen, Small - NON-COLLECTUS:-:361394",
+  "objectType": "Sink, Kitchen, Small - NON-COLLECTUS:-",
+  "tag": "361394"
+}

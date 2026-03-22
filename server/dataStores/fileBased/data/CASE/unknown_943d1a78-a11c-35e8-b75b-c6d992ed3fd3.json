@@ -1,0 +1,23 @@
+{
+  "componentGuid": "943d1a78-a11c-35e8-b75b-c6d992ed3fd3",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ModelReference",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Half Height Bookcase"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Manufacturer",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "info@theNBS.com"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerTypeInformation"
+}

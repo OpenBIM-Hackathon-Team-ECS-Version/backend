@@ -1,0 +1,11 @@
+{
+  "componentGuid": "05e5fa2c-5b79-a450-72d7-ff58d84b5dc5",
+  "componentType": "IfcBuildingStoreyComponent",
+  "compositionType": "ELEMENT",
+  "elevation": 12.0,
+  "entityGuid": "6341822b-d4f3-11d3-a039-0000863f33f9",
+  "entityType": "IfcBuildingStorey",
+  "longName": "L2",
+  "name": "L2",
+  "objectType": "Level:1/4\" Head"
+}

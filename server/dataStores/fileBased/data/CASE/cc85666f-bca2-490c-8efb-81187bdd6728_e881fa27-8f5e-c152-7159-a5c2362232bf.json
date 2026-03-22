@@ -1,0 +1,16 @@
+{
+  "componentGuid": "e881fa27-8f5e-c152-7159-a5c2362232bf",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "cc85666f-bca2-490c-8efb-81187bdd6728",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "CASE - 16\" Concrete"
+      }
+    }
+  ],
+  "name": "Pset_ReinforcementBarPitchOfWall"
+}

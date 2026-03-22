@@ -1,0 +1,12 @@
+{
+  "componentGuid": "7ffe4a23-bd55-6228-678f-f1b13c9da24a",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5a8f5",
+  "entityType": "IfcBuildingElementProxyType",
+  "hasPropertySets": [
+    "1ff5e757-4260-6872-034c-89738cdb614e"
+  ],
+  "name": "262726-RECEPT:120V Special Purpose Outlet - Microwave",
+  "predefinedType": "NOTDEFINED",
+  "tag": "476037"
+}

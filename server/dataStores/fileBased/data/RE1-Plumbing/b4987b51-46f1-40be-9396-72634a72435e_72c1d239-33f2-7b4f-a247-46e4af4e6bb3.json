@@ -1,0 +1,12 @@
+{
+  "componentGuid": "72c1d239-33f2-7b4f-a247-46e4af4e6bb3",
+  "componentType": "IfcDistributionElementTypeComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a72435e",
+  "entityType": "IfcDistributionElementType",
+  "hasPropertySets": [
+    "54a3859e-83c3-280b-8dd5-4409273abae0",
+    "26c0282d-5cfb-6078-539e-1d87222a4511"
+  ],
+  "name": "223313-WTRHTR-Tankless Electric:28kW",
+  "tag": "447079"
+}

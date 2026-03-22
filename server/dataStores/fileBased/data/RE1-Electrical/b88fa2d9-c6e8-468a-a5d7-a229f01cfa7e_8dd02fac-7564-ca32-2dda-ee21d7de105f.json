@@ -1,0 +1,16 @@
+{
+  "componentGuid": "8dd02fac-7564-ca32-2dda-ee21d7de105f",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "b88fa2d9-c6e8-468a-a5d7-a229f01cfa7e",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "120V Single Pole"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

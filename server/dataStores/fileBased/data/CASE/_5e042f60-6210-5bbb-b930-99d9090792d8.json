@@ -1,0 +1,24 @@
+{
+  "componentGuid": "5e042f60-6210-5bbb-b930-99d9090792d8",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "8597590d-fd03-46f6-a1e5-838c74216710",
+    "69fb2637-5353-47e2-8a5f-e3d0ed20092a",
+    "27e2e691-6d37-4b55-9ec2-414cf3cb45e5",
+    "d65279c8-230a-4871-a44e-22bf6a1e6824"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialListComponent",
+    "materials": [
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "nbl_HorizontalHatchingProppellerFanExternal"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "nbl_ConceptWhite"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "componentGuid": "e35b2a4e-287c-bf7d-eb28-bc087dfba8ed",
+  "componentType": "IfcWindowStyleComponent",
+  "constructionType": "PLASTIC",
+  "entityGuid": "01a20a72-2784-fb55-5031-641a06a93313",
+  "entityType": "IfcWindowStyle",
+  "hasPropertySets": [
+    "9c06029c-abba-473c-b2fa-397569d3bb6e",
+    "3bb4a71e-2b7d-589a-c311-5199b26eb4c7",
+    "e5ba58e9-27f1-4115-80e9-18ce08401fa2",
+    "571138f6-c018-a238-b939-efa74d994b66",
+    "4c16fa96-d964-bda2-0f17-e69a12ececc9",
+    "53fdd0e0-88e9-d947-fb38-95fa2990a458",
+    "226324ee-cd42-08aa-0371-568815d4571c"
+  ],
+  "name": "NBS_DeceuninckLtd_PVCUWndwUnits_Traditional2500CasementWindow_C34:1500x1000mm_FrameProfile52mm-DoubleGlazed",
+  "operationType": "TRIPLE_PANEL_VERTICAL",
+  "parameterTakesPrecedence": false,
+  "sizeable": false,
+  "tag": "441089"
+}

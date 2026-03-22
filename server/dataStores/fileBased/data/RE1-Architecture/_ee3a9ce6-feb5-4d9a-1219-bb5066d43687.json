@@ -1,0 +1,28 @@
+{
+  "componentGuid": "ee3a9ce6-feb5-4d9a-1219-bb5066d43687",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "5952b4c3-11b1-30fb-ae78-b226dffdd90b",
+    "12a73f69-32f1-4559-8fdb-39f6b38a6a26",
+    "1bc9cd5f-0868-4224-c032-a7a35a3d82d2",
+    "12a73f69-32f1-4559-8fdb-39f6b38a6bc9"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialListComponent",
+    "materials": [
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Paint - Sienna"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Wood - Birch - Solid Stained Light Low Gloss"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Glass"
+      }
+    ]
+  }
+}

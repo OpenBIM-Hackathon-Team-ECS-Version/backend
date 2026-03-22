@@ -1,0 +1,23 @@
+{
+  "componentGuid": "1bc4dfa7-fb1f-9da9-78c8-4e570c7c8565",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ModelReference",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Table"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Manufacturer",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "info@theNBS.com"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerTypeInformation"
+}

@@ -1,0 +1,30 @@
+{
+  "componentGuid": "39c2eaee-aa05-3ad8-61a1-b75e9eb0b6f2",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "65bded54-d960-4ccf-8f30-1a83b0a7306e"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialLayerSetComponent",
+    "layerSetName": "Floor:-",
+    "materialLayers": [
+      {
+        "componentType": "IfcMaterialLayerComponent",
+        "layerThickness": 10.0,
+        "material": {
+          "componentType": "IfcMaterialComponent",
+          "name": "Tile 300 x 300 Stacked"
+        }
+      },
+      {
+        "componentType": "IfcMaterialLayerComponent",
+        "layerThickness": 10.0,
+        "material": {
+          "componentType": "IfcMaterialComponent",
+          "name": "Grout 2"
+        }
+      }
+    ]
+  }
+}

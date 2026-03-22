@@ -1,0 +1,23 @@
+{
+  "componentGuid": "571138f6-c018-a238-b939-efa74d994b66",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ModelReference",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Traditional 2500 Casement Window - C34"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Manufacturer",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "deceuninck.ltd@deceuninck.com"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerTypeInformation"
+}

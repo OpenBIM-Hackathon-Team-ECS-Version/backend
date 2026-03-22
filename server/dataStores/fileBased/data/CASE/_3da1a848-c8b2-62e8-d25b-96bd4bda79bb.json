@@ -1,0 +1,53 @@
+{
+  "componentGuid": "3da1a848-c8b2-62e8-d25b-96bd4bda79bb",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "f9a6dcb5-295e-486a-891e-77376edc0397",
+    "f9a6dcb5-295e-486a-891e-77376edc0367",
+    "f9a6dcb5-295e-486a-891e-77376edc026f",
+    "f9a6dcb5-295e-486a-891e-77376edc0270",
+    "f9a6dcb5-295e-486a-891e-77376edc01f5",
+    "f9a6dcb5-295e-486a-891e-77376edc018c",
+    "f9a6dcb5-295e-486a-891e-77376edc019d",
+    "f9a6dcb5-295e-486a-891e-77376edc016c",
+    "f9a6dcb5-295e-486a-891e-77376edc015d",
+    "f9a6dcb5-295e-486a-891e-77376edc012e",
+    "f9a6dcb5-295e-486a-891e-77376edc013f",
+    "f9a6dcb5-295e-486a-891e-77376edc00e1",
+    "f9a6dcb5-295e-486a-891e-77376edc00e0",
+    "f9a6dcb5-295e-486a-891e-77376edc00e7",
+    "f9a6dcb5-295e-486a-891e-77376edc00e6",
+    "f9a6dcb5-295e-486a-891e-77376edc00e5",
+    "f9a6dcb5-295e-486a-891e-77376edc00e4",
+    "f9a6dcb5-295e-486a-891e-77376edc00da",
+    "f9a6dcb5-295e-486a-891e-77376edc00ab",
+    "f9a6dcb5-295e-486a-891e-77376edc00a4",
+    "94d28e1e-bd87-43f7-92a1-dd6bf47df05b",
+    "94d28e1e-bd87-43f7-92a1-dd6bf47df0a6",
+    "94d28e1e-bd87-43f7-92a1-dd6bf47df0b7",
+    "94d28e1e-bd87-43f7-92a1-dd6bf47df0dc",
+    "94d28e1e-bd87-43f7-92a1-dd6bf47df0db",
+    "94d28e1e-bd87-43f7-92a1-dd6bf47df0da",
+    "94d28e1e-bd87-43f7-92a1-dd6bf47df0d9",
+    "94d28e1e-bd87-43f7-92a1-dd6bf47df0d8",
+    "94d28e1e-bd87-43f7-92a1-dd6bf47df0d7"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialListComponent",
+    "materials": [
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Herman Miller - Finish G1 Graphite"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Herman Miller - Finish L7 H-Alloy"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Herman Miller - Seat Material 4W21 Lyris Alpine"
+      }
+    ]
+  }
+}

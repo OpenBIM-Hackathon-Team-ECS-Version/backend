@@ -1,0 +1,44 @@
+{
+  "componentGuid": "ab9a0a38-49eb-d5aa-304a-48180d94a05c",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "12a73f69-32f1-4559-8fdb-39f6b38a52e4"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialLayerSetUsageComponent",
+    "directionSense": "NEGATIVE",
+    "forLayerSet": {
+      "componentType": "IfcMaterialLayerSetComponent",
+      "layerSetName": "Basic Wall:-",
+      "materialLayers": [
+        {
+          "componentType": "IfcMaterialLayerComponent",
+          "layerThickness": 15.0,
+          "material": {
+            "componentType": "IfcMaterialComponent",
+            "name": "Gypsum Wall Board"
+          }
+        },
+        {
+          "componentType": "IfcMaterialLayerComponent",
+          "layerThickness": 100.0,
+          "material": {
+            "componentType": "IfcMaterialComponent",
+            "name": "Metal Stud Layer"
+          }
+        },
+        {
+          "componentType": "IfcMaterialLayerComponent",
+          "layerThickness": 15.0,
+          "material": {
+            "componentType": "IfcMaterialComponent",
+            "name": "Gypsum Wall Board"
+          }
+        }
+      ]
+    },
+    "layerSetDirection": "AXIS2",
+    "offsetFromReferenceLine": 65.00000000000001
+  }
+}

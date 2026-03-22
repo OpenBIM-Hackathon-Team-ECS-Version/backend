@@ -1,0 +1,16 @@
+{
+  "componentGuid": "65f6072c-44d5-3169-40c6-a68521e405fb",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5acc4",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SerialNumber",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "H6710"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerOccurrence"
+}

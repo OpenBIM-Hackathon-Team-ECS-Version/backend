@@ -1,0 +1,16 @@
+{
+  "componentGuid": "cd510351-14e8-31be-71b0-1b0f89dd7899",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "27e2e691-6d37-4b55-9ec2-414cf3cb45e5",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "User to Populate"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

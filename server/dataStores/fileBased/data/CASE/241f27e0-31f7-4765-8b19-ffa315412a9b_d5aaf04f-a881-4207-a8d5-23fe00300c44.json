@@ -1,0 +1,16 @@
+{
+  "componentGuid": "d5aaf04f-a881-4207-a8d5-23fe00300c44",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "241f27e0-31f7-4765-8b19-ffa315412a9b",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Commercial Copy Machine"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

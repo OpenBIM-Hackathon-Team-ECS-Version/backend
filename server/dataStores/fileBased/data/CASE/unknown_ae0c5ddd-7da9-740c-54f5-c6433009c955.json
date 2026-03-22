@@ -1,0 +1,31 @@
+{
+  "componentGuid": "ae0c5ddd-7da9-740c-54f5-c6433009c955",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SeatingHeight",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 1.6593618392944374
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "HighestSeatingHeight",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 1.6593618392944374
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "LowestSeatingHeight",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 1.6593618392944374
+      }
+    }
+  ],
+  "name": "Pset_FurnitureTypeChair"
+}

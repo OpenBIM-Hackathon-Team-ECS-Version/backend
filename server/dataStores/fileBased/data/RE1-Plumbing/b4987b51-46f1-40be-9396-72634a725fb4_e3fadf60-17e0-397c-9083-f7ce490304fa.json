@@ -1,0 +1,16 @@
+{
+  "componentGuid": "e3fadf60-17e0-397c-9083-f7ce490304fa",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a725fb4",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "28kW"
+      }
+    }
+  ],
+  "name": "Pset_DistributionFlowElementCommon"
+}

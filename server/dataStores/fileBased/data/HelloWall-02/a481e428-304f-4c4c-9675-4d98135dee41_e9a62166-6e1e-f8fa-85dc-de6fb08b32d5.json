@@ -1,0 +1,9 @@
+{
+  "componentGuid": "e9a62166-6e1e-f8fa-85dc-de6fb08b32d5",
+  "componentType": "IfcProjectComponent",
+  "entityGuid": "a481e428-304f-4c4c-9675-4d98135dee41",
+  "entityType": "IfcProject",
+  "longName": "Project Name",
+  "name": "Project Number",
+  "phase": "Project Status"
+}

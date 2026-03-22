@@ -1,0 +1,16 @@
+{
+  "componentGuid": "179f5304-89ea-3944-ef95-f99c7e1cdbea",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "da7dc568-097d-44f3-aef2-2c174865c5f4",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "HIKVISION_ 32\u201d Monitor"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

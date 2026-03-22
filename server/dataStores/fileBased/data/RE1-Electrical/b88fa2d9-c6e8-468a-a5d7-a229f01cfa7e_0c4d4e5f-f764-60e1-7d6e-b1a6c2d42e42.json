@@ -1,0 +1,16 @@
+{
+  "componentGuid": "0c4d4e5f-f764-60e1-7d6e-b1a6c2d42e42",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "b88fa2d9-c6e8-468a-a5d7-a229f01cfa7e",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "120V Single Pole"
+      }
+    }
+  ],
+  "name": "Pset_BuildingElementProxyCommon"
+}

@@ -1,0 +1,8 @@
+{
+  "componentGuid": "a4de90d2-6d50-453e-0911-9913ab007e7b",
+  "componentType": "IfcSystemComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d864a0",
+  "entityType": "IfcSystem",
+  "name": "CW 1",
+  "objectType": "Domestic Cold Water"
+}

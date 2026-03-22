@@ -1,0 +1,15 @@
+{
+  "componentGuid": "c25fde78-21f2-b64c-bae5-a761e56ffd94",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ThermalTransmittance",
+      "nominalValue": {
+        "componentType": "IfcThermalTransmittanceMeasureComponent",
+        "wrappedValue": 3.7021
+      }
+    }
+  ],
+  "name": "Pset_DoorCommon"
+}

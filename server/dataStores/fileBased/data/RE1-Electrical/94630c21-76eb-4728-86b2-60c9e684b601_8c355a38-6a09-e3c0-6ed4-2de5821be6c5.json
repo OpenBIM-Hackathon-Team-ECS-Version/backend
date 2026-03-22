@@ -1,0 +1,9 @@
+{
+  "componentGuid": "8c355a38-6a09-e3c0-6ed4-2de5821be6c5",
+  "componentType": "IfcAlarmTypeComponent",
+  "entityGuid": "94630c21-76eb-4728-86b2-60c9e684b601",
+  "entityType": "IfcAlarmType",
+  "name": "284631-Smoke Detector:Smoke Detector",
+  "predefinedType": "NOTDEFINED",
+  "tag": "1001358"
+}

@@ -1,0 +1,19 @@
+{
+  "buildingAddress": {
+    "addressLines": [
+      "Project Address On One Line"
+    ],
+    "componentType": "IfcPostalAddressComponent",
+    "country": "TOKYO",
+    "postalCode": "",
+    "region": "",
+    "town": ""
+  },
+  "componentGuid": "8164e06c-eba8-ff3c-6938-3ac5afef42e1",
+  "componentType": "IfcBuildingComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "8e3a6372-9efb-429f-bf1c-769561d20ae8",
+  "entityType": "IfcBuilding",
+  "longName": "RE1",
+  "name": "RE1"
+}

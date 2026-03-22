@@ -1,0 +1,9 @@
+{
+  "componentGuid": "defaa213-413b-0d23-d986-ba3d94782bee",
+  "componentType": "IfcFlowSegmentComponent",
+  "entityGuid": "4d3f7378-ee95-45f9-b1ec-c19c6372d2bf",
+  "entityType": "IfcFlowSegment",
+  "name": "Pipe Types:SANWST-PVC:441892",
+  "objectType": "Pipe Types:SANWST-PVC",
+  "tag": "441892"
+}

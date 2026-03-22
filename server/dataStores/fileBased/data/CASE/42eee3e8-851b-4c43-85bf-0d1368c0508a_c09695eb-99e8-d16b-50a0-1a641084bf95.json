@@ -1,0 +1,19 @@
+{
+  "buildingAddress": {
+    "addressLines": [
+      "Enter address here"
+    ],
+    "componentType": "IfcPostalAddressComponent",
+    "country": "new york",
+    "postalCode": "",
+    "region": "Brooklyn",
+    "town": ""
+  },
+  "componentGuid": "c09695eb-99e8-d16b-50a0-1a641084bf95",
+  "componentType": "IfcBuildingComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "42eee3e8-851b-4c43-85bf-0d1368c0508a",
+  "entityType": "IfcBuilding",
+  "longName": "",
+  "name": ""
+}

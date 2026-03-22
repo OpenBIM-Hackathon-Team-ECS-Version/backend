@@ -1,0 +1,8 @@
+{
+  "componentGuid": "19df1cf6-bbbb-007c-5f64-8216f9f566fc",
+  "componentType": "IfcSystemComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3ff7e",
+  "entityType": "IfcSystem",
+  "name": "Mechanical Supply Air 2",
+  "objectType": "Supply Air"
+}

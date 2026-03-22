@@ -1,0 +1,9 @@
+{
+  "componentGuid": "4fbd5c99-3f82-3a4d-3dd6-c51bf44d76bb",
+  "componentType": "IfcAlarmTypeComponent",
+  "entityGuid": "5f229d9c-3220-473b-ba40-57e9faaac11c",
+  "entityType": "IfcAlarmType",
+  "name": "284911-CO2:CO2 Detector Ceiling",
+  "predefinedType": "NOTDEFINED",
+  "tag": "985945"
+}

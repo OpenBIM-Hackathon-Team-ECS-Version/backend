@@ -1,0 +1,16 @@
+{
+  "componentGuid": "975da7d4-098e-4a00-c9f5-55a7c052c8d4",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "b88fa2d9-c6e8-468a-a5d7-a229f01c87a6",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "SerialNumber",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "SW6933"
+      }
+    }
+  ],
+  "name": "Pset_PrecastConcreteElementGeneral"
+}

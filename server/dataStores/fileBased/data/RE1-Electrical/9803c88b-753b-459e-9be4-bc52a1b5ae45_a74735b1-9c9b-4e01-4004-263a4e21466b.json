@@ -1,0 +1,16 @@
+{
+  "componentGuid": "a74735b1-9c9b-4e01-4004-263a4e21466b",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5ae45",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "120V Special Purpose Outlet - Washer"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

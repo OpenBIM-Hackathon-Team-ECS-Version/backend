@@ -1,0 +1,55 @@
+{
+  "componentGuid": "c63575b4-6f89-f566-62f7-fba9777c3410",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "368e414c-9b95-4b47-a8d6-833444c8decb",
+    "fa52ae67-3b23-4b97-b34c-0616ae5f270b",
+    "fa52ae67-3b23-4b97-b34c-0616ae5f2835",
+    "fa52ae67-3b23-4b97-b34c-0616ae5f284c",
+    "fa52ae67-3b23-4b97-b34c-0616ae5f2863",
+    "fa52ae67-3b23-4b97-b34c-0616ae5f2901",
+    "fa52ae67-3b23-4b97-b34c-0616ae5f2922",
+    "fa52ae67-3b23-4b97-b34c-0616ae5f2940",
+    "fa52ae67-3b23-4b97-b34c-0616ae5f2941",
+    "fa52ae67-3b23-4b97-b34c-0616ae5f2942",
+    "fa52ae67-3b23-4b97-b34c-0616ae5f2943",
+    "fa52ae67-3b23-4b97-b34c-0616ae5f2944",
+    "a7123d1b-1925-4aa4-8b89-3adaa7cc3bb1",
+    "a7123d1b-1925-4aa4-8b89-3adaa7cc3b9d",
+    "db8feaac-330f-4e68-b7ea-d3f393710338",
+    "db8feaac-330f-4e68-b7ea-d3f39371031f",
+    "db8feaac-330f-4e68-b7ea-d3f393710349",
+    "db8feaac-330f-4e68-b7ea-d3f39371034a",
+    "db8feaac-330f-4e68-b7ea-d3f39371034b",
+    "db8feaac-330f-4e68-b7ea-d3f393710fbb",
+    "db8feaac-330f-4e68-b7ea-d3f393710f84",
+    "db8feaac-330f-4e68-b7ea-d3f393710f85",
+    "db8feaac-330f-4e68-b7ea-d3f393710f86",
+    "db8feaac-330f-4e68-b7ea-d3f393710f87",
+    "db8feaac-330f-4e68-b7ea-d3f393710f80",
+    "e48c80fa-6d1a-4f6c-9015-993bede22811",
+    "e48c80fa-6d1a-4f6c-9015-993bede230e6",
+    "e48c80fa-6d1a-4f6c-9015-993bede2333e",
+    "e48c80fa-6d1a-4f6c-9015-993bede2320c",
+    "f8407cde-717b-4c94-89d4-7a38bf94e439",
+    "f8407cde-717b-4c94-89d4-7a38bf94e438"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialListComponent",
+    "materials": [
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Laminate, Ivory, Matte"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Steel, Chrome Plated"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Cherry"
+      }
+    ]
+  }
+}

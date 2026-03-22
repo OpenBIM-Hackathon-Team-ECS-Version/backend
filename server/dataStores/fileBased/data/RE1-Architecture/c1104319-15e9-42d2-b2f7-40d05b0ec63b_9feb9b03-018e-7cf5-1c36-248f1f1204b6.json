@@ -1,0 +1,16 @@
+{
+  "componentGuid": "9feb9b03-018e-7cf5-1c36-248f1f1204b6",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0ec63b",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Toilet Medium"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

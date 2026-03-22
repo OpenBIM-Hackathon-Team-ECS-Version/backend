@@ -1,0 +1,24 @@
+{
+  "componentGuid": "39848308-9fb1-4a9d-cafa-a4f353105ee5",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0e7189",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "4 Tatami RE-1"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "FloorCovering",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Tatami"
+      }
+    }
+  ],
+  "name": "Pset_SpaceCommon"
+}

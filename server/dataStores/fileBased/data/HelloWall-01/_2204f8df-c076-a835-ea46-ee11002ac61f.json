@@ -1,0 +1,28 @@
+{
+  "componentGuid": "2204f8df-c076-a835-ea46-ee11002ac61f",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "a9c8fe2e-1465-4760-b05d-d3419a1b31af"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialLayerSetUsageComponent",
+    "directionSense": "NEGATIVE",
+    "forLayerSet": {
+      "componentType": "IfcMaterialLayerSetComponent",
+      "layerSetName": "Basic Wall:Generic - 8\"",
+      "materialLayers": [
+        {
+          "componentType": "IfcMaterialLayerComponent",
+          "layerThickness": 0.6666666666666666,
+          "material": {
+            "componentType": "IfcMaterialComponent",
+            "name": "Default Wall"
+          }
+        }
+      ]
+    },
+    "layerSetDirection": "AXIS2",
+    "offsetFromReferenceLine": 0.3333333333333333
+  }
+}

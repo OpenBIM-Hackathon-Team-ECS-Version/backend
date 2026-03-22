@@ -1,0 +1,12 @@
+{
+  "componentGuid": "61860d37-122e-234c-cba0-c6e81cdf4228",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "b88fa2d9-c6e8-468a-a5d7-a229f01c870c",
+  "entityType": "IfcBuildingElementProxyType",
+  "hasPropertySets": [
+    "df085057-d4bb-0763-494b-2a8d4c729527"
+  ],
+  "name": "260923-SWITCH:120V Single Pole",
+  "predefinedType": "NOTDEFINED",
+  "tag": "507239"
+}

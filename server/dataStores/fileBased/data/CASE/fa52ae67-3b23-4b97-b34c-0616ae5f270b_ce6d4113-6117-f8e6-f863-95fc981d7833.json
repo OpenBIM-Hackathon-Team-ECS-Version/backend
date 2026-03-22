@@ -1,0 +1,9 @@
+{
+  "componentGuid": "ce6d4113-6117-f8e6-f863-95fc981d7833",
+  "componentType": "IfcFurnishingElementComponent",
+  "entityGuid": "fa52ae67-3b23-4b97-b34c-0616ae5f270b",
+  "entityType": "IfcFurnishingElement",
+  "name": "Desk:60\" x 30\" Student:456467",
+  "objectType": "Desk:60\" x 30\" Student",
+  "tag": "456467"
+}

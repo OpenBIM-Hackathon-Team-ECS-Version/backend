@@ -1,0 +1,22 @@
+{
+  "componentGuid": "3029bde8-96aa-e515-26ef-e03c7533a058",
+  "componentType": "IfcRelAssociatesClassificationComponent",
+  "description": "Office Equipment:E1010800",
+  "entityGuid": "",
+  "name": "Office Equipment",
+  "relatedObjects": [
+    "241f27e0-31f7-4765-8b19-ffa315412a9b"
+  ],
+  "relatingClassification": {
+    "componentType": "IfcClassificationReferenceComponent",
+    "itemReference": "E1010800",
+    "location": "https://www.csiresources.org/standards/uniformat",
+    "name": "Office Equipment",
+    "referencedSource": {
+      "componentType": "IfcClassificationComponent",
+      "edition": "1998",
+      "name": "Uniformat",
+      "source": "CSI (Construction Specifications Institute)"
+    }
+  }
+}

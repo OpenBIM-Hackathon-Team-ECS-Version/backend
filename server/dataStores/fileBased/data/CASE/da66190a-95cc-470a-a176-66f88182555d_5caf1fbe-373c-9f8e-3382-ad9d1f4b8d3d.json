@@ -1,0 +1,40 @@
+{
+  "componentGuid": "5caf1fbe-373c-9f8e-3382-ad9d1f4b8d3d",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "da66190a-95cc-470a-a176-66f88182555d",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "LoadBearing",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "IsExternal",
+      "nominalValue": {
+        "componentType": "IfcBooleanComponent",
+        "wrappedValue": false
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Generic - 12\""
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "PitchAngle",
+      "nominalValue": {
+        "componentType": "IfcPlaneAngleMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    }
+  ],
+  "name": "Pset_SlabCommon"
+}

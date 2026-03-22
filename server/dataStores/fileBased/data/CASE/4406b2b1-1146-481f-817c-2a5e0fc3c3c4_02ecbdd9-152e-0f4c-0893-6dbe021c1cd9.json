@@ -1,0 +1,9 @@
+{
+  "componentGuid": "02ecbdd9-152e-0f4c-0893-6dbe021c1cd9",
+  "componentType": "IfcFlowTerminalComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c3c4",
+  "entityType": "IfcFlowTerminal",
+  "name": "Supply Diffuser:24 x 24 Face 12 x 12 Connection:590906",
+  "objectType": "Supply Diffuser:24 x 24 Face 12 x 12 Connection",
+  "tag": "590906"
+}

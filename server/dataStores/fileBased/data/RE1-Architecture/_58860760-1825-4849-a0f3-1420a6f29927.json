@@ -1,0 +1,22 @@
+{
+  "componentGuid": "58860760-1825-4849-a0f3-1420a6f29927",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "c1104319-15e9-42d2-b2f7-40d05b0e2137",
+    "c1104319-15e9-42d2-b2f7-40d05b0e2126"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialListComponent",
+    "materials": [
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Light Grey"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "<Unnamed>"
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "componentGuid": "701d96e9-7070-487a-d810-b916867b79c7",
+  "componentType": "IfcFlowFittingComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a72444c",
+  "entityType": "IfcFlowFitting",
+  "name": "PIPE-Transition - Welded:-:447861",
+  "objectType": "PIPE-Transition - Welded:-",
+  "tag": "447861"
+}

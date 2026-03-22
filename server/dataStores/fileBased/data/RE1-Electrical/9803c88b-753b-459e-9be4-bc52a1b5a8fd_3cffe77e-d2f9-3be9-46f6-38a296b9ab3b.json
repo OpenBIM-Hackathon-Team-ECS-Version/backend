@@ -1,0 +1,12 @@
+{
+  "componentGuid": "3cffe77e-d2f9-3be9-46f6-38a296b9ab3b",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5a8fd",
+  "entityType": "IfcBuildingElementProxyType",
+  "hasPropertySets": [
+    "19b31b30-9c23-ad41-cf3a-8123374ff335"
+  ],
+  "name": "262726-RECEPT:240V Special Purpose Outlet - Dryer (2 Poles)",
+  "predefinedType": "NOTDEFINED",
+  "tag": "476045"
+}

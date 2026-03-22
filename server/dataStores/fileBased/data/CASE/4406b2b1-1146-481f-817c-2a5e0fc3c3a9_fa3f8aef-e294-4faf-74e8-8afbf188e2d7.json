@@ -1,0 +1,9 @@
+{
+  "componentGuid": "fa3f8aef-e294-4faf-74e8-8afbf188e2d7",
+  "componentType": "IfcFlowSegmentComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c3a9",
+  "entityType": "IfcFlowSegment",
+  "name": "Rectangular Duct:Radius Elbows / Tees:590935",
+  "objectType": "Rectangular Duct:Radius Elbows / Tees",
+  "tag": "590935"
+}

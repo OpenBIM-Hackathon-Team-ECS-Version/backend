@@ -1,0 +1,15 @@
+{
+  "componentGuid": "951efe5d-db7c-52a2-8f27-a7af698e355b",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Description",
+      "nominalValue": {
+        "componentType": "IfcTextComponent",
+        "wrappedValue": "Generic Wall (Material By Category), 8\" thick"
+      }
+    }
+  ],
+  "name": "Pset_ReinforcementBarPitchOfWall"
+}

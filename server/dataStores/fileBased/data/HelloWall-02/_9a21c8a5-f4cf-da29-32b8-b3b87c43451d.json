@@ -1,0 +1,22 @@
+{
+  "componentGuid": "9a21c8a5-f4cf-da29-32b8-b3b87c43451d",
+  "componentType": "IfcRelAssociatesClassificationComponent",
+  "description": "Solid Exterior Doors:B2030200",
+  "entityGuid": "",
+  "name": "Solid Exterior Doors",
+  "relatedObjects": [
+    "a9c8fe2e-1465-4760-b05d-d3419a1b3194"
+  ],
+  "relatingClassification": {
+    "componentType": "IfcClassificationReferenceComponent",
+    "itemReference": "B2030200",
+    "location": "https://www.csiresources.org/standards/uniformat",
+    "name": "Solid Exterior Doors",
+    "referencedSource": {
+      "componentType": "IfcClassificationComponent",
+      "edition": "1998",
+      "name": "Uniformat",
+      "source": "CSI (Construction Specifications Institute)"
+    }
+  }
+}

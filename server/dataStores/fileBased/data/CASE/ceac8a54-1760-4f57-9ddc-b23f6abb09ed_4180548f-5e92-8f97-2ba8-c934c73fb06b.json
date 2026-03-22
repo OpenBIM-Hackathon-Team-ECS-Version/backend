@@ -1,0 +1,16 @@
+{
+  "componentGuid": "4180548f-5e92-8f97-2ba8-c934c73fb06b",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "ceac8a54-1760-4f57-9ddc-b23f6abb09ed",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Kitchen"
+      }
+    }
+  ],
+  "name": "Pset_AirSideSystemInformation"
+}

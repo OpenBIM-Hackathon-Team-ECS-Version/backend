@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFC Component Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #1e1e1e;
+            color: #e0e0e0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .menu-bar {
+            height: 38px;
+            background: #252525;
+            border-bottom: 1px solid #444;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 10px;
+            flex-shrink: 0;
+        }
+
+        .icon-btn {
+            width: 28px;
+            height: 28px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background: #2d2d2d;
+            color: #cfcfcf;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+        }
+
+        .icon-btn:hover { background: #383838; }
+        .icon-btn.active { border-color: #0098ff; color: #0098ff; background: #1f3345; }
+
+        .query-section {
+            background: #2d2d2d;
+            border-bottom: 1px solid #444;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .query-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-height: 190px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .query-line {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .query-input {
+            flex: 1;
+            min-width: 100px;
+            padding: 7px 10px;
+            background: #3a3a3a;
+            border: 1px solid #555;
+            border-radius: 4px;
+            color: #e0e0e0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+        }
+
+        .query-input::placeholder { color: #888; }
+        .query-input:focus {
+            outline: none;
+            border-color: #0098ff;
+            box-shadow: 0 0 6px rgba(0, 152, 255, 0.3);
+        }
+
+        .query-status {
+            min-width: 58px;
+            color: #8f8f8f;
+            font-size: 11px;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .status-info {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .content-section {
+            display: flex;
+            flex: 1;
+            min-height: 0;
+            gap: 8px;
+            padding: 8px;
+        }
+
+        .left-panel {
+            width: min(38%, 520px);
+            min-width: 280px;
+            max-width: calc(100% - 320px);
+            background: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            flex-shrink: 0;
+            min-height: 0;
+        }
+
+        .left-upper {
+            flex: 1;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .left-lower {
+            flex: 1;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .tree-header,
+        .data-header {
+            padding: 10px 12px;
+            border-bottom: 1px solid #444;
+            font-weight: 600;
+            font-size: 12px;
+            background: #252525;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .data-header { border-bottom: none; }
+
+        .tree-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            min-height: 0;
+        }
+
+        .tree-item { border-left: 2px solid transparent; }
+        .tree-item:hover { background: #3a3a3a; }
+
+        .tree-item-content {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 3px 10px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 12px;
+        }
+
+        .tree-item.selected > .tree-item-content {
+            background: #ff0000;
+            color: #fff;
+            border-left-color: #d00000;
+        }
+
+        .tree-toggle {
+            width: 14px;
+            height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .tree-toggle::before {
+            content: '▶';
+            font-size: 9px;
+            transition: transform 0.15s;
+            display: inline-block;
+        }
+
+        .tree-item.expanded > .tree-item-content .tree-toggle::before { transform: rotate(90deg); }
+        .tree-item.leaf > .tree-item-content .tree-toggle::before { content: ''; }
+
+        .tree-checkbox {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            cursor: pointer;
+            appearance: none;
+            border: 1px solid #555;
+            border-radius: 2px;
+            background: transparent;
+        }
+
+        .tree-checkbox:checked {
+            background: #888;
+            border-color: #666;
+        }
+
+        .tree-icon {
+            width: 25px;
+            height: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+        .tree-icon.entity { color: #b0b0b0; }
+        .tree-icon.component { color: #56b6f2; }
+        .tree-icon.component-pset { color: #ff9500; }
+        .tree-icon.component-shape { color: #4fc454; }
+        .tree-icon.component-classdata { color: #3b7dd9; }
+        .tree-icon.component-relation { color: #b388ff; }
+        .tree-icon .icon-grid-pset {
+            display: grid;
+            grid-template-columns: repeat(2, 7px);
+            grid-template-rows: repeat(2, 7px);
+            gap: 2px;
+        }
+        .tree-icon .icon-grid-pset i {
+            display: block;
+            width: 7px;
+            height: 7px;
+            border: 1.5px solid currentColor;
+            box-sizing: border-box;
+        }
+        
+        .tree-label {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .tree-label.entity-name { color: #b0b0b0; }
+        .tree-label.component-pset { color: #ff9500; }
+        .tree-label.component-shape { color: #4fc454; }
+        .tree-label.component-classdata { color: #3b7dd9; }
+        .tree-label.component-relation { color: #b388ff; }
+        .tree-count { font-size: 10px; color: #888; }
+
+        .tree-children {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+
+        .tree-item.expanded > .tree-children { max-height: 3000px; }
+        .tree-children > .tree-item { margin-left: 14px; }
+
+        .data-tabs {
+            display: flex;
+            gap: 2px;
+            padding: 0 8px;
+            background: #252525;
+            border-bottom: 1px solid #444;
+            overflow-x: auto;
+            flex-shrink: 0;
+        }
+
+        .data-tab {
+            border: 1px solid #444;
+            border-bottom: none;
+            background: #2d2d2d;
+            color: #aaa;
+            font-size: 11px;
+            padding: 6px 8px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            margin-top: 2px;
+        }
+
+        .data-tab.active {
+            background: #1f1f1f;
+            color: #fff;
+            border-color: #666;
+        }
+
+        .data-view {
+            flex: 1;
+            overflow: auto;
+            min-height: 0;
+            background: #2a2a2a;
+            color: #e0e0e0;
+            border-radius: 6px;
+            padding: 10px;
+        }
+
+        table { width: 100%; border-collapse: collapse; font-size: 11px; }
+        thead {
+            position: sticky;
+            top: 0;
+            background: #252525;
+            border-bottom: 1px solid #444;
+        }
+
+        th {
+            padding: 7px 10px;
+            text-align: left;
+            color: #aaa;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 6px 10px;
+            border-bottom: 1px solid #3a3a3a;
+            vertical-align: top;
+            word-break: break-word;
+        }
+
+        td pre {
+            background: #1a1a1a;
+            border: 1px solid #444;
+            border-radius: 3px;
+            padding: 8px;
+            overflow-x: auto;
+            font-size: 10px;
+            line-height: 1.4;
+            margin: 4px 0;
+        }
+
+        th:first-child,
+        td:first-child {
+            min-width: 250px;
+        }
+
+        tr.row-overlap td { background: transparent; color: #ffff66; }
+        tr.row-unique td { background: transparent; color: #9cff9c; }
+        tr.row-conflict td { background: transparent; color: #ff8a8a; }
+
+        .data-guid-link {
+            color: #0098ff;
+            text-decoration: underline;
+            cursor: pointer;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 10px;
+        }
+
+        .data-guid-link:hover { color: #00c8ff; }
+
+        .horizontal-splitter {
+            height: 8px;
+            background: #3d3d3d;
+            border-top: 1px solid #555;
+            border-bottom: 1px solid #555;
+            cursor: row-resize;
+            flex-shrink: 0;
+        }
+
+        .horizontal-splitter:hover { background: #4d4d4d; }
+        .horizontal-splitter.active { background: #0098ff; }
+
+        .splitter {
+            width: 8px;
+            background: #3d3d3d;
+            border-left: 1px solid #555;
+            border-right: 1px solid #555;
+            cursor: col-resize;
+            flex-shrink: 0;
+        }
+
+        .splitter:hover { background: #4d4d4d; }
+        .splitter.active { background: #0098ff; }
+
+        .right-wrap {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-panel {
+            flex: 1;
+            background: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .viewer-header {
+            padding: 10px 12px;
+            border-bottom: 1px solid #444;
+            font-weight: 600;
+            font-size: 12px;
+            background: #252525;
+            flex-shrink: 0;
+        }
+
+        #canvas3d {
+            flex: 1;
+            background: #1a1a1a;
+            display: block;
+            min-height: 0;
+        }
+
+        .viewer-controls {
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-top: 1px solid #444;
+            background: #252525;
+            font-size: 11px;
+            flex-shrink: 0;
+        }
+
+        .viewer-controls input[type="checkbox"] {
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border: 1px solid #555;
+            border-radius: 2px;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .viewer-controls input[type="checkbox"]:checked { background: #888; }
+
+        .empty-state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            background: #0098ff;
+            border-radius: 50%;
+            margin-left: 4px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        [data-tooltip] { position: relative; }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #000;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 3px;
+            padding: 4px 6px;
+            white-space: nowrap;
+            font-size: 10px;
+            z-index: 1000;
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #2d2d2d; }
+        ::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #666; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="menu-bar">
+        <button class="icon-btn" id="saveQueriesBtn" data-tooltip="Save query state">💾</button>
+        <button class="icon-btn" id="openQueriesBtn" data-tooltip="Open query state">📂</button>
+        <button class="icon-btn" id="addQueryBtn" data-tooltip="Add query line">＋</button>
+        <input id="openQueriesInput" type="file" accept="application/json" style="display:none">
+    </div>
+
+    <div class="query-section">
+        <div class="query-lines" id="queryLines"></div>
+        <div class="status-info">
+            <div class="status-dot"></div>
+            <span id="statusText">Ready</span>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="left-panel">
+            <div class="left-upper">
+                <div class="tree-header">
+                    <span>Entity / Component Tree</span>
+                    <span id="treeCount"></span>
+                </div>
+                <div class="tree-content" id="treeContainer">
+                    <div class="empty-state">Execute a query line to load data</div>
+                </div>
+            </div>
+
+            <div class="horizontal-splitter" id="horizontalSplitter"></div>
+
+            <div class="left-lower">
+                <div class="data-header">
+                    <span id="dataHeaderText">Component Data</span>
+                    <span id="dataStatus"></span>
+                </div>
+                <div class="data-tabs" id="dataTabs"></div>
+                <div class="data-view" id="dataView">
+                    <div class="empty-state">Select an entity or component to inspect data</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="splitter" id="splitter"></div>
+
+        <div class="right-wrap">
+            <div class="right-panel">
+                <div class="viewer-header">3D View</div>
+                <canvas id="canvas3d"></canvas>
+                <div class="viewer-controls">
+                    <input type="checkbox" id="showGrid" checked><label for="showGrid">Grid</label>
+                    <input type="checkbox" id="showAxes" checked><label for="showAxes">Axes</label>
+                    <button class="icon-btn" id="zoomAll" data-tooltip="Frame all visible objects">⛶</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let scene, camera, renderer;
+    let gridHelper, axesHelper;
+    let raycaster, mouse;
+    let panTarget;
+    let isDragging = false;
+    let wasMouseDragged = false;
+    let mouseDownPos = { x: 0, y: 0 };
+    let prevMousePos = { x: 0, y: 0 };
+
+    const objects3d = new Map();
+    const selectedMeshes = new Set();
+    const meshOriginalColors = new Map();
+
+    const state = {
+        nextQueryId: 1,
+        queryLines: [],
+        queryResults: new Map(),
+        flat: {
+            entities: new Map(),
+            componentsByGuid: new Map(),
+            instancesById: new Map()
+        },
+        visibleInstanceIds: new Set(),
+        selectedInstanceId: null,
+        selectedEntityGuid: null,
+        selectedComponentGuid: null,
+        dataTabs: [],
+        activeTabId: null
+    };
+
+    const ifcClassColors = {
+        IFCWindow: { color: '#aaaaaa', opacity: 0.5 },
+        IFCSpace: { color: '#8888ff', opacity: 0.15 },
+        IFCWall: { color: '#ffff00', opacity: 1.0 },
+        IFCWallStandardCase: { color: '#aaaaaa', opacity: 1.0 },
+        IFCFooting: { color: '#888888', opacity: 1.0 },
+        IFCSlab: { color: '#444488', opacity: 0.75 },
+        IFCFurnishingElement: { color: '#008800', opacity: 1.0 },
+        IFCBeam: { color: '#ffff00', opacity: 1.0 },
+        IFCPlate: { color: '#888888', opacity: 1.0 },
+        IFCMember: { color: '#888888', opacity: 1.0 },
+        IFCColumn: { color: '#008800', opacity: 1.0 },
+        IFCBuildingElementProxy: { color: '#888888', opacity: 1.0 },
+        IFCRoof: { color: '#994444', opacity: 1.0 },
+        IFCDoor: { color: '#888800', opacity: 1.0 },
+        IFCOpeningElement: { color: '#444444', opacity: 0.05 },
+        IFCDuctSegment: { color: '#999999', opacity: 1.0 },
+        IFCDuctFitting: { color: '#999999', opacity: 1.0 }
+    };
+
+    function getColorAndOpacityForEntityType(entityType) {
+        if (!entityType) return { color: 0x0098ff, opacity: 0.8 };
+        if (ifcClassColors[entityType]) {
+            const data = ifcClassColors[entityType];
+            return { color: parseInt(data.color.replace('#', '0x'), 16), opacity: data.opacity };
+        }
+        const key = Object.keys(ifcClassColors).find(k => k.toLowerCase() === entityType.toLowerCase());
+        if (!key) return { color: 0x0098ff, opacity: 0.8 };
+        const data = ifcClassColors[key];
+        return { color: parseInt(data.color.replace('#', '0x'), 16), opacity: data.opacity };
+    }
+
+    function extractIfcType(value, depth = 0) {
+        if (!value || depth > 4) return null;
+
+        if (typeof value === 'string') {
+            const trimmed = value.trim();
+            if (/^Ifc[A-Za-z0-9_]+$/i.test(trimmed)) return trimmed;
+            return null;
+        }
+
+        if (Array.isArray(value)) {
+            for (const item of value) {
+                const found = extractIfcType(item, depth + 1);
+                if (found) return found;
+            }
+            return null;
+        }
+
+        if (typeof value !== 'object') return null;
+
+        const directKeys = ['elementType', 'entityType', 'ifcClass', 'ifcType', 'className', 'typeName', 'type'];
+        for (const key of directKeys) {
+            const raw = value[key] ?? value[key.toLowerCase()] ?? value[key.toUpperCase()];
+            if (typeof raw === 'string') {
+                const found = extractIfcType(raw, depth + 1);
+                if (found) return found;
+            }
+        }
+
+        const preferredNestedKeys = Object.keys(value).filter(k => /object\s*def|objectdef|ifcobject|ifcproduct/i.test(k));
+        for (const key of preferredNestedKeys) {
+            const found = extractIfcType(value[key], depth + 1);
+            if (found) return found;
+        }
+
+        for (const nestedValue of Object.values(value)) {
+            if (typeof nestedValue === 'object' && nestedValue !== null) {
+                const found = extractIfcType(nestedValue, depth + 1);
+                if (found) return found;
+            }
+        }
+
+        return null;
+    }
+
+    function isComponentIfcType(ifcType) {
+        return typeof ifcType === 'string' && /Component$/i.test(ifcType);
+    }
+
+    function findMappedIfcClass(candidateList) {
+        if (!Array.isArray(candidateList) || !candidateList.length) return null;
+        for (const raw of candidateList) {
+            if (!raw || typeof raw !== 'string') continue;
+            if (isComponentIfcType(raw)) continue;
+            if (ifcClassColors[raw]) return raw;
+            const key = Object.keys(ifcClassColors).find(k => k.toLowerCase() === raw.toLowerCase());
+            if (key) return key;
+        }
+        return null;
+    }
+
+    function resolveIfcClassForInstance(instance) {
+        if (!instance?.component) return null;
+
+        const component = instance.component;
+
+        const directCandidates = [
+            component.elementType,
+            component.entityType,
+            component.ifcClass,
+            component.ifcType,
+            component.className,
+            component.typeName
+        ].filter(v => typeof v === 'string');
+        const mappedDirect = findMappedIfcClass(directCandidates);
+        if (mappedDirect) return mappedDirect;
+
+        const fromObjectDefinition = extractIfcType(
+            component.ObjectDefinition || component.objectDefinition || component.IfcObject || component.IfcProduct
+        );
+        const mappedFromObjectDefinition = findMappedIfcClass([fromObjectDefinition]);
+        if (mappedFromObjectDefinition) return mappedFromObjectDefinition;
+
+        const entityGuid = component.entityGuid;
+        if (entityGuid) {
+            const relatedCandidates = [];
+            state.flat.instancesById.forEach(other => {
+                if (!other?.component || other.component.entityGuid !== entityGuid) return;
+                relatedCandidates.push(
+                    other.component.elementType,
+                    other.component.entityType,
+                    other.component.ifcClass,
+                    other.component.ifcType,
+                    extractIfcType(other.component.ObjectDefinition || other.component.objectDefinition || other.component.IfcObject || other.component.IfcProduct)
+                );
+            });
+            const mappedFromRelated = findMappedIfcClass(relatedCandidates);
+            if (mappedFromRelated) return mappedFromRelated;
+        }
+
+        const fallback = extractIfcType(component);
+        if (fallback && !isComponentIfcType(fallback)) return fallback;
+        return null;
+    }
+
+    function init3DViewer() {
+        const canvas = document.getElementById('canvas3d');
+        const container = canvas.parentElement;
+
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x1a1a1a);
+
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 10000);
+        camera.up.set(0, 0, 1);
+        camera.position.set(10, -10, 10);
+        camera.lookAt(0, 0, 0);
+
+        renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(100, 100, 100);
+        scene.add(directionalLight);
+
+        gridHelper = new THREE.GridHelper(500, 50, 0x444444, 0x222222);
+        gridHelper.rotation.x = Math.PI / 2;
+        scene.add(gridHelper);
+
+        axesHelper = new THREE.AxesHelper(50);
+        scene.add(axesHelper);
+
+        raycaster = new THREE.Raycaster();
+        mouse = new THREE.Vector2();
+        panTarget = new THREE.Vector3(0, 0, 0);
+
+        setupMouseControls();
+        setup3DSelection();
+
+        window.addEventListener('resize', () => {
+            const newWidth = container.clientWidth;
+            const newHeight = container.clientHeight;
+            camera.aspect = newWidth / newHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(newWidth, newHeight);
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        document.getElementById('showGrid').addEventListener('change', e => gridHelper.visible = e.target.checked);
+        document.getElementById('showAxes').addEventListener('change', e => axesHelper.visible = e.target.checked);
+        document.getElementById('zoomAll').addEventListener('click', () => zoomToVisible());
+    }
+
+    function setupMouseControls() {
+        const canvas = document.getElementById('canvas3d');
+
+        canvas.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            wasMouseDragged = false;
+            mouseDownPos = { x: e.clientX, y: e.clientY };
+            prevMousePos = { x: e.clientX, y: e.clientY };
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const deltaX = e.clientX - prevMousePos.x;
+            const deltaY = e.clientY - prevMousePos.y;
+            if (Math.abs(e.clientX - mouseDownPos.x) > 3 || Math.abs(e.clientY - mouseDownPos.y) > 3) {
+                wasMouseDragged = true;
+            }
+
+            if (e.shiftKey) {
+                const radius = camera.position.length();
+                const forward = new THREE.Vector3().subVectors(panTarget, camera.position).normalize();
+                const right = new THREE.Vector3().crossVectors(forward, camera.up).normalize();
+                const up = new THREE.Vector3().crossVectors(right, forward).normalize();
+                const panSpeed = radius * 0.005;
+                const panX = right.multiplyScalar(-deltaX * panSpeed);
+                const panY = up.multiplyScalar(deltaY * panSpeed);
+                panTarget.add(panX).add(panY);
+                camera.position.add(panX).add(panY);
+                camera.lookAt(panTarget);
+            } else {
+                const offsetPos = new THREE.Vector3().subVectors(camera.position, panTarget);
+                const radius = offsetPos.length();
+                const theta = Math.atan2(offsetPos.y, offsetPos.x) - deltaX * 0.01;
+                const phi = Math.acos(offsetPos.z / radius) - deltaY * 0.01;
+                const clampedPhi = Math.max(0.1, Math.min(Math.PI - 0.1, phi));
+                offsetPos.x = radius * Math.sin(clampedPhi) * Math.cos(theta);
+                offsetPos.y = radius * Math.sin(clampedPhi) * Math.sin(theta);
+                offsetPos.z = radius * Math.cos(clampedPhi);
+                camera.position.copy(panTarget).add(offsetPos);
+                camera.up.set(0, 0, 1);
+                camera.lookAt(panTarget);
+            }
+            prevMousePos = { x: e.clientX, y: e.clientY };
+        });
+
+        canvas.addEventListener('mouseup', () => isDragging = false);
+        canvas.addEventListener('mouseleave', () => isDragging = false);
+
+        canvas.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const offsetPos = new THREE.Vector3().subVectors(camera.position, panTarget);
+            const radius = offsetPos.length();
+            const newRadius = Math.max(10, Math.min(1000, radius + e.deltaY * 0.1));
+            offsetPos.multiplyScalar(newRadius / radius);
+            camera.position.copy(panTarget).add(offsetPos);
+            camera.up.set(0, 0, 1);
+        });
+    }
+
+    function setup3DSelection() {
+        const canvas = document.getElementById('canvas3d');
+        canvas.addEventListener('click', (event) => {
+            if (wasMouseDragged) return;
+
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+
+            const pickableMeshes = Array.from(objects3d.values()).filter(mesh =>
+                mesh.visible && state.visibleInstanceIds.has(mesh.userData.instanceId)
+            );
+            const intersects = raycaster.intersectObjects(pickableMeshes, false);
+            if (!intersects.length) {
+                clearTreeAndMeshSelection();
+                return;
+            }
+
+            const mesh = intersects[0].object;
+            const instanceId = mesh.userData.instanceId;
+            if (!instanceId) return;
+            const instance = state.flat.instancesById.get(instanceId);
+            if (!instance) return;
+
+            // Selection should only affect highlight, not visibility.
+            state.selectedInstanceId = instanceId;
+            
+            // Select in tree and render data
+            selectTreeItem('component', instance.componentGuid, instanceId);
+            renderDataViewForComponent(instance.componentGuid);
+        });
+    }
+
+    function parseOBJString(objString) {
+        const lines = objString.split('\n');
+        const vertices = [];
+        const faces = [];
+
+        lines.forEach(line => {
+            const parts = line.trim().split(/\s+/);
+            if (!parts.length) return;
+            if (parts[0] === 'v' && parts.length >= 4) {
+                vertices.push(parseFloat(parts[1]), parseFloat(parts[2]), parseFloat(parts[3]));
+            } else if (parts[0] === 'f' && parts.length >= 4) {
+                for (let i = 1; i < parts.length - 2; i++) {
+                    const i1 = parseInt(parts[1].split('/')[0], 10) - 1;
+                    const i2 = parseInt(parts[i + 1].split('/')[0], 10) - 1;
+                    const i3 = parseInt(parts[i + 2].split('/')[0], 10) - 1;
+                    faces.push(i1, i2, i3);
+                }
+            }
+        });
+
+        if (!vertices.length || !faces.length) return null;
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3));
+        geometry.setIndex(new THREE.BufferAttribute(new Uint32Array(faces), 1));
+        geometry.computeVertexNormals();
+        return geometry;
+    }
+
+    function addMesh(meshId, instanceId, geometry, color, opacity) {
+        const material = new THREE.MeshPhongMaterial({
+            color,
+            emissive: 0x000000,
+            shininess: 100,
+            wireframe: false,
+            side: THREE.DoubleSide,
+            opacity,
+            transparent: opacity < 1,
+            flatShading: false
+        });
+
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.userData.meshId = meshId;
+        mesh.userData.instanceId = instanceId;
+        meshOriginalColors.set(meshId, color);
+        objects3d.set(meshId, mesh);
+        scene.add(mesh);
+    }
+
+    function applyMeshStyle(mesh, meshId, color, opacity) {
+        if (!mesh?.material) return;
+        mesh.material.color.setHex(color);
+        mesh.material.opacity = opacity;
+        mesh.material.transparent = opacity < 1;
+        mesh.material.needsUpdate = true;
+        meshOriginalColors.set(meshId, color);
+    }
+
+    function renderInstanceShapes(instance) {
+        if (!instance) return;
+
+        const instanceId = instance.instanceId;
+        const componentData = instance.component;
+        const ifcClass = resolveIfcClassForInstance(instance);
+        const { color, opacity } = getColorAndOpacityForEntityType(ifcClass);
+
+        const items = componentData.Items || componentData.items;
+        if (!Array.isArray(items) || !items.length) return;
+
+        items.forEach((item, idx) => {
+            const meshId = `${instanceId}-item-${idx}`;
+            if (objects3d.has(meshId)) {
+                applyMeshStyle(objects3d.get(meshId), meshId, color, opacity);
+                return;
+            }
+
+            if (typeof item === 'string') {
+                const geometry = parseOBJString(item);
+                if (geometry) addMesh(meshId, instanceId, geometry, color, opacity);
+                return;
+            }
+
+            const vertices = item?.vertices || item?.Vertices || item?.vector || item?.Vector || [];
+            const faces = item?.faces || item?.Faces || item?.indices || item?.Indices || item?.triangles || item?.Triangles || [];
+            if (!vertices.length || !faces.length) return;
+
+            const flatVertices = [];
+            vertices.forEach(v => {
+                if (Array.isArray(v) && v.length >= 3) flatVertices.push(v[0], v[1], v[2]);
+                else if (v && typeof v === 'object' && v.x !== undefined && v.y !== undefined && v.z !== undefined) {
+                    flatVertices.push(v.x, v.y, v.z);
+                }
+            });
+            if (flatVertices.length < 9) return;
+
+            const flatIndices = [];
+            faces.forEach(f => {
+                if (Array.isArray(f)) flatIndices.push(...f);
+                else if (typeof f === 'number') flatIndices.push(f);
+            });
+            if (!flatIndices.length) return;
+
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(flatVertices), 3));
+            geometry.setIndex(new THREE.BufferAttribute(new Uint32Array(flatIndices), 1));
+            geometry.computeVertexNormals();
+            addMesh(meshId, instanceId, geometry, color, opacity);
+        });
+    }
+
+    function updateMeshesForVisibility() {
+        const visibleIds = state.visibleInstanceIds;
+        state.flat.instancesById.forEach(instance => {
+            if (visibleIds.has(instance.instanceId)) {
+                renderInstanceShapes(instance);
+            }
+        });
+
+        objects3d.forEach((mesh) => {
+            mesh.visible = visibleIds.has(mesh.userData.instanceId);
+        });
+
+        applySelectionHighlight();
+
+        renderer.render(scene, camera);
+    }
+
+    function clearMeshHighlights() {
+        selectedMeshes.forEach(mesh => {
+            const original = meshOriginalColors.get(mesh.userData.meshId);
+            if (original !== undefined) {
+                mesh.material.color.setHex(original);
+                mesh.material.needsUpdate = true;
+            }
+        });
+        selectedMeshes.clear();
+    }
+
+    function highlightMesh(mesh) {
+        if (!mesh || !mesh.material) return;
+        selectedMeshes.add(mesh);
+        mesh.material.color.setHex(0xff0000);
+        mesh.material.needsUpdate = true;
+    }
+
+    function highlightInstances(instanceIds) {
+        clearMeshHighlights();
+        const set = new Set(instanceIds);
+        objects3d.forEach(mesh => {
+            if (set.has(mesh.userData.instanceId) && mesh.visible) {
+                highlightMesh(mesh);
+            }
+        });
+    }
+
+    function applySelectionHighlight() {
+        if (!state.selectedInstanceId) {
+            clearMeshHighlights();
+            return;
+        }
+        highlightInstances([state.selectedInstanceId]);
+    }
+
+    function zoomToVisible() {
+        const visibleMeshes = Array.from(objects3d.values()).filter(m => m.visible);
+        if (!visibleMeshes.length) return;
+
+        let minX = Infinity, maxX = -Infinity;
+        let minY = Infinity, maxY = -Infinity;
+        let minZ = Infinity, maxZ = -Infinity;
+
+        visibleMeshes.forEach(mesh => {
+            const box = new THREE.Box3().setFromObject(mesh);
+            if (box.min.x === Infinity || box.max.x === -Infinity) return;
+            minX = Math.min(minX, box.min.x); maxX = Math.max(maxX, box.max.x);
+            minY = Math.min(minY, box.min.y); maxY = Math.max(maxY, box.max.y);
+            minZ = Math.min(minZ, box.min.z); maxZ = Math.max(maxZ, box.max.z);
+        });
+
+        if (!isFinite(minX)) return;
+        const centerX = (minX + maxX) / 2;
+        const centerY = (minY + maxY) / 2;
+        const centerZ = (minZ + maxZ) / 2;
+
+        const sizeX = maxX - minX;
+        const sizeY = maxY - minY;
+        const sizeZ = maxZ - minZ;
+        const maxSize = Math.max(sizeX, sizeY, sizeZ, 1);
+
+        const vFOV = camera.fov * Math.PI / 180;
+        const distance = (maxSize / 2) / Math.tan(vFOV / 2) * 1.75;
+
+        const deltaX = centerX - panTarget.x;
+        const deltaY = centerY - panTarget.y;
+        const deltaZ = centerZ - panTarget.z;
+
+        panTarget.set(centerX, centerY, centerZ);
+        camera.position.x += deltaX;
+        camera.position.y += deltaY;
+        camera.position.z += deltaZ;
+
+        const dirX = camera.position.x - centerX;
+        const dirY = camera.position.y - centerY;
+        const dirZ = camera.position.z - centerZ;
+        const currentDistance = Math.sqrt(dirX * dirX + dirY * dirY + dirZ * dirZ);
+
+        const scale = distance / Math.max(currentDistance, 0.001);
+        camera.position.set(centerX + dirX * scale, centerY + dirY * scale, centerZ + dirZ * scale);
+        camera.up.set(0, 0, 1);
+        camera.lookAt(centerX, centerY, centerZ);
+    }
+
+    function setStatus(text, loading = false) {
+        const status = document.getElementById('statusText');
+        status.innerHTML = loading ? `${text}<span class="loading"></span>` : text;
+    }
+
+    function normalizeQueryUrl(input) {
+        const trimmed = (input || '').trim();
+        if (!trimmed) return '';
+        if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) return trimmed;
+        if (trimmed.startsWith('/')) return `http://localhost:5000${trimmed}`;
+        if (trimmed.startsWith('api/')) return `http://localhost:5000/${trimmed}`;
+        return `http://localhost:5000/api/${trimmed}`;
+    }
+
+    async function fetchJson(url) {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        const data = await response.json();
+        if (data?.error) throw new Error(data.error);
+        return data;
+    }
+
+    async function normalizeApiToComponents(url, apiData) {
+        const urlObj = new URL(url);
+        const endpoint = urlObj.pathname;
+        const baseUrl = `${urlObj.protocol}//${urlObj.host}`;
+
+        if (endpoint.includes('/components')) {
+            if (Array.isArray(apiData)) {
+                return apiData.map(component => ({ ...component, _model: component._model || component.model || 'DefaultModel' }));
+            }
+            if (apiData && typeof apiData === 'object') {
+                const components = [];
+                Object.entries(apiData).forEach(([modelName, modelComponents]) => {
+                    if (!Array.isArray(modelComponents)) return;
+                    modelComponents.forEach(component => {
+                        components.push({ ...component, _model: component._model || modelName });
+                    });
+                });
+                return components;
+            }
+            return [];
+        }
+
+        if (endpoint.includes('/componentGuids') && apiData && typeof apiData === 'object') {
+            const allGuids = [];
+            Object.values(apiData).forEach(guids => {
+                if (Array.isArray(guids)) allGuids.push(...guids);
+            });
+            if (!allGuids.length) return [];
+            const compUrl = `${baseUrl}/api/components?componentGuids=${encodeURIComponent(allGuids.join(','))}`;
+            const compData = await fetchJson(compUrl);
+            return normalizeApiToComponents(compUrl, compData);
+        }
+
+        if (endpoint.includes('/entityGuids') && apiData && typeof apiData === 'object') {
+            const tasks = [];
+            Object.entries(apiData).forEach(([modelName, entityGuids]) => {
+                if (!Array.isArray(entityGuids) || !entityGuids.length) return;
+                const entityPart = encodeURIComponent(entityGuids.join(','));
+                const modelPart = encodeURIComponent(modelName);
+                tasks.push(fetchJson(`${baseUrl}/api/components?models=${modelPart}&entityGuids=${entityPart}`));
+            });
+            const responses = await Promise.all(tasks);
+            const all = [];
+            for (const response of responses) {
+                const normalized = await normalizeApiToComponents(`${baseUrl}/api/components`, response);
+                all.push(...normalized);
+            }
+            return all;
+        }
+
+        return [];
+    }
+
+    function rebuildFlatState() {
+        const entities = new Map();
+        const componentsByGuid = new Map();
+        const instancesById = new Map();
+
+        state.queryResults.forEach((components, queryId) => {
+            const queryIndex = state.queryLines.findIndex(q => q.id === queryId);
+            components.forEach((component, idx) => {
+                const componentGuid = component.componentGuid;
+                if (!componentGuid) return;
+                const entityGuid = component.entityGuid || 'Unknown';
+                const modelName = component._model || component.model || 'UnknownModel';
+                const instanceId = `${queryId}::${modelName}::${componentGuid}::${idx}`;
+
+                const instance = {
+                    instanceId,
+                    componentGuid,
+                    entityGuid,
+                    modelName,
+                    queryId,
+                    queryIndex,
+                    component: {
+                        ...component,
+                        _model: modelName,
+                        _query: queryIndex
+                    }
+                };
+
+                instancesById.set(instanceId, instance);
+
+                if (!entities.has(entityGuid)) {
+                    entities.set(entityGuid, { entityGuid, componentGuids: new Map() });
+                }
+                const entityNode = entities.get(entityGuid);
+                if (!entityNode.componentGuids.has(componentGuid)) {
+                    entityNode.componentGuids.set(componentGuid, []);
+                }
+                entityNode.componentGuids.get(componentGuid).push(instanceId);
+
+                if (!componentsByGuid.has(componentGuid)) componentsByGuid.set(componentGuid, []);
+                componentsByGuid.get(componentGuid).push(instanceId);
+            });
+        });
+
+        state.flat = { entities, componentsByGuid, instancesById };
+
+        if (!state.visibleInstanceIds.size) {
+            instancesById.forEach(instance => state.visibleInstanceIds.add(instance.instanceId));
+        } else {
+            const kept = new Set();
+            state.visibleInstanceIds.forEach(id => { if (instancesById.has(id)) kept.add(id); });
+            if (!kept.size) instancesById.forEach(instance => kept.add(instance.instanceId));
+            state.visibleInstanceIds = kept;
+        }
+
+        if (state.selectedInstanceId && !instancesById.has(state.selectedInstanceId)) {
+            state.selectedInstanceId = null;
+        }
+    }
+
+    function getComponentTypeInfo(component) {
+        if (!component) return { icon: '●', iconClass: 'component', displayName: 'Component' };
+        
+        const componentType = component.componentType || '';
+        const componentName = component.componentName || '';
+        
+        if (componentType.startsWith('IfcRel') || componentType.includes('Relation')) {
+            return { icon: '↔', iconClass: 'component-relation', displayName: 'Relation' };
+        } else if (componentType.includes('PropertySet') || componentName.startsWith('Pset_')) {
+            return {
+                icon: '<span class="icon-grid-pset" aria-hidden="true"><i></i><i></i><i></i><i></i></span>',
+                iconClass: 'component-pset',
+                displayName: 'PropertySet'
+            };
+        } else if (componentType.includes('ShapeRepresentation')) {
+            return { icon: '▲', iconClass: 'component-shape', displayName: 'ShapeRep' };
+        } else {
+            return { icon: '●', iconClass: 'component-classdata', displayName: 'ClassData' };
+        }
+    }
+
+    function createTreeItem({ type, label, guid, count, leaf = false, tooltip = '', component = null }) {
+        const item = document.createElement('div');
+        item.className = `tree-item${leaf ? ' leaf' : ''}`;
+        item.dataset.type = type;
+        if (guid) item.dataset.guid = guid;
+
+        let icon, iconClass;
+        let labelClass = '';
+        
+        if (type === 'entity') {
+            icon = '⬡';
+            iconClass = 'entity';
+            labelClass = 'entity-name';
+        } else if (type === 'component' && component) {
+            const typeInfo = getComponentTypeInfo(component);
+            icon = typeInfo.icon;
+            iconClass = typeInfo.iconClass;
+            labelClass = typeInfo.iconClass;
+        } else {
+            icon = type === 'component' ? '●' : '📦';
+            iconClass = type === 'component' ? 'component' : '';
+        }
+
+        item.innerHTML = `
+            <div class="tree-item-content" title="${tooltip}">
+                <span class="tree-toggle"></span>
+                <input type="checkbox" class="tree-checkbox">
+                <span class="tree-icon ${iconClass}">${icon}</span>
+                <span class="tree-label ${labelClass}">${label}</span>
+                <span class="tree-count">${count !== undefined ? `(${count})` : ''}</span>
+            </div>
+        `;
+        return item;
+    }
+
+    function attachTreeSelectionHandlers(item, onSelect) {
+        const toggle = item.querySelector('.tree-toggle');
+        if (toggle) {
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (!item.classList.contains('leaf')) item.classList.toggle('expanded');
+            });
+        }
+
+        item.addEventListener('click', (e) => {
+            if (e.target.closest('.tree-toggle, .tree-checkbox')) return;
+            e.stopPropagation();
+            if (!item.classList.contains('leaf')) item.classList.toggle('expanded');
+            onSelect();
+        });
+    }
+
+    function renderTree() {
+        const container = document.getElementById('treeContainer');
+        const treeCount = document.getElementById('treeCount');
+        container.innerHTML = '';
+
+        const entityCount = state.flat.entities.size;
+        const componentCount = state.flat.instancesById.size;
+        treeCount.textContent = `${entityCount} entities, ${componentCount} components`;
+
+        if (!entityCount) {
+            container.innerHTML = '<div class="empty-state">Execute a query line to load data</div>';
+            return;
+        }
+
+        const rootItem = createTreeItem({
+            type: 'root',
+            label: 'IFCxPrototype',
+            guid: 'IFCxPrototype',
+            count: componentCount,
+            tooltip: 'All entities and components from all query lines'
+        });
+        rootItem.classList.add('expanded');
+
+        const rootChildren = document.createElement('div');
+        rootChildren.className = 'tree-children';
+
+        const sortedEntities = Array.from(state.flat.entities.values()).sort((a, b) => a.entityGuid.localeCompare(b.entityGuid));
+
+        sortedEntities.forEach(entityNode => {
+            const componentGuidEntries = Array.from(entityNode.componentGuids.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+            const entityItem = createTreeItem({
+                type: 'entity',
+                label: entityNode.entityGuid,
+                guid: entityNode.entityGuid,
+                count: componentGuidEntries.length,
+                tooltip: `Entity ${entityNode.entityGuid} (${componentGuidEntries.length} component GUIDs)`
+            });
+            entityItem.classList.add('expanded');
+
+            const entityChildren = document.createElement('div');
+            entityChildren.className = 'tree-children';
+
+            componentGuidEntries.forEach(([componentGuid, instanceIds]) => {
+                // Get the first instance to extract component metadata
+                const firstInstance = state.flat.instancesById.get(instanceIds[0]);
+                const component = firstInstance ? firstInstance.component : null;
+                
+                const componentItem = createTreeItem({
+                    type: 'component',
+                    label: componentGuid,
+                    guid: componentGuid,
+                    count: instanceIds.length,
+                    leaf: true,
+                    tooltip: `Component ${componentGuid} (${instanceIds.length} matching instances)`,
+                    component: component
+                });
+                componentItem.dataset.instanceIds = JSON.stringify(instanceIds);
+
+                const compCheckbox = componentItem.querySelector('.tree-checkbox');
+                compCheckbox.checked = instanceIds.every(id => state.visibleInstanceIds.has(id));
+                compCheckbox.addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        instanceIds.forEach(id => state.visibleInstanceIds.add(id));
+                    } else {
+                        instanceIds.forEach(id => state.visibleInstanceIds.delete(id));
+                    }
+                    updateMeshesForVisibility();
+                    syncTreeCheckboxes();
+                });
+
+                attachTreeSelectionHandlers(componentItem, () => {
+                    selectTreeItem('component', componentGuid);
+                    renderDataViewForComponent(componentGuid);
+                });
+
+                entityChildren.appendChild(componentItem);
+            });
+
+            const entityCheckbox = entityItem.querySelector('.tree-checkbox');
+            const allEntityInstanceIds = componentGuidEntries.flatMap(([, ids]) => ids);
+            entityCheckbox.checked = allEntityInstanceIds.every(id => state.visibleInstanceIds.has(id));
+            entityCheckbox.addEventListener('change', (e) => {
+                if (e.target.checked) allEntityInstanceIds.forEach(id => state.visibleInstanceIds.add(id));
+                else allEntityInstanceIds.forEach(id => state.visibleInstanceIds.delete(id));
+                updateMeshesForVisibility();
+                syncTreeCheckboxes();
+            });
+
+            attachTreeSelectionHandlers(entityItem, () => {
+                selectTreeItem('entity', entityNode.entityGuid);
+                renderDataViewForEntity(entityNode.entityGuid);
+            });
+
+            entityItem.appendChild(entityChildren);
+            rootChildren.appendChild(entityItem);
+        });
+
+        const rootCheckbox = rootItem.querySelector('.tree-checkbox');
+        rootCheckbox.checked = state.visibleInstanceIds.size === state.flat.instancesById.size;
+        rootCheckbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                state.flat.instancesById.forEach(instance => state.visibleInstanceIds.add(instance.instanceId));
+            } else {
+                state.visibleInstanceIds.clear();
+            }
+            updateMeshesForVisibility();
+            syncTreeCheckboxes();
+        });
+
+        attachTreeSelectionHandlers(rootItem, () => {
+            clearTreeAndMeshSelection();
+            clearDataView();
+        });
+
+        rootItem.appendChild(rootChildren);
+        container.appendChild(rootItem);
+    }
+
+    function syncTreeCheckboxes() {
+        const container = document.getElementById('treeContainer');
+        if (!container) return;
+
+        container.querySelectorAll('.tree-item[data-type="component"]').forEach(item => {
+            const ids = JSON.parse(item.dataset.instanceIds || '[]');
+            const checkbox = item.querySelector('.tree-checkbox');
+            checkbox.checked = ids.length > 0 && ids.every(id => state.visibleInstanceIds.has(id));
+        });
+
+        container.querySelectorAll('.tree-item[data-type="entity"]').forEach(item => {
+            const guid = item.dataset.guid;
+            const entityNode = state.flat.entities.get(guid);
+            if (!entityNode) return;
+            const ids = Array.from(entityNode.componentGuids.values()).flat();
+            const checkbox = item.querySelector('.tree-checkbox');
+            checkbox.checked = ids.length > 0 && ids.every(id => state.visibleInstanceIds.has(id));
+        });
+
+        const root = container.querySelector('.tree-item[data-type="root"]');
+        if (root) {
+            const rootCheckbox = root.querySelector('.tree-checkbox');
+            rootCheckbox.checked = state.flat.instancesById.size > 0 && state.visibleInstanceIds.size === state.flat.instancesById.size;
+        }
+    }
+
+    function clearTreeAndMeshSelection() {
+        const selectedNodes = document.querySelectorAll('.tree-item.selected');
+        selectedNodes.forEach(node => node.classList.remove('selected'));
+        state.selectedEntityGuid = null;
+        state.selectedComponentGuid = null;
+        state.selectedInstanceId = null;
+        clearMeshHighlights();
+    }
+
+    function findComponentTreeItemByInstanceId(instanceId) {
+        if (!instanceId) return null;
+        const componentItems = document.querySelectorAll('.tree-item[data-type="component"]');
+        for (const item of componentItems) {
+            const ids = JSON.parse(item.dataset.instanceIds || '[]');
+            if (ids.includes(instanceId)) return item;
+        }
+        return null;
+    }
+
+    function selectTreeItem(type, guid, preferredInstanceId = null) {
+        clearTreeAndMeshSelection();
+
+        if (type === 'entity') {
+            state.selectedEntityGuid = guid;
+            const entityNode = state.flat.entities.get(guid);
+            if (!entityNode) {
+                applySelectionHighlight();
+                return;
+            }
+            const allIds = Array.from(entityNode.componentGuids.values()).flat();
+            const selectedId = allIds.find(id => state.visibleInstanceIds.has(id)) || null;
+            if (!selectedId) {
+                state.selectedInstanceId = null;
+                clearMeshHighlights();
+                return;
+            }
+
+            let item = null;
+            const selector = `.tree-item[data-type="${type}"][data-guid="${cssEscape(guid)}"]`;
+            item = document.querySelector(selector);
+            if (item) {
+                item.classList.add('selected');
+                expandToItem(item);
+                item.scrollIntoView({ block: 'center' });
+            }
+
+            state.selectedInstanceId = selectedId;
+            applySelectionHighlight();
+            return;
+        }
+
+        state.selectedComponentGuid = guid;
+        const allInstanceIds = state.flat.componentsByGuid.get(guid) || [];
+        if (!allInstanceIds.length) {
+            state.selectedInstanceId = null;
+            clearMeshHighlights();
+            return;
+        }
+
+        let selectedId = null;
+        if (preferredInstanceId && allInstanceIds.includes(preferredInstanceId)) {
+            selectedId = state.visibleInstanceIds.has(preferredInstanceId) ? preferredInstanceId : null;
+        } else {
+            selectedId = allInstanceIds.find(id => state.visibleInstanceIds.has(id));
+        }
+
+        if (!selectedId) {
+            state.selectedInstanceId = null;
+            clearMeshHighlights();
+            return;
+        }
+
+        let item = null;
+        if (preferredInstanceId) {
+            item = findComponentTreeItemByInstanceId(selectedId);
+        }
+        if (!item) {
+            const selector = `.tree-item[data-type="${type}"][data-guid="${cssEscape(guid)}"]`;
+            item = document.querySelector(selector);
+        }
+        if (item) {
+            item.classList.add('selected');
+            expandToItem(item);
+            item.scrollIntoView({ block: 'center' });
+        }
+
+        state.selectedInstanceId = selectedId;
+        applySelectionHighlight();
+    }
+
+    function cssEscape(value) {
+        if (window.CSS && CSS.escape) return CSS.escape(value);
+        return String(value).replace(/([ #;?%&,.+*~':"!^$\[\]()=>|/@])/g, '\\$1');
+    }
+
+    function expandToItem(item) {
+        let current = item;
+        while (current && current.classList && current.classList.contains('tree-item')) {
+            current.classList.add('expanded');
+            current = current.parentElement ? current.parentElement.closest('.tree-item') : null;
+        }
+    }
+
+    function clearDataView() {
+        document.getElementById('dataHeaderText').textContent = 'Component Data';
+        document.getElementById('dataStatus').textContent = '';
+        document.getElementById('dataTabs').innerHTML = '';
+        document.getElementById('dataView').innerHTML = '<div class="empty-state">Select an entity or component to inspect data</div>';
+        state.dataTabs = [];
+        state.activeTabId = null;
+    }
+
+    function isGuid(value) {
+        const guidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+        return typeof value === 'string' && guidPattern.test(value);
+    }
+
+    function makeValueClickable(value) {
+        if (isGuid(value)) {
+            return `<span class="data-guid-link" data-guid="${value}">${value}</span>`;
+        }
+        return value;
+    }
+
+    function tryPrettyFormatJson(valueText) {
+        try {
+            const parsed = JSON.parse(valueText);
+            if (typeof parsed === 'object' && parsed !== null) {
+                return JSON.stringify(parsed, null, 2);
+            }
+        } catch (e) {
+            // Not valid JSON, return as-is
+        }
+        return valueText;
+    }
+
+    function formatValueForDisplay(value) {
+        if (typeof value === 'string') {
+            // Try to pretty format if it's valid JSON
+            try {
+                const parsed = JSON.parse(value);
+                if (typeof parsed === 'object' && parsed !== null) {
+                    return JSON.stringify(parsed, null, 2);
+                }
+            } catch (e) {
+                // Not valid JSON, return as-is
+            }
+            return value;
+        }
+        // For objects/arrays, pretty print them
+        if (typeof value === 'object') {
+            return JSON.stringify(value, null, 2);
+        }
+        return String(value);
+    }
+
+    function handleGuidLinkClick(e) {
+        if (!e.target.classList.contains('data-guid-link')) return;
+        e.preventDefault();
+        const guid = e.target.dataset.guid;
+        if (!guid) return;
+
+        // Try to find as component first
+        const componentItem = document.querySelector(`.tree-item[data-type="component"][data-guid="${cssEscape(guid)}"]`);
+        if (componentItem) {
+            selectTreeItem('component', guid);
+            renderDataViewForComponent(guid);
+            return;
+        }
+
+        // Try to find as entity
+        const entityItem = document.querySelector(`.tree-item[data-type="entity"][data-guid="${cssEscape(guid)}"]`);
+        if (entityItem) {
+            selectTreeItem('entity', guid);
+            renderDataViewForEntity(guid);
+            return;
+        }
+    }
+
+    function clearDataView() {
+        document.getElementById('dataHeaderText').textContent = 'Component Data';
+        document.getElementById('dataStatus').textContent = '';
+        document.getElementById('dataTabs').innerHTML = '';
+        document.getElementById('dataView').innerHTML = '<div class="empty-state">Select an entity or component to inspect data</div>';
+        state.dataTabs = [];
+        state.activeTabId = null;
+    }
+
+    function summarizeKeyState(activeInstance, allInstances) {
+        const stats = new Map();
+
+        allInstances.forEach(instance => {
+            Object.entries(instance.component).forEach(([key, value]) => {
+                if (!stats.has(key)) stats.set(key, { presentCount: 0, values: new Set() });
+                const entry = stats.get(key);
+                entry.presentCount += 1;
+                entry.values.add(JSON.stringify(value));
+            });
+        });
+
+        const rows = [];
+        Object.entries(activeInstance.component).forEach(([key, value]) => {
+            const entry = stats.get(key) || { presentCount: 1, values: new Set([JSON.stringify(value)]) };
+            let stateClass = 'row-unique';
+            if (entry.presentCount > 1 && entry.values.size === 1) stateClass = 'row-overlap';
+            if (entry.values.size > 1) stateClass = 'row-conflict';
+            rows.push({ key, value, stateClass });
+        });
+
+        rows.sort((a, b) => a.key.localeCompare(b.key));
+        return rows;
+    }
+
+    function renderDataTable(activeInstance, allInstances) {
+        const rows = summarizeKeyState(activeInstance, allInstances);
+        if (!rows.length) {
+            document.getElementById('dataView').innerHTML = '<div class="empty-state">No scalar data available</div>';
+            return;
+        }
+
+        const htmlRows = rows.map(row => {
+            const formattedValue = formatValueForDisplay(row.value);
+            const escapedValue = (formattedValue || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            
+            // Check if value contains newlines (formatted JSON)
+            const isMultiline = escapedValue.includes('\n');
+            let cellContent;
+            
+            if (isMultiline) {
+                // For multi-line content, use <pre> tag
+                cellContent = `<pre>${escapedValue}</pre>`;
+            } else {
+                // For single-line content, try to make GUIDs clickable
+                cellContent = makeValueClickable(escapedValue);
+            }
+            
+            return `<tr class="${row.stateClass}"><td>${row.key}</td><td>${cellContent}</td></tr>`;
+        }).join('');
+
+        document.getElementById('dataView').innerHTML = `
+            <table>
+                <thead><tr><th>Key</th><th>Value</th></tr></thead>
+                <tbody>${htmlRows}</tbody>
+            </table>
+        `;
+
+        // Attach click handlers to GUID links
+        document.getElementById('dataView').addEventListener('click', handleGuidLinkClick);
+
+        const overlapCount = rows.filter(r => r.stateClass === 'row-overlap').length;
+        const uniqueCount = rows.filter(r => r.stateClass === 'row-unique').length;
+        const conflictCount = rows.filter(r => r.stateClass === 'row-conflict').length;
+        document.getElementById('dataStatus').textContent = `same:${overlapCount} unique:${uniqueCount} conflict:${conflictCount}`;
+    }
+
+    function isShapeRepresentationInstance(instance) {
+        if (!instance?.component) return false;
+        const component = instance.component;
+        const candidates = [
+            component.elementType,
+            component.entityType,
+            component.type,
+            component.ifcType,
+            component.className,
+            component.RepresentationType,
+            component.ObjectDefinition?.entityType,
+            component.ObjectDefinition?.elementType,
+            component.ObjectDefinition?.type,
+            component.ObjectDefinition?.ifcType
+        ];
+
+        if (candidates.some(v => typeof v === 'string' && v.toLowerCase().includes('shaperepresentation'))) {
+            return true;
+        }
+
+        const extracted = extractIfcType(component);
+        if (typeof extracted === 'string' && extracted.toLowerCase().includes('shaperepresentation')) {
+            return true;
+        }
+
+        // Fallback: some payloads only expose this token deep in nested JSON.
+        try {
+            return JSON.stringify(component).toLowerCase().includes('shaperepresentation');
+        } catch (e) {
+            return false;
+        }
+    }
+
+    function applyShapeRepresentationTabVisibility(activeInstance, instances) {
+        const hasShapeRepresentation = isShapeRepresentationInstance(activeInstance) || instances.some(isShapeRepresentationInstance);
+        if (!hasShapeRepresentation) return;
+        const siblingIds = instances.map(instance => instance.instanceId);
+        siblingIds.forEach(id => state.visibleInstanceIds.delete(id));
+        state.visibleInstanceIds.add(activeInstance.instanceId);
+        updateMeshesForVisibility();
+        syncTreeCheckboxes();
+    }
+
+    function renderDataTabs(instances, headerLabel) {
+        const tabsEl = document.getElementById('dataTabs');
+        tabsEl.innerHTML = '';
+        state.dataTabs = instances.map(instance => ({
+            tabId: instance.instanceId,
+            label: `Q${(instance.queryIndex ?? instance.component._query ?? 0) + 1} · ${instance.modelName}`,
+            instanceId: instance.instanceId
+        }));
+
+        if (!state.dataTabs.length) {
+            clearDataView();
+            return;
+        }
+
+        if (!state.activeTabId || !state.dataTabs.some(tab => tab.tabId === state.activeTabId)) {
+            state.activeTabId = state.dataTabs[0].tabId;
+        }
+
+        document.getElementById('dataHeaderText').textContent = headerLabel;
+
+        state.dataTabs.forEach(tab => {
+            const btn = document.createElement('button');
+            btn.className = `data-tab${tab.tabId === state.activeTabId ? ' active' : ''}`;
+            btn.textContent = tab.label;
+            btn.addEventListener('click', () => {
+                state.activeTabId = tab.tabId;
+                renderDataTabs(instances, headerLabel);
+                const activeInstance = state.flat.instancesById.get(tab.instanceId);
+                if (activeInstance) {
+                    applyShapeRepresentationTabVisibility(activeInstance, instances);
+                    selectTreeItem('component', activeInstance.componentGuid, activeInstance.instanceId);
+                    renderDataTable(activeInstance, instances);
+                }
+            });
+            tabsEl.appendChild(btn);
+        });
+
+        const active = state.flat.instancesById.get(state.activeTabId);
+        if (active) renderDataTable(active, instances);
+    }
+
+    function renderDataViewForComponent(componentGuid) {
+        const instanceIds = state.flat.componentsByGuid.get(componentGuid) || [];
+        const instances = instanceIds.map(id => state.flat.instancesById.get(id)).filter(Boolean);
+        if (!instances.length) {
+            clearDataView();
+            return;
+        }
+        renderDataTabs(instances, `Component ${componentGuid}`);
+    }
+
+    function renderDataViewForEntity(entityGuid) {
+        const entity = state.flat.entities.get(entityGuid);
+        if (!entity) {
+            clearDataView();
+            return;
+        }
+
+        const firstComponentGuid = Array.from(entity.componentGuids.keys())[0];
+        if (!firstComponentGuid) {
+            clearDataView();
+            return;
+        }
+
+        const instances = (entity.componentGuids.get(firstComponentGuid) || [])
+            .map(id => state.flat.instancesById.get(id))
+            .filter(Boolean);
+
+        if (!instances.length) {
+            clearDataView();
+            return;
+        }
+
+        renderDataTabs(instances, `Entity ${entityGuid}`);
+    }
+
+    async function executeQueryLine(queryId, fromRepeat = false) {
+        const line = state.queryLines.find(q => q.id === queryId);
+        if (!line) return;
+
+        const rowEl = document.querySelector(`.query-line[data-id="${queryId}"]`);
+        const statusEl = rowEl?.querySelector('.query-status');
+
+        const inputUrl = line.address.trim();
+        if (!inputUrl) return;
+        const url = normalizeQueryUrl(inputUrl);
+
+        if (statusEl) statusEl.textContent = 'Loading...';
+        setStatus(`Running query ${line.index + 1}`, true);
+
+        try {
+            const apiData = await fetchJson(url);
+            const components = await normalizeApiToComponents(url, apiData);
+            const withMeta = components.map(component => ({
+                ...component,
+                _query: line.index
+            }));
+
+            state.queryResults.set(queryId, withMeta);
+            line.lastResultCount = withMeta.length;
+            line.lastRunAt = new Date();
+
+            if (statusEl) statusEl.textContent = `${withMeta.length} comps`;
+            rebuildFlatState();
+            renderTree();
+            syncTreeCheckboxes();
+            updateMeshesForVisibility();
+            if (!fromRepeat) zoomToVisible();
+
+            setStatus(`Loaded ${state.flat.instancesById.size} component instances from ${state.queryResults.size} query line(s)`);
+        } catch (error) {
+            if (statusEl) statusEl.textContent = 'Error';
+            setStatus(`Error in query ${line.index + 1}: ${error.message}`);
+        }
+    }
+
+    function stopRepeatTimer(line) {
+        if (!line || !line.repeatTimer) return;
+        clearInterval(line.repeatTimer);
+        line.repeatTimer = null;
+    }
+
+    function toggleQueryVisibility(queryId, show) {
+        if (!state.flat || !state.flat.instancesById) return;
+
+        state.flat.instancesById.forEach((instance) => {
+            if (instance.queryId === queryId) {
+                if (show) {
+                    state.visibleInstanceIds.add(instance.instanceId);
+                } else {
+                    state.visibleInstanceIds.delete(instance.instanceId);
+                }
+            }
+        });
+
+        updateMeshesForVisibility();
+        syncTreeCheckboxes();
+    }
+
+    function renderQueryLines() {
+        const container = document.getElementById('queryLines');
+        container.innerHTML = '';
+
+        state.queryLines.forEach((line, index) => {
+            line.index = index;
+            const row = document.createElement('div');
+            row.className = 'query-line';
+            row.dataset.id = line.id;
+
+            row.innerHTML = `
+                <input class="query-input" value="${line.address.replace(/"/g, '&quot;')}" placeholder="Enter REST query URL or /api/...">
+                <button class="icon-btn execute-btn" data-tooltip="Execute query">➜</button>
+                <button class="icon-btn repeat-btn ${line.repeatEnabled ? 'active' : ''}" data-tooltip="Repeat every 1 minute">⟳</button>
+                <button class="icon-btn show-btn" data-tooltip="Show all from this query">👁</button>
+                <button class="icon-btn hide-btn" data-tooltip="Hide all from this query">🙈</button>
+                <button class="icon-btn delete-btn" data-tooltip="Delete query line">✕</button>
+                <span class="query-status">${line.lastResultCount ? `${line.lastResultCount} comps` : 'Idle'}</span>
+            `;
+
+            const input = row.querySelector('.query-input');
+            const executeBtn = row.querySelector('.execute-btn');
+            const repeatBtn = row.querySelector('.repeat-btn');
+            const showBtn = row.querySelector('.show-btn');
+            const hideBtn = row.querySelector('.hide-btn');
+            const deleteBtn = row.querySelector('.delete-btn');
+
+            input.addEventListener('input', (e) => line.address = e.target.value);
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') executeQueryLine(line.id);
+            });
+
+            executeBtn.addEventListener('click', () => executeQueryLine(line.id));
+
+            repeatBtn.addEventListener('click', () => {
+                line.repeatEnabled = !line.repeatEnabled;
+                repeatBtn.classList.toggle('active', line.repeatEnabled);
+                if (line.repeatEnabled) {
+                    stopRepeatTimer(line);
+                    line.repeatTimer = setInterval(() => executeQueryLine(line.id, true), 60000);
+                    executeQueryLine(line.id, true);
+                } else {
+                    stopRepeatTimer(line);
+                }
+            });
+
+            showBtn.addEventListener('click', () => toggleQueryVisibility(line.id, true));
+            hideBtn.addEventListener('click', () => toggleQueryVisibility(line.id, false));
+            deleteBtn.addEventListener('click', () => deleteQueryLine(line.id));
+
+            container.appendChild(row);
+        });
+    }
+
+    function addQueryLine(address = 'http://localhost:5000/api/components', repeatEnabled = false) {
+        const line = {
+            id: state.nextQueryId++,
+            address,
+            repeatEnabled,
+            repeatTimer: null,
+            lastResultCount: 0,
+            lastRunAt: null,
+            index: state.queryLines.length
+        };
+        state.queryLines.push(line);
+        renderQueryLines();
+
+        if (repeatEnabled) {
+            line.repeatTimer = setInterval(() => executeQueryLine(line.id, true), 60000);
+        }
+    }
+
+    function deleteQueryLine(queryId) {
+        const idx = state.queryLines.findIndex(q => q.id === queryId);
+        if (idx < 0) return;
+
+        const [line] = state.queryLines.splice(idx, 1);
+        stopRepeatTimer(line);
+        state.queryResults.delete(queryId);
+
+        if (!state.queryLines.length) {
+            addQueryLine('http://localhost:5000/api/components');
+        }
+
+        rebuildFlatState();
+        renderQueryLines();
+        renderTree();
+        syncTreeCheckboxes();
+        updateMeshesForVisibility();
+        clearDataView();
+    }
+
+    function saveQueryState() {
+        const payload = {
+            version: 1,
+            savedAt: new Date().toISOString(),
+            queries: state.queryLines.map(line => ({
+                address: line.address,
+                repeat: !!line.repeatEnabled
+            }))
+        };
+
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'ifcx-query-state.json';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        setStatus('Saved query state JSON');
+    }
+
+    async function openQueryState(file) {
+        const text = await file.text();
+        const parsed = JSON.parse(text);
+        if (!parsed || !Array.isArray(parsed.queries)) throw new Error('Invalid query state format');
+
+        state.queryLines.forEach(stopRepeatTimer);
+        state.queryLines = [];
+        state.queryResults.clear();
+        state.flat = { entities: new Map(), componentsByGuid: new Map(), instancesById: new Map() };
+        state.visibleInstanceIds.clear();
+        state.selectedInstanceId = null;
+
+        parsed.queries.forEach(query => addQueryLine(query.address || '', !!query.repeat));
+        if (!state.queryLines.length) addQueryLine('http://localhost:5000/api/components');
+
+        renderQueryLines();
+        renderTree();
+        clearDataView();
+        setStatus('Loaded query state JSON');
+    }
+
+    function setupSplitter() {
+        const splitter = document.getElementById('splitter');
+        const contentSection = document.querySelector('.content-section');
+        const leftPanel = document.querySelector('.left-panel');
+        if (!splitter || !contentSection || !leftPanel) return;
+
+        let resizing = false;
+        splitter.addEventListener('mousedown', () => {
+            resizing = true;
+            splitter.classList.add('active');
+            document.body.style.cursor = 'col-resize';
+            document.body.style.userSelect = 'none';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!resizing) return;
+            const rect = contentSection.getBoundingClientRect();
+            const newWidth = e.clientX - rect.left;
+            const minWidth = 280;
+            const maxWidth = rect.width - 320;
+            if (newWidth > minWidth && newWidth < maxWidth) {
+                leftPanel.style.width = `${newWidth}px`;
+                leftPanel.style.minWidth = 'unset';
+                leftPanel.style.maxWidth = 'unset';
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (!resizing) return;
+            resizing = false;
+            splitter.classList.remove('active');
+            document.body.style.cursor = 'default';
+            document.body.style.userSelect = 'auto';
+        });
+    }
+
+    function setupHorizontalSplitter() {
+        const splitter = document.getElementById('horizontalSplitter');
+        const leftPanel = document.querySelector('.left-panel');
+        const leftUpper = document.querySelector('.left-upper');
+        if (!splitter || !leftPanel || !leftUpper) return;
+
+        let resizing = false;
+        splitter.addEventListener('mousedown', () => {
+            resizing = true;
+            splitter.classList.add('active');
+            document.body.style.cursor = 'row-resize';
+            document.body.style.userSelect = 'none';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!resizing) return;
+            const rect = leftPanel.getBoundingClientRect();
+            const newHeight = e.clientY - rect.top;
+            const minHeight = 180;
+            const maxHeight = rect.height - 140;
+            if (newHeight > minHeight && newHeight < maxHeight) {
+                leftUpper.style.flex = '0 0 ' + newHeight + 'px';
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (!resizing) return;
+            resizing = false;
+            splitter.classList.remove('active');
+            document.body.style.cursor = 'default';
+            document.body.style.userSelect = 'auto';
+        });
+    }
+
+    function clearAllSceneMeshes() {
+        objects3d.forEach(mesh => scene.remove(mesh));
+        objects3d.clear();
+        selectedMeshes.clear();
+        meshOriginalColors.clear();
+    }
+
+    function setupMenuActions() {
+        document.getElementById('addQueryBtn').addEventListener('click', () => addQueryLine('http://localhost:5000/api/components'));
+        document.getElementById('saveQueriesBtn').addEventListener('click', saveQueryState);
+        document.getElementById('openQueriesBtn').addEventListener('click', () => document.getElementById('openQueriesInput').click());
+
+        document.getElementById('openQueriesInput').addEventListener('change', async (e) => {
+            const file = e.target.files?.[0];
+            if (!file) return;
+            try {
+                await openQueryState(file);
+                clearAllSceneMeshes();
+            } catch (error) {
+                setStatus(`Open failed: ${error.message}`);
+            } finally {
+                e.target.value = '';
+            }
+        });
+    }
+
+    window.addEventListener('load', () => {
+        init3DViewer();
+        setupSplitter();
+        setupHorizontalSplitter();
+        setupMenuActions();
+        addQueryLine('http://localhost:5000/api/components');
+        renderTree();
+        clearDataView();
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            clearTreeAndMeshSelection();
+            clearDataView();
+        }
+    });
+</script>
+</body>
+</html>

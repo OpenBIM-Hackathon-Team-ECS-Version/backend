@@ -1,0 +1,9 @@
+{
+  "componentGuid": "edd09e3d-84c7-5d91-4d69-84711e8b0d55",
+  "componentType": "IfcDistributionPortComponent",
+  "description": "Flow",
+  "entityGuid": "4d2a4f33-2def-e713-0c9e-5c601552d81d",
+  "entityType": "IfcDistributionPort",
+  "flowDirection": "SOURCEANDSINK",
+  "name": "Port_590991_0"
+}

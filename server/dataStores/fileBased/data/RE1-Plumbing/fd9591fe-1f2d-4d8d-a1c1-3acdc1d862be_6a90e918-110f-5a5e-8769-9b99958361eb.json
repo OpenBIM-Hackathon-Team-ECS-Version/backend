@@ -1,0 +1,16 @@
+{
+  "componentGuid": "6a90e918-110f-5a5e-8769-9b99958361eb",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d862be",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Tub_M"
+      }
+    }
+  ],
+  "name": "Pset_DistributionFlowElementCommon"
+}

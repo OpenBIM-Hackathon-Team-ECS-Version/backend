@@ -1,0 +1,9 @@
+{
+  "componentGuid": "9e2d2098-b936-f2bc-9b42-753e91e6d0a7",
+  "componentType": "IfcFlowFittingComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3c399",
+  "entityType": "IfcFlowFitting",
+  "name": "Rectangular Tee:Standard:590951",
+  "objectType": "Rectangular Tee:Standard",
+  "tag": "590951"
+}

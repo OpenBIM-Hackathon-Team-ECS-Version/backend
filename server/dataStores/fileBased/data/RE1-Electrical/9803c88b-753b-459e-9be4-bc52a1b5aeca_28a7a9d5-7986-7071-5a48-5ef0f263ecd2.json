@@ -1,0 +1,16 @@
+{
+  "componentGuid": "28a7a9d5-7986-7071-5a48-5ef0f263ecd2",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5aeca",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "240V Special Purpose Outlet - Dryer (2 Poles)"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

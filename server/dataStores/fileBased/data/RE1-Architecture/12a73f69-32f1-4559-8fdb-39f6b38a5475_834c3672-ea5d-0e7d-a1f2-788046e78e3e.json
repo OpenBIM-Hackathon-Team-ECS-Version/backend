@@ -1,0 +1,24 @@
+{
+  "componentGuid": "834c3672-ea5d-0e7d-a1f2-788046e78e3e",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "12a73f69-32f1-4559-8fdb-39f6b38a5475",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "-"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Finish",
+      "nominalValue": {
+        "componentType": "IfcTextComponent",
+        "wrappedValue": "Moisture Resistant Gypsum Sheathing;"
+      }
+    }
+  ],
+  "name": "Pset_CoveringCommon"
+}

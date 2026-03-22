@@ -1,0 +1,22 @@
+{
+  "componentGuid": "9ca8302c-ef76-5faa-018e-e563bd6d1829",
+  "componentType": "IfcRelAssociatesClassificationComponent",
+  "description": "Interior Doors:C1020",
+  "entityGuid": "",
+  "name": "Interior Doors",
+  "relatedObjects": [
+    "ffad80c8-78e3-4105-9221-c3e4618b165e"
+  ],
+  "relatingClassification": {
+    "componentType": "IfcClassificationReferenceComponent",
+    "itemReference": "C1020",
+    "location": "https://www.csiresources.org/standards/uniformat",
+    "name": "Interior Doors",
+    "referencedSource": {
+      "componentType": "IfcClassificationComponent",
+      "edition": "1998",
+      "name": "Uniformat",
+      "source": "CSI (Construction Specifications Institute)"
+    }
+  }
+}

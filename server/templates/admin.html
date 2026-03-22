@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFC Processing Admin</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .status {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+        
+        .status.running {
+            background: #f0fdf4;
+            border-left-color: #22c55e;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #667eea;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        .status.running .status-indicator {
+            background: #22c55e;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .file-input-wrapper {
+            position: relative;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .file-input-wrapper:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+        
+        .file-input-wrapper.dragover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        #fileInput {
+            display: none;
+        }
+        
+        .file-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        .file-text {
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .file-hint {
+            color: #999;
+            font-size: 12px;
+        }
+        
+        .file-name {
+            margin-top: 15px;
+            color: #667eea;
+            font-weight: 500;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .result.success {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            color: #166534;
+            display: block;
+        }
+        
+        .result.error {
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+            color: #991b1b;
+            display: block;
+        }
+        
+        .result.loading {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            color: #3730a3;
+            display: block;
+        }
+        
+        .result-icon {
+            margin-right: 10px;
+        }
+        
+        .result h3 {
+            margin-bottom: 8px;
+            margin-top: 0;
+            font-size: 16px;
+        }
+        
+        .result p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        .info-box {
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 25px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .info-box h4 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .info-box ul {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        
+        .info-box li {
+            margin-bottom: 3px;
+        }
+
+        .section-title {
+            margin-top: 10px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            color: #222;
+        }
+
+        .models-section {
+            margin-bottom: 25px;
+        }
+
+        .models-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .models-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .secondary-button,
+        .danger-button {
+            width: auto;
+            padding: 10px 16px;
+            font-size: 13px;
+        }
+
+        .secondary-button {
+            background: #eef2ff;
+            color: #3730a3;
+            border: 1px solid #c7d2fe;
+        }
+
+        .secondary-button:hover {
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+        }
+
+        .danger-button {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .danger-button:hover {
+            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.2);
+        }
+
+        .header-actions {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .viewer-button {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .viewer-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .models-box {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px;
+            background: #fafafa;
+            max-height: 220px;
+            overflow: auto;
+        }
+
+        .model-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 6px;
+            border-bottom: 1px dashed #e5e7eb;
+            gap: 10px;
+        }
+
+        .model-row:last-child {
+            border-bottom: none;
+        }
+
+        .model-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .model-name {
+            font-weight: 500;
+            color: #111827;
+            font-size: 14px;
+        }
+
+        .model-meta {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .models-empty {
+            color: #6b7280;
+            font-size: 13px;
+            padding: 6px;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 50;
+        }
+
+        .modal-backdrop.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.35);
+        }
+
+        .modal h3 {
+            margin-bottom: 8px;
+            font-size: 18px;
+            color: #111827;
+        }
+
+        .modal p {
+            font-size: 14px;
+            color: #4b5563;
+            margin-bottom: 16px;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏗️ IFC Processing Server</h1>
+        <p class="subtitle">Upload IFC or JSON files for processing</p>
+        
+        <div class="header-actions">
+            <a href="/viewer" class="viewer-button">
+                <span>🔍</span>
+                <span>Open Viewer</span>
+            </a>
+        </div>
+        
+        <div class="status running" id="statusDiv">
+            <span class="status-indicator"></span>
+            <span id="statusText">Server is running...</span>
+        </div>
+
+        <div class="models-section">
+            <div class="models-header">
+                <div>
+                    <div class="section-title">📦 Models in Data Store</div>
+                    <div class="subtitle" id="modelsSubtitle">Loaded from file-based store</div>
+                </div>
+                <div class="models-actions">
+                    <button type="button" class="secondary-button" id="refreshModelsBtn">Refresh</button>
+                    <button type="button" class="danger-button" id="deleteSelectedBtn">Delete Selected</button>
+                </div>
+            </div>
+            <div class="models-box" id="modelsBox">
+                <div class="models-empty">Loading models...</div>
+            </div>
+        </div>
+        
+        <form id="uploadForm">
+            <div class="form-group">
+                <label for="fileInput">Select File</label>
+                <div class="file-input-wrapper" id="fileInputWrapper">
+                    <div class="file-icon">📄</div>
+                    <div class="file-text">Click to select or drag and drop</div>
+                    <div class="file-hint">Supported: .ifc, .json (Max 500MB)</div>
+                    <div class="file-name" id="fileName"></div>
+                    <input type="file" id="fileInput" accept=".ifc,.json" />
+                </div>
+            </div>
+            
+            <button type="submit" id="submitBtn">Upload & Process</button>
+        </form>
+        
+        <div id="resultDiv" class="result"></div>
+        
+        <div class="info-box">
+            <h4>📋 How it works:</h4>
+            <ul>
+                <li><strong>IFC files:</strong> Automatic conversion to JSON components</li>
+                <li><strong>JSON files:</strong> Direct storage of components</li>
+                <li>Components stored in <code>dataStores/fileBased/data/</code></li>
+                <li>Each component saved as <code>entityGuid_guid.json</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <h3 id="modalTitle">Confirm action</h3>
+            <p id="modalMessage"></p>
+            <div class="modal-actions">
+                <button type="button" class="secondary-button" id="modalCancel">Cancel</button>
+                <button type="button" class="danger-button" id="modalConfirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileInputWrapper = document.getElementById('fileInputWrapper');
+        const fileName = document.getElementById('fileName');
+        const uploadForm = document.getElementById('uploadForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const resultDiv = document.getElementById('resultDiv');
+        const statusDiv = document.getElementById('statusDiv');
+        const statusText = document.getElementById('statusText');
+        const modelsBox = document.getElementById('modelsBox');
+        const refreshModelsBtn = document.getElementById('refreshModelsBtn');
+        const deleteSelectedBtn = document.getElementById('deleteSelectedBtn');
+        const modelsSubtitle = document.getElementById('modelsSubtitle');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const modalCancel = document.getElementById('modalCancel');
+        const modalConfirm = document.getElementById('modalConfirm');
+
+        let cachedModels = [];
+        
+        // File input click
+        fileInputWrapper.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        // File selected
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                fileName.textContent = e.target.files[0].name;
+            }
+        });
+        
+        // Drag and drop
+        fileInputWrapper.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileInputWrapper.classList.add('dragover');
+        });
+        
+        fileInputWrapper.addEventListener('dragleave', () => {
+            fileInputWrapper.classList.remove('dragover');
+        });
+        
+        fileInputWrapper.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileInputWrapper.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                fileName.textContent = files[0].name;
+            }
+        });
+        
+        // Form submission
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!fileInput.files.length) {
+                showResult('error', 'Please select a file');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const modelName = extractModelName(file.name);
+
+            if (modelExists(modelName)) {
+                const confirmed = await confirmModal(
+                    'Overwrite existing model?',
+                    `A model named "${modelName}" already exists. Overwrite it? This will delete the current data.`
+                );
+                if (!confirmed) {
+                    return;
+                }
+                await performUpload(file, true);
+                return;
+            }
+
+            await performUpload(file, false);
+        });
+
+        async function performUpload(file, overwrite) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            submitBtn.disabled = true;
+            showResult('loading', 'Processing file... ⏳');
+
+            try {
+                const url = overwrite ? '/api/upload?overwrite=true' : '/api/upload';
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showResult('success', 'File processed successfully! ✅', data);
+                    fileInput.value = '';
+                    fileName.textContent = '';
+                    await loadModels();
+                } else if (response.status === 409 && data.model_exists) {
+                    const confirmed = await confirmModal(
+                        'Overwrite existing model?',
+                        `A model named "${data.model}" already exists. Overwrite it? This will delete the current data.`
+                    );
+                    if (confirmed) {
+                        await performUpload(file, true);
+                    }
+                } else {
+                    showResult('error', data.error || 'Upload failed');
+                }
+            } catch (error) {
+                showResult('error', 'Network error: ' + error.message);
+            } finally {
+                submitBtn.disabled = false;
+            }
+        }
+        
+        function showResult(type, message, data = null) {
+            resultDiv.className = 'result ' + type;
+            
+            let icon = '';
+            let title = '';
+            
+            switch (type) {
+                case 'success':
+                    icon = '✅';
+                    title = 'Success';
+                    break;
+                case 'error':
+                    icon = '❌';
+                    title = 'Error';
+                    break;
+                case 'loading':
+                    icon = '⏳';
+                    title = 'Processing';
+                    break;
+            }
+            
+            let html = `<h3>${icon} ${title}</h3><p>${message}</p>`;
+            
+            if (data) {
+                if (data.entities_count) {
+                    html += `<p><strong>Entities processed:</strong> ${data.entities_count}</p>`;
+                }
+                if (data.stored_count) {
+                    html += `<p><strong>Components stored:</strong> ${data.stored_count}</p>`;
+                }
+                if (data.store_path) {
+                    html += `<p><strong>Store path:</strong> <code>${data.store_path}</code></p>`;
+                }
+            }
+            
+            resultDiv.innerHTML = html;
+        }
+
+        function extractModelName(filename) {
+            return filename.replace(/\.[^/.]+$/, '');
+        }
+
+        function modelExists(modelName) {
+            return cachedModels.some(item => {
+                if (typeof item === 'string') {
+                    return item === modelName;
+                }
+                return item.name === modelName;
+            });
+        }
+
+        function confirmModal(title, message, confirmLabel = 'Confirm') {
+            return new Promise(resolve => {
+                modalTitle.textContent = title;
+                modalMessage.textContent = message;
+                modalConfirm.textContent = confirmLabel;
+
+                modalBackdrop.classList.add('active');
+                modalBackdrop.setAttribute('aria-hidden', 'false');
+
+                const cleanup = (result) => {
+                    modalBackdrop.classList.remove('active');
+                    modalBackdrop.setAttribute('aria-hidden', 'true');
+                    modalCancel.removeEventListener('click', onCancel);
+                    modalConfirm.removeEventListener('click', onConfirm);
+                    resolve(result);
+                };
+
+                const onCancel = () => cleanup(false);
+                const onConfirm = () => cleanup(true);
+
+                modalCancel.addEventListener('click', onCancel);
+                modalConfirm.addEventListener('click', onConfirm);
+            });
+        }
+
+        async function loadModels() {
+            modelsBox.innerHTML = '<div class="models-empty">Loading models...</div>';
+
+            try {
+                const detailsResponse = await fetch('/api/models/details');
+                if (detailsResponse.ok) {
+                    const data = await detailsResponse.json();
+                    cachedModels = data || [];
+                    renderModels(cachedModels);
+                    return;
+                }
+
+                const response = await fetch('/api/models');
+                if (response.ok) {
+                    const data = await response.json();
+                    cachedModels = data || [];
+                    renderModels(cachedModels);
+                    return;
+                }
+
+                modelsBox.innerHTML = '<div class="models-empty">Unable to load models.</div>';
+            } catch (error) {
+                modelsBox.innerHTML = '<div class="models-empty">Unable to load models.</div>';
+            }
+        }
+
+        function renderModels(models) {
+            if (!models || models.length === 0) {
+                modelsBox.innerHTML = '<div class="models-empty">No models found.</div>';
+                return;
+            }
+
+            modelsBox.innerHTML = '';
+            models.forEach(item => {
+                const name = typeof item === 'string' ? item : item.name;
+                const count = typeof item === 'string' ? null : item.component_count;
+
+                const row = document.createElement('div');
+                row.className = 'model-row';
+
+                const left = document.createElement('div');
+                left.className = 'model-left';
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.name = 'modelSelect';
+                checkbox.value = name;
+
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'model-name';
+                nameSpan.textContent = name;
+
+                left.appendChild(checkbox);
+                left.appendChild(nameSpan);
+
+                const meta = document.createElement('span');
+                meta.className = 'model-meta';
+                meta.textContent = count !== null ? `${count} components` : 'Model';
+
+                row.appendChild(left);
+                row.appendChild(meta);
+                modelsBox.appendChild(row);
+            });
+        }
+
+        function getSelectedModels() {
+            return Array.from(document.querySelectorAll('input[name="modelSelect"]:checked')).map(
+                input => input.value
+            );
+        }
+
+        async function deleteSelectedModels() {
+            const selected = getSelectedModels();
+            if (selected.length === 0) {
+                showResult('error', 'Select at least one model to delete.');
+                return;
+            }
+
+            const confirmed = await confirmModal(
+                'Delete selected models?',
+                `This will permanently delete ${selected.length} model(s). This action cannot be undone.`,
+                'Delete'
+            );
+
+            if (!confirmed) {
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/models/delete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ models: selected })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showResult('success', `Deleted ${data.deleted.length} model(s).`);
+                    await loadModels();
+                } else {
+                    showResult('error', data.error || 'Delete failed');
+                }
+            } catch (error) {
+                showResult('error', 'Network error: ' + error.message);
+            }
+        }
+        
+        // Check server status on load
+        async function checkStatus() {
+            try {
+                const response = await fetch('/api/status');
+                if (response.ok) {
+                    const data = await response.json();
+                    statusText.textContent = `Server running • Version ${data.version}`;
+                    if (modelsSubtitle && data.data_store) {
+                        modelsSubtitle.textContent = `Loaded from ${data.data_store} store`;
+                    }
+                }
+            } catch (error) {
+                statusDiv.classList.remove('running');
+                statusText.textContent = 'Server connection failed';
+            }
+        }
+
+        refreshModelsBtn.addEventListener('click', loadModels);
+        deleteSelectedBtn.addEventListener('click', deleteSelectedModels);
+
+        checkStatus();
+        loadModels();
+        setInterval(checkStatus, 30000); // Check every 30 seconds
+    </script>
+</body>
+</html>

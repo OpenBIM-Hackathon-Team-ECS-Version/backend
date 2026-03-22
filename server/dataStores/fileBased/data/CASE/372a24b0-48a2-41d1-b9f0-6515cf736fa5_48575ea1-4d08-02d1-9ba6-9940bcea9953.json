@@ -1,0 +1,11 @@
+{
+  "componentGuid": "48575ea1-4d08-02d1-9ba6-9940bcea9953",
+  "componentType": "IfcDoorComponent",
+  "entityGuid": "372a24b0-48a2-41d1-b9f0-6515cf736fa5",
+  "entityType": "IfcDoor",
+  "name": "NBS_HalspanLtd_DrsetSym_HALSPAN90FireRatedInteriorGradeDoorBlanks_DoubleActingDoubleDoorsWithOverpanel:DoubleActingDoubleDoorswithOverpanel:690104",
+  "objectType": "NBS_HalspanLtd_DrsetSym_HALSPAN90FireRatedInteriorGradeDoorBlanks_DoubleActingDoubleDoorsWithOverpanel:DoubleActingDoubleDoorswithOverpanel",
+  "overallHeight": 6.889763779527563,
+  "overallWidth": 5.905511811023608,
+  "tag": "690104"
+}

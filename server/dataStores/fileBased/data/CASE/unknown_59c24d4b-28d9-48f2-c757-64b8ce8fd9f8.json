@@ -1,0 +1,23 @@
+{
+  "componentGuid": "59c24d4b-28d9-48f2-c757-64b8ce8fd9f8",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "WorksurfaceArea",
+      "nominalValue": {
+        "componentType": "IfcAreaMeasureComponent",
+        "wrappedValue": 0.96
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NumberOfChairs",
+      "nominalValue": {
+        "componentType": "IfcIntegerComponent",
+        "wrappedValue": 4
+      }
+    }
+  ],
+  "name": "Pset_FurnitureTypeTable"
+}

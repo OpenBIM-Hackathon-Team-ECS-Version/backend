@@ -1,0 +1,9 @@
+{
+  "componentGuid": "ea416736-ddcc-dc69-ea96-ee44ddbc4532",
+  "componentType": "IfcDuctFittingTypeComponent",
+  "entityGuid": "493ed9cb-ea0c-4ddb-92a2-36ff11497a5f",
+  "entityType": "IfcDuctFittingType",
+  "name": "Rect Duct Transition - Angle:-",
+  "predefinedType": "NOTDEFINED",
+  "tag": "53381"
+}

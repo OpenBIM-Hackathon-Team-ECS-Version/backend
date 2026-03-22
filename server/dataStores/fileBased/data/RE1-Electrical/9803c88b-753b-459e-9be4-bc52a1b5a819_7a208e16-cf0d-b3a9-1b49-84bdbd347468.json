@@ -1,0 +1,12 @@
+{
+  "componentGuid": "7a208e16-cf0d-b3a9-1b49-84bdbd347468",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5a819",
+  "entityType": "IfcBuildingElementProxyType",
+  "hasPropertySets": [
+    "7e1a7e57-4753-bec8-5416-520364ec4dd4"
+  ],
+  "name": "262726-RECEPT:120V Duplex",
+  "predefinedType": "NOTDEFINED",
+  "tag": "476009"
+}

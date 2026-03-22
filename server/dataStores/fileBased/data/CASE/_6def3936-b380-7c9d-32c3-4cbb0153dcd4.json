@@ -1,0 +1,30 @@
+{
+  "componentGuid": "6def3936-b380-7c9d-32c3-4cbb0153dcd4",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "e9042136-e820-4f4d-ae10-2caa5c18e15a",
+    "e9042136-e820-4f4d-ae10-2caa5c18e0a2",
+    "89bc963b-054b-4d61-b3ac-edf0e43eb0c1",
+    "ac1a22e0-159b-4764-b3c4-025475144565",
+    "ac1a22e0-159b-4764-b3c4-025475144a36",
+    "da7dc568-097d-44f3-aef2-2c174865c443",
+    "0a466a60-68c8-467d-bbd9-906677647c6b",
+    "0a466a60-68c8-467d-bbd9-906677647c53",
+    "0a466a60-68c8-467d-bbd9-906677647c3b",
+    "0a466a60-68c8-467d-bbd9-906677647c23"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialListComponent",
+    "materials": [
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Alu"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Plastic"
+      }
+    ]
+  }
+}

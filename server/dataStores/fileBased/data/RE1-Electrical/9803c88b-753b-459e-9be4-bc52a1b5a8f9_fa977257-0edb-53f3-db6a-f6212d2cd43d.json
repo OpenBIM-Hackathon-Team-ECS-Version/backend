@@ -1,0 +1,12 @@
+{
+  "componentGuid": "fa977257-0edb-53f3-db6a-f6212d2cd43d",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5a8f9",
+  "entityType": "IfcBuildingElementProxyType",
+  "hasPropertySets": [
+    "f2bc5a06-29f5-0146-7ea6-8d6c154fa23d"
+  ],
+  "name": "262726-RECEPT:120V Special Purpose Outlet - Washer",
+  "predefinedType": "NOTDEFINED",
+  "tag": "476041"
+}

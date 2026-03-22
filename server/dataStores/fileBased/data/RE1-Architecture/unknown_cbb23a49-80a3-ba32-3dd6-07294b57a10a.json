@@ -1,0 +1,23 @@
+{
+  "componentGuid": "cbb23a49-80a3-ba32-3dd6-07294b57a10a",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "FireRating",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "2"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ThermalTransmittance",
+      "nominalValue": {
+        "componentType": "IfcThermalTransmittanceMeasureComponent",
+        "wrappedValue": 0.24714828897338403
+      }
+    }
+  ],
+  "name": "Pset_WallCommon"
+}

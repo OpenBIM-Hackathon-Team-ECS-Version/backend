@@ -1,0 +1,9 @@
+{
+  "componentGuid": "bf9c60d1-0b6f-56c9-0e3c-9fdc64ec57ae",
+  "componentType": "IfcColumnTypeComponent",
+  "entityGuid": "36bbb4a7-566b-418c-beaa-c681a87d052c",
+  "entityType": "IfcColumnType",
+  "name": "Family_Column_rectangle:Family_Column_rectangle",
+  "predefinedType": "COLUMN",
+  "tag": "383305"
+}

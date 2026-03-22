@@ -1,0 +1,12 @@
+{
+  "componentGuid": "960ba328-a36b-bfae-ea9e-238f89a31ae8",
+  "componentType": "IfcWallTypeComponent",
+  "entityGuid": "7b8f559f-8b31-42c2-ba44-e16f7a04146e",
+  "entityType": "IfcWallType",
+  "hasPropertySets": [
+    "951efe5d-db7c-52a2-8f27-a7af698e355b"
+  ],
+  "name": "Basic Wall:Generic - 8\"",
+  "predefinedType": "STANDARD",
+  "tag": "441451"
+}

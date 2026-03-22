@@ -1,0 +1,15 @@
+{
+  "componentGuid": "4c16fa96-d964-bda2-0f17-e69a12ececc9",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "PVCUWindowUnits_Traditional2500CasementWindow_C34-1500x1000mm-FrameProfile52mm-DoubleGlazed_DeceuninckLtd"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

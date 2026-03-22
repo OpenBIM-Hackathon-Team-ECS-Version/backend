@@ -1,0 +1,15 @@
+{
+  "componentGuid": "35168bed-2540-8532-6443-f9421d88a9c7",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "OfficeChairs_Key_SwivelChairs_PledgeOfficeChairsLtd"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

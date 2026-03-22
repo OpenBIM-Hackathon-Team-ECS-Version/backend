@@ -1,0 +1,16 @@
+{
+  "componentGuid": "75e86ca1-906e-aad6-b500-b311477f8879",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0ec2fc",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Entry Small"
+      }
+    }
+  ],
+  "name": "Pset_AirSideSystemInformation"
+}

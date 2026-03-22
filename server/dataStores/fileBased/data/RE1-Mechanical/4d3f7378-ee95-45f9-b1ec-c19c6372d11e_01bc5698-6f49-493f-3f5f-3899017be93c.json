@@ -1,0 +1,8 @@
+{
+  "componentGuid": "01bc5698-6f49-493f-3f5f-3899017be93c",
+  "componentType": "IfcSystemComponent",
+  "entityGuid": "4d3f7378-ee95-45f9-b1ec-c19c6372d11e",
+  "entityType": "IfcSystem",
+  "name": "OTH 1",
+  "objectType": "Other"
+}

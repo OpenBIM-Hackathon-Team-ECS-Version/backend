@@ -1,0 +1,9 @@
+{
+  "componentGuid": "210ed3bf-84b1-754a-0750-84396c48ebac",
+  "componentType": "IfcWallStandardCaseComponent",
+  "entityGuid": "32342ede-0a48-472c-a3d4-9cb66242d315",
+  "entityType": "IfcWallStandardCase",
+  "name": "Basic Wall:CASE - 6\" Concrete:371120",
+  "objectType": "Basic Wall:CASE - 6\" Concrete",
+  "tag": "371120"
+}

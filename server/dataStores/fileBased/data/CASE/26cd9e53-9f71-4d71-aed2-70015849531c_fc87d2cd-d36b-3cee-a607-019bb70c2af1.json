@@ -1,0 +1,10 @@
+{
+  "componentGuid": "fc87d2cd-d36b-3cee-a607-019bb70c2af1",
+  "componentType": "IfcSpaceComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-70015849531c",
+  "entityType": "IfcSpace",
+  "interiorOrExteriorSpace": "INTERNAL",
+  "longName": "Reception",
+  "name": "6"
+}

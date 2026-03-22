@@ -1,0 +1,23 @@
+{
+  "componentGuid": "496f8ec5-1508-fa77-63f2-9d8fa5107431",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ModelReference",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "n/a"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Manufacturer",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "doors@halspan.com"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerTypeInformation"
+}

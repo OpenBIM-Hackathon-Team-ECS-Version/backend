@@ -1,0 +1,10 @@
+{
+  "componentGuid": "38bd1441-379a-cef8-0389-b26ab0fe9d5e",
+  "componentType": "IfcSpaceComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-7001584957ab",
+  "entityType": "IfcSpace",
+  "interiorOrExteriorSpace": "INTERNAL",
+  "longName": "Office",
+  "name": "1"
+}

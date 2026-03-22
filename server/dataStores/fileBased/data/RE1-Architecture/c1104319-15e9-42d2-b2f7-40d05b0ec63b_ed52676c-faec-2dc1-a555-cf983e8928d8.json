@@ -1,0 +1,10 @@
+{
+  "componentGuid": "ed52676c-faec-2dc1-a555-cf983e8928d8",
+  "componentType": "IfcSpaceComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0ec63b",
+  "entityType": "IfcSpace",
+  "interiorOrExteriorSpace": "INTERNAL",
+  "longName": "Toilet Medium",
+  "name": "RE-12"
+}

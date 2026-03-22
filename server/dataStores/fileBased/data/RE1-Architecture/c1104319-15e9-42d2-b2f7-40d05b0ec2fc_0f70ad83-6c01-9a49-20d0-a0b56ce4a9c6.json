@@ -1,0 +1,10 @@
+{
+  "componentGuid": "0f70ad83-6c01-9a49-20d0-a0b56ce4a9c6",
+  "componentType": "IfcSpaceComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0ec2fc",
+  "entityType": "IfcSpace",
+  "interiorOrExteriorSpace": "INTERNAL",
+  "longName": "Entry Small",
+  "name": "RE-4"
+}

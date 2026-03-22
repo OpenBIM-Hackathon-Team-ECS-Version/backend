@@ -1,0 +1,9 @@
+{
+  "componentGuid": "ff246afb-d381-748f-9980-9fb2416a2a4a",
+  "componentType": "IfcSpaceTypeComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-78015849531f",
+  "entityType": "IfcSpaceType",
+  "name": "Work Area & Storage 2:468210",
+  "predefinedType": "NOTDEFINED",
+  "tag": "468210"
+}

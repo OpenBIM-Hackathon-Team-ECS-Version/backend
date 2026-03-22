@@ -1,0 +1,14 @@
+{
+  "componentGuid": "d1661fbb-ec6a-e701-8567-e4f5b3de3d1a",
+  "componentType": "IfcRelDefinesByTypeComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a7243f9",
+  "relatedObjects": [
+    "b4987b51-46f1-40be-9396-72634a7243f2",
+    "b4987b51-46f1-40be-9396-72634a724232",
+    "b4987b51-46f1-40be-9396-72634a72424f",
+    "b4987b51-46f1-40be-9396-72634a724243",
+    "b4987b51-46f1-40be-9396-72634a7242a9",
+    "b4987b51-46f1-40be-9396-72634a724555"
+  ],
+  "relatingType": "b4987b51-46f1-40be-9396-72634a7243f9"
+}

@@ -1,0 +1,36 @@
+{
+  "componentGuid": "fd582535-0458-d92b-cd9c-6d3e2f773941",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "12a73f69-32f1-4559-8fdb-39f6b38a5387"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialLayerSetUsageComponent",
+    "directionSense": "NEGATIVE",
+    "forLayerSet": {
+      "componentType": "IfcMaterialLayerSetComponent",
+      "layerSetName": "Compound Ceiling:-",
+      "materialLayers": [
+        {
+          "componentType": "IfcMaterialLayerComponent",
+          "layerThickness": 100.0,
+          "material": {
+            "componentType": "IfcMaterialComponent",
+            "name": "Metal Stud Layer"
+          }
+        },
+        {
+          "componentType": "IfcMaterialLayerComponent",
+          "layerThickness": 15.0,
+          "material": {
+            "componentType": "IfcMaterialComponent",
+            "name": "Moisture Resistant Gypsum Sheathing"
+          }
+        }
+      ]
+    },
+    "layerSetDirection": "AXIS3",
+    "offsetFromReferenceLine": 115.00000000000001
+  }
+}

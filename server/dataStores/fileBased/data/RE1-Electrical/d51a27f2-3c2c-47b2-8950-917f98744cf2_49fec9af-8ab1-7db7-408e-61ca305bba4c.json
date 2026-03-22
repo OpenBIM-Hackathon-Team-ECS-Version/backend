@@ -1,0 +1,12 @@
+{
+  "componentGuid": "49fec9af-8ab1-7db7-408e-61ca305bba4c",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "d51a27f2-3c2c-47b2-8950-917f98744cf2",
+  "entityType": "IfcBuildingElementProxyType",
+  "hasPropertySets": [
+    "b64c9000-8957-3aeb-39cb-b61dc8931044"
+  ],
+  "name": "262726-JBOX:JBox",
+  "predefinedType": "NOTDEFINED",
+  "tag": "490162"
+}

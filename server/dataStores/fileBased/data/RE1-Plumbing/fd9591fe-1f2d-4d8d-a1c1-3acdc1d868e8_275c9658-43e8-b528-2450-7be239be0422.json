@@ -1,0 +1,9 @@
+{
+  "componentGuid": "275c9658-43e8-b528-2450-7be239be0422",
+  "componentType": "IfcPipeFittingTypeComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d868e8",
+  "entityType": "IfcPipeFittingType",
+  "name": "Closet Bend Reducing:-",
+  "predefinedType": "NOTDEFINED",
+  "tag": "53323"
+}

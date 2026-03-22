@@ -1,0 +1,16 @@
+{
+  "componentGuid": "3b6fa62d-1b65-967d-d48f-5caf7a202b2b",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "27e2e691-6d37-4b55-9ec2-414cf3cb45e5",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "User to Populate"
+      }
+    }
+  ],
+  "name": "Pset_DistributionFlowElementCommon"
+}

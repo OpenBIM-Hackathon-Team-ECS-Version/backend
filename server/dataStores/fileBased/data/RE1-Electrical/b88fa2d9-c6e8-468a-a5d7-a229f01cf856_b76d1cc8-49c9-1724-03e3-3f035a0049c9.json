@@ -1,0 +1,9 @@
+{
+  "componentGuid": "b76d1cc8-49c9-1724-03e3-3f035a0049c9",
+  "componentType": "IfcBuildingElementProxyComponent",
+  "entityGuid": "b88fa2d9-c6e8-468a-a5d7-a229f01cf856",
+  "entityType": "IfcBuildingElementProxy",
+  "name": "260923-SWITCH:120V Single Pole:508477",
+  "objectType": "260923-SWITCH:120V Single Pole",
+  "tag": "508477"
+}

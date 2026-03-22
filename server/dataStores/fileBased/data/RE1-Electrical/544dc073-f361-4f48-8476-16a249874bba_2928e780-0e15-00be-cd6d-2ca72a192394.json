@@ -1,0 +1,16 @@
+{
+  "componentGuid": "2928e780-0e15-00be-cd6d-2ca72a192394",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "544dc073-f361-4f48-8476-16a249874bba",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "230913-Thermostat"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

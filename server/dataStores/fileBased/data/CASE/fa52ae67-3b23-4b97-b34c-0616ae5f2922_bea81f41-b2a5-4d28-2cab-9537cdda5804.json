@@ -1,0 +1,16 @@
+{
+  "componentGuid": "bea81f41-b2a5-4d28-2cab-9537cdda5804",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "fa52ae67-3b23-4b97-b34c-0616ae5f2922",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "60\" x 30\" Student"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

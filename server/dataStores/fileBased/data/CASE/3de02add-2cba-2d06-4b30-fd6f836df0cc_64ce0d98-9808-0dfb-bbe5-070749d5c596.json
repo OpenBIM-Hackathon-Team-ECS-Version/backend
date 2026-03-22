@@ -1,0 +1,9 @@
+{
+  "componentGuid": "64ce0d98-9808-0dfb-bbe5-070749d5c596",
+  "componentType": "IfcRelConnectsPortToElementComponent",
+  "description": "Flow",
+  "entityGuid": "3de02add-2cba-2d06-4b30-fd6f836df0cc",
+  "name": "612321|0zu2hTBBej1aim$M_3RV3C",
+  "relatedElement": "19964a22-8acd-4bce-bc4c-bb3966b35c9d",
+  "relatingPort": "3de02add-2cba-2d06-4b30-fd6f836df0cc"
+}

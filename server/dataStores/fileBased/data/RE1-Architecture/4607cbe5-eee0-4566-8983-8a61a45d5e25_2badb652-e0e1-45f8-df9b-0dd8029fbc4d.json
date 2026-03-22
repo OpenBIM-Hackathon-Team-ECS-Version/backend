@@ -1,0 +1,19 @@
+{
+  "buildingAddress": {
+    "addressLines": [
+      "Enter address here"
+    ],
+    "componentType": "IfcPostalAddressComponent",
+    "country": "TOKYO",
+    "postalCode": "",
+    "region": "",
+    "town": ""
+  },
+  "componentGuid": "2badb652-e0e1-45f8-df9b-0dd8029fbc4d",
+  "componentType": "IfcBuildingComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "4607cbe5-eee0-4566-8983-8a61a45d5e25",
+  "entityType": "IfcBuilding",
+  "longName": "",
+  "name": ""
+}

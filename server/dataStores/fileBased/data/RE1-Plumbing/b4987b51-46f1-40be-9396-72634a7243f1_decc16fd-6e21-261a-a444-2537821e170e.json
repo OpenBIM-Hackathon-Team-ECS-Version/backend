@@ -1,0 +1,13 @@
+{
+  "componentGuid": "decc16fd-6e21-261a-a444-2537821e170e",
+  "componentType": "IfcPipeFittingTypeComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a7243f1",
+  "entityType": "IfcPipeFittingType",
+  "hasPropertySets": [
+    "643b48a5-9386-b808-35bf-cc67afff846d",
+    "17c4b941-0b34-06ca-a066-a2b1e9a6317d"
+  ],
+  "name": "PIPE-Transition - Welded:-",
+  "predefinedType": "NOTDEFINED",
+  "tag": "53311"
+}

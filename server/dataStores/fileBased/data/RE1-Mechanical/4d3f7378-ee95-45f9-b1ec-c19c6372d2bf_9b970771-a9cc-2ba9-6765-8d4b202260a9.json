@@ -1,0 +1,16 @@
+{
+  "componentGuid": "9b970771-a9cc-2ba9-6765-8d4b202260a9",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "4d3f7378-ee95-45f9-b1ec-c19c6372d2bf",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "SANWST-PVC"
+      }
+    }
+  ],
+  "name": "Pset_DistributionFlowElementCommon"
+}

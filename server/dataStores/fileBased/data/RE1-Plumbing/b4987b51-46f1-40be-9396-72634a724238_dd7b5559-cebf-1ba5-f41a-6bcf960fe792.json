@@ -1,0 +1,8 @@
+{
+  "componentGuid": "dd7b5559-cebf-1ba5-f41a-6bcf960fe792",
+  "componentType": "IfcSystemComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a724238",
+  "entityType": "IfcSystem",
+  "name": "HW 1",
+  "objectType": "Domestic Hot Water"
+}

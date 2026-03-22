@@ -1,0 +1,27 @@
+{
+  "componentGuid": "8f0bfbe4-afe7-babe-465e-f2937c584513",
+  "componentType": "IfcRelAssociatesClassificationComponent",
+  "description": "Suspended Ceilings - Gypsum Board:C3030220",
+  "entityGuid": "",
+  "name": "Suspended Ceilings - Gypsum Board",
+  "relatedObjects": [
+    "12a73f69-32f1-4559-8fdb-39f6b38a5387",
+    "12a73f69-32f1-4559-8fdb-39f6b38a538d",
+    "12a73f69-32f1-4559-8fdb-39f6b38a5475",
+    "12a73f69-32f1-4559-8fdb-39f6b38a547d",
+    "12a73f69-32f1-4559-8fdb-39f6b38a5465",
+    "12a73f69-32f1-4559-8fdb-39f6b38a546d"
+  ],
+  "relatingClassification": {
+    "componentType": "IfcClassificationReferenceComponent",
+    "itemReference": "C3030220",
+    "location": "https://www.csiresources.org/standards/uniformat",
+    "name": "Suspended Ceilings - Gypsum Board",
+    "referencedSource": {
+      "componentType": "IfcClassificationComponent",
+      "edition": "1998",
+      "name": "Uniformat",
+      "source": "CSI (Construction Specifications Institute)"
+    }
+  }
+}

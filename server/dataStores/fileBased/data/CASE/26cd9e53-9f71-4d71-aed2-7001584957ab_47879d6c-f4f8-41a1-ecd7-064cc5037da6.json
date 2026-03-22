@@ -1,0 +1,16 @@
+{
+  "componentGuid": "47879d6c-f4f8-41a1-ecd7-064cc5037da6",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-7001584957ab",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Office"
+      }
+    }
+  ],
+  "name": "Pset_AirSideSystemInformation"
+}

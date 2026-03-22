@@ -1,0 +1,9 @@
+{
+  "componentGuid": "c5bf4064-8d98-81f1-27d2-23b490e059a2",
+  "componentType": "IfcPipeSegmentTypeComponent",
+  "entityGuid": "1e515c7b-27c3-4775-af3b-509ebad8f1e4",
+  "entityType": "IfcPipeSegmentType",
+  "name": "Pipe Types:WTR-Copper B",
+  "predefinedType": "NOTDEFINED",
+  "tag": "191061"
+}

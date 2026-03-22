@@ -1,0 +1,24 @@
+{
+  "componentGuid": "ac137651-bc93-2c27-74fa-45c802935531",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a725bdf",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Length",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 300.6882812500013
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "InvertElevation",
+      "nominalValue": {
+        "componentType": "IfcLengthMeasureComponent",
+        "wrappedValue": 82.57999999999188
+      }
+    }
+  ],
+  "name": "Pset_FlowSegmentPipeSegment"
+}

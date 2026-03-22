@@ -1,0 +1,10 @@
+{
+  "componentGuid": "d99993af-ea1d-ffcf-666c-264004a86740",
+  "componentType": "IfcCoveringComponent",
+  "entityGuid": "12a73f69-32f1-4559-8fdb-39f6b38a538d",
+  "entityType": "IfcCovering",
+  "name": "Compound Ceiling:-:418811",
+  "objectType": "Compound Ceiling:-",
+  "predefinedType": "CEILING",
+  "tag": "418811"
+}

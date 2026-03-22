@@ -1,0 +1,22 @@
+{
+  "componentGuid": "79e197f8-2bca-d04f-51b7-5cc57b08f703",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "fe14bbca-9af2-3e53-9b00-abc1fca04ff1",
+    "aa345cd7-94a2-4967-bf2a-857ff57ae646"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialListComponent",
+    "materials": [
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Glass"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "PAE Cascadia Mullion"
+      }
+    ]
+  }
+}

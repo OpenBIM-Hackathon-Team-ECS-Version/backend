@@ -1,0 +1,15 @@
+{
+  "assemblyPlace": "NOTDEFINED",
+  "componentGuid": "60afa8b0-b367-66ef-5319-c36c30cbb916",
+  "componentType": "IfcFurnitureTypeComponent",
+  "entityGuid": "a9b691b0-1765-481c-b8ee-24f8d2143512",
+  "entityType": "IfcFurnitureType",
+  "hasPropertySets": [
+    "146e3463-7677-245a-156d-3cc64256225f",
+    "45151674-51dc-9778-62ca-851e07f598b9",
+    "943d1a78-a11c-35e8-b75b-c6d992ed3fd3",
+    "bc055a35-a4e9-8f66-6a3f-789a6e322fbb"
+  ],
+  "name": "NBS_ShlfUnits_HalfHeightBookcase:600x400x1150mm",
+  "tag": "667607"
+}

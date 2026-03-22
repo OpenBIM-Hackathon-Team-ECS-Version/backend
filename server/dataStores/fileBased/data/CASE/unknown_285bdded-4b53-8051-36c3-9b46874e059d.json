@@ -1,0 +1,15 @@
+{
+  "componentGuid": "285bdded-4b53-8051-36c3-9b46874e059d",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Color",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "GP38 Beech, GP37 Teak, GP47 Storm, GP46 Fuchsia, GP42 Orange, GP41 Pastel Blue, GP63 Acid Green, GP15 White"
+      }
+    }
+  ],
+  "name": "Pset_ElementShading"
+}

@@ -1,0 +1,10 @@
+{
+  "componentGuid": "5a9111be-b4b9-d429-f10d-53a241197d32",
+  "componentType": "IfcSpaceComponent",
+  "compositionType": "ELEMENT",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0ee226",
+  "entityType": "IfcSpace",
+  "interiorOrExteriorSpace": "INTERNAL",
+  "longName": "Storage Medium",
+  "name": "RE-8"
+}

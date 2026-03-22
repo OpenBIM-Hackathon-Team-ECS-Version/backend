@@ -1,0 +1,75 @@
+{
+  "componentGuid": "8c0b2406-b8a7-29e9-7c59-ac53e681d2cd",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertyEnumeratedValueComponent",
+      "enumerationValues": [
+        {
+          "componentType": "IfcLabelComponent",
+          "wrappedValue": "OTHER"
+        }
+      ],
+      "name": "MotorDriveType"
+    },
+    {
+      "componentType": "IfcPropertyEnumeratedValueComponent",
+      "enumerationValues": [
+        {
+          "componentType": "IfcLabelComponent",
+          "wrappedValue": "OTHER"
+        }
+      ],
+      "name": "CapacityControlType"
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalAirFlowRate",
+      "nominalValue": {
+        "componentType": "IfcVolumetricFlowRateMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalTotalPressure",
+      "nominalValue": {
+        "componentType": "IfcPressureMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalStaticPressure",
+      "nominalValue": {
+        "componentType": "IfcPressureMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalRotationSpeed",
+      "nominalValue": {
+        "componentType": "IfcRotationalFrequencyMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "NominalPowerRate",
+      "nominalValue": {
+        "componentType": "IfcPowerMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "OperationalCriteria",
+      "nominalValue": {
+        "componentType": "IfcTimeMeasureComponent",
+        "wrappedValue": 0.0
+      }
+    }
+  ],
+  "name": "Pset_FanTypeCommon"
+}

@@ -1,0 +1,16 @@
+{
+  "componentGuid": "55476bda-d46f-99ce-9ed5-e21972abd913",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "544dc073-f361-4f48-8476-16a249874bba",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "230913-Thermostat"
+      }
+    }
+  ],
+  "name": "Pset_DistributionFlowElementCommon"
+}

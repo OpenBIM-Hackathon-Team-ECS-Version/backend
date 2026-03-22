@@ -1,0 +1,9 @@
+{
+  "componentGuid": "0c993f6a-a900-a582-46c1-15d0c358998f",
+  "componentType": "IfcElectricApplianceTypeComponent",
+  "entityGuid": "b69e0431-4849-44d6-88da-691a1048c38e",
+  "entityType": "IfcElectricApplianceType",
+  "name": "230913-Thermostat:230913-Thermostat",
+  "predefinedType": "NOTDEFINED",
+  "tag": "987695"
+}

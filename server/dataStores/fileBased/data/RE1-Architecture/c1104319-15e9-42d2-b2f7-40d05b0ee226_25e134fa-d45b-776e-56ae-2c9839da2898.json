@@ -1,0 +1,16 @@
+{
+  "componentGuid": "25e134fa-d45b-776e-56ae-2c9839da2898",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0ee226",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Storage Medium"
+      }
+    }
+  ],
+  "name": "Pset_AirSideSystemInformation"
+}

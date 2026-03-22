@@ -1,0 +1,15 @@
+{
+  "componentGuid": "99d0daa3-2415-158e-0b79-1522dbfbeed6",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "TotalThickness",
+      "nominalValue": {
+        "componentType": "IfcPositiveLengthMeasureComponent",
+        "wrappedValue": 115.0
+      }
+    }
+  ],
+  "name": "Pset_CoveringCommon"
+}

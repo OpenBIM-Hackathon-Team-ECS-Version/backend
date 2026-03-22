@@ -1,0 +1,11 @@
+{
+  "componentGuid": "ee7b352c-0732-346b-fb6f-d3e18304c10e",
+  "componentType": "IfcDistributionElementTypeComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d804ca",
+  "entityType": "IfcDistributionElementType",
+  "hasPropertySets": [
+    "02c24c52-58cb-0f53-69ff-fd123f9bfc49"
+  ],
+  "name": "224200-FIXT-Rough In Shower-Wall:Shower_M",
+  "tag": "435491"
+}

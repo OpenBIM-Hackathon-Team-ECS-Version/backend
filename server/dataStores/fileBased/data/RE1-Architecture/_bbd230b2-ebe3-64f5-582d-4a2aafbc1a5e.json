@@ -1,0 +1,24 @@
+{
+  "componentGuid": "bbd230b2-ebe3-64f5-582d-4a2aafbc1a5e",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "7833addb-6e64-065b-9e5d-2190d1f5af1a",
+    "12a73f69-32f1-4559-8fdb-39f6b38a6cfb",
+    "4bfa7550-aefe-08f9-b956-a23b5e50b748",
+    "12a73f69-32f1-4559-8fdb-39f6b38a6d3f"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialListComponent",
+    "materials": [
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Door - Panel"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "Door - Frame"
+      }
+    ]
+  }
+}

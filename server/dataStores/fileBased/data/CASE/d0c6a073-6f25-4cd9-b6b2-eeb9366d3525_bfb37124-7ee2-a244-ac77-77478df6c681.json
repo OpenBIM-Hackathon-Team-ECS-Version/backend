@@ -1,0 +1,16 @@
+{
+  "assemblyPlace": "NOTDEFINED",
+  "componentGuid": "bfb37124-7ee2-a244-ac77-77478df6c681",
+  "componentType": "IfcFurnitureTypeComponent",
+  "entityGuid": "d0c6a073-6f25-4cd9-b6b2-eeb9366d3525",
+  "entityType": "IfcFurnitureType",
+  "hasPropertySets": [
+    "7987113e-3a38-0b29-a3d5-0d16245399f5",
+    "559015e7-bc6d-f942-1d5f-f23fe361f699",
+    "75044ed7-1340-a64d-c4d5-6d4de06ed69d",
+    "c3513719-5bfa-b94f-890d-729eed3c5e7f",
+    "4ecf18a1-095f-482a-6a34-6b0e9cbb6adb"
+  ],
+  "name": "NBS_WorkspaceDesign_ShlfUnits_ActiveHealthBookcaseUnit:600mm",
+  "tag": "501381"
+}

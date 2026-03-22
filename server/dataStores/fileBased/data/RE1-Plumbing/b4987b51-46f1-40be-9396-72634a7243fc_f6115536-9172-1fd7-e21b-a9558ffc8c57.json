@@ -1,0 +1,13 @@
+{
+  "componentGuid": "f6115536-9172-1fd7-e21b-a9558ffc8c57",
+  "componentType": "IfcPipeFittingTypeComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a7243fc",
+  "entityType": "IfcPipeFittingType",
+  "hasPropertySets": [
+    "f11c92e1-1308-1c94-814c-60f23c416273",
+    "c35f76d9-664a-b090-76cb-ae2462f26fd5"
+  ],
+  "name": "PIPE-Tee - Welded:-",
+  "predefinedType": "NOTDEFINED",
+  "tag": "53307"
+}

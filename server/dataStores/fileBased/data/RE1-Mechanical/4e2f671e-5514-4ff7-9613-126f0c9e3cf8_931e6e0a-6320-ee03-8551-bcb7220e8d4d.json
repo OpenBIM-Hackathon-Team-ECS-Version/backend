@@ -1,0 +1,16 @@
+{
+  "componentGuid": "931e6e0a-6320-ee03-8551-bcb7220e8d4d",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "4e2f671e-5514-4ff7-9613-126f0c9e3cf8",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "233113-DUCT-Tees"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

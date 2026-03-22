@@ -1,0 +1,15 @@
+{
+  "componentGuid": "bc055a35-a4e9-8f66-6a3f-789a6e322fbb",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "ShelfUnits_HalfHeightBookcase_600x400x1150mm"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

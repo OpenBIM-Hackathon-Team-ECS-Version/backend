@@ -1,0 +1,11 @@
+{
+  "componentGuid": "a780bee2-6965-9b5e-cb76-64f5f61df0ff",
+  "componentType": "IfcBuildingStoreyComponent",
+  "compositionType": "ELEMENT",
+  "elevation": 3660.0,
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d8dc6b",
+  "entityType": "IfcBuildingStorey",
+  "longName": "Level 2",
+  "name": "Level 2",
+  "objectType": "Level:FFL New"
+}

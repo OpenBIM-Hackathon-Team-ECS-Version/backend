@@ -1,0 +1,16 @@
+{
+  "componentGuid": "ea4760e5-51a2-9e8c-2ed8-4c8d7c6095ce",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "12a73f69-32f1-4559-8fdb-39f6b38a53a2",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "--"
+      }
+    }
+  ],
+  "name": "Pset_ReinforcementBarPitchOfSlab"
+}

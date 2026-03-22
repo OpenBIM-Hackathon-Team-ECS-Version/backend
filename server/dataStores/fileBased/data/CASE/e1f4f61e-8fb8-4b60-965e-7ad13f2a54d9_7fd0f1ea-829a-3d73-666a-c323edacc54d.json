@@ -1,0 +1,16 @@
+{
+  "componentGuid": "7fd0f1ea-829a-3d73-666a-c323edacc54d",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "e1f4f61e-8fb8-4b60-965e-7ad13f2a54d9",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "TwoSeaterSofa"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

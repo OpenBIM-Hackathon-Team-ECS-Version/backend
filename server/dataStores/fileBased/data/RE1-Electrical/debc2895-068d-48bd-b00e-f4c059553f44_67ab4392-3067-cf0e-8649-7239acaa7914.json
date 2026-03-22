@@ -1,0 +1,16 @@
+{
+  "componentGuid": "67ab4392-3067-cf0e-8649-7239acaa7914",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "debc2895-068d-48bd-b00e-f4c059553f44",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "JBox"
+      }
+    }
+  ],
+  "name": "Pset_BuildingElementProxyCommon"
+}

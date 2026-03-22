@@ -1,0 +1,9 @@
+{
+  "componentGuid": "182f320c-22af-b49f-dee5-37473352d694",
+  "componentType": "IfcSpaceTypeComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-7801584957ab",
+  "entityType": "IfcSpaceType",
+  "name": "Office 1:467014",
+  "predefinedType": "NOTDEFINED",
+  "tag": "467014"
+}

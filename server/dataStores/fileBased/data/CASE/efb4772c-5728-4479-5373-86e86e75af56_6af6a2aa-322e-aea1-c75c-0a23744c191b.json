@@ -1,0 +1,7 @@
+{
+  "componentGuid": "6af6a2aa-322e-aea1-c75c-0a23744c191b",
+  "componentType": "IfcRelFillsElementComponent",
+  "entityGuid": "efb4772c-5728-4479-5373-86e86e75af56",
+  "relatedBuildingElement": "87fabca8-6591-4813-84a7-fa1b325f8a7d",
+  "relatingOpeningElement": "efb4772c-5728-4479-5373-86e86e75af56"
+}

@@ -1,0 +1,11 @@
+{
+  "componentGuid": "7880c258-75eb-bbd6-5794-900420f15cfd",
+  "componentType": "IfcDistributionElementTypeComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d81344",
+  "entityType": "IfcDistributionElementType",
+  "hasPropertySets": [
+    "61b8c0b6-ebcd-aaa1-e0a1-f6fcfb4b82c1"
+  ],
+  "name": "224200-FIXT-Rough In Sink-Wall:Grohe WB265_M",
+  "tag": "438957"
+}

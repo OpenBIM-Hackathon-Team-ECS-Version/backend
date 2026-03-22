@@ -1,0 +1,23 @@
+{
+  "componentGuid": "ad5f4cdd-0ead-200d-a4cd-8404b5c6b410",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ModelReference",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Two Seater Sofa"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Manufacturer",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "info@theNBS.com"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerTypeInformation"
+}

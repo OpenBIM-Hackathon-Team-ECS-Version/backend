@@ -1,0 +1,21 @@
+{
+  "componentGuid": "f037dcb1-fca0-cd32-0d80-771cafcc517d",
+  "componentType": "IfcDoorStyleComponent",
+  "constructionType": "STEEL",
+  "entityGuid": "c9f2a31b-bb50-9c5c-a344-162c5bedf60e",
+  "entityType": "IfcDoorStyle",
+  "hasPropertySets": [
+    "06cd7d6f-c027-4e6c-8830-af45da0c1bb7",
+    "06cd7d6f-c027-4e6c-8830-af46da0c1bb7",
+    "3097b144-cd35-a96a-1d82-0a4f67d416e7",
+    "01852fbd-c369-92b3-cbbc-e41c951adca3",
+    "8dd2d2a7-5954-d3bb-18ef-8d6e08e8755b",
+    "a2a7ea9d-adbb-265c-c0b9-00cd81b8f756",
+    "0038e845-667a-4048-165c-9f000c6fc902"
+  ],
+  "name": "NBS_NorwoodGroupLimited_SldDoorAndPrtnSets_SlidingDoors:SlidingDoors_No window",
+  "operationType": "SLIDING_TO_RIGHT",
+  "parameterTakesPrecedence": false,
+  "sizeable": false,
+  "tag": "712258"
+}

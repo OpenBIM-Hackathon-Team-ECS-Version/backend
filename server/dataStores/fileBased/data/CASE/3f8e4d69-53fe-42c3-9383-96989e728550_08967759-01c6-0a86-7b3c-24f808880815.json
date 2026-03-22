@@ -1,0 +1,26 @@
+{
+  "componentGuid": "08967759-01c6-0a86-7b3c-24f808880815",
+  "componentType": "IfcRelDefinesByTypeComponent",
+  "entityGuid": "3f8e4d69-53fe-42c3-9383-96989e728550",
+  "relatedObjects": [
+    "43e89554-4d6e-4b6c-95df-e2fc3f6edc86",
+    "b602d107-acce-48b1-94b2-7cb0754a08f3",
+    "b602d107-acce-48b1-94b2-7cb0754a3701",
+    "b602d107-acce-48b1-94b2-7cb0754a3771",
+    "b602d107-acce-48b1-94b2-7cb0754a37a5",
+    "b602d107-acce-48b1-94b2-7cb0754a3795",
+    "b602d107-acce-48b1-94b2-7cb0754a3623",
+    "b602d107-acce-48b1-94b2-7cb0754a3616",
+    "b602d107-acce-48b1-94b2-7cb0754a365f",
+    "b602d107-acce-48b1-94b2-7cb0754a368c",
+    "b602d107-acce-48b1-94b2-7cb0754a36fe",
+    "b602d107-acce-48b1-94b2-7cb0754a36da",
+    "b602d107-acce-48b1-94b2-7cb0754a353d",
+    "b602d107-acce-48b1-94b2-7cb0754a3415",
+    "b602d107-acce-48b1-94b2-7cb0754a3455",
+    "b602d107-acce-48b1-94b2-7cb0754a348d",
+    "b602d107-acce-48b1-94b2-7cb0754a34f2",
+    "b602d107-acce-48b1-94b2-7cb0754a332b"
+  ],
+  "relatingType": "3f8e4d69-53fe-42c3-9383-96989e728550"
+}

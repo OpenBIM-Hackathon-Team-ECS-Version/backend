@@ -1,0 +1,15 @@
+{
+  "componentGuid": "be667b92-384f-df52-dd08-e117ed41a692",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ThermalTransmittance",
+      "nominalValue": {
+        "componentType": "IfcThermalTransmittanceMeasureComponent",
+        "wrappedValue": 6.7069
+      }
+    }
+  ],
+  "name": "Pset_PlateCommon"
+}

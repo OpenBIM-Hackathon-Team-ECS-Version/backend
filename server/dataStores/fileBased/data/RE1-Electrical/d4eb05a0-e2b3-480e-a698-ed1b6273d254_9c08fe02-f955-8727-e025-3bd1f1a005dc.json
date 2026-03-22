@@ -1,0 +1,9 @@
+{
+  "componentGuid": "9c08fe02-f955-8727-e025-3bd1f1a005dc",
+  "componentType": "IfcFlowTerminalComponent",
+  "entityGuid": "d4eb05a0-e2b3-480e-a698-ed1b6273d254",
+  "entityType": "IfcFlowTerminal",
+  "name": "265100-LIGHT-LED:24\"x24\":446042",
+  "objectType": "265100-LIGHT-LED:24\"x24\"",
+  "tag": "446042"
+}

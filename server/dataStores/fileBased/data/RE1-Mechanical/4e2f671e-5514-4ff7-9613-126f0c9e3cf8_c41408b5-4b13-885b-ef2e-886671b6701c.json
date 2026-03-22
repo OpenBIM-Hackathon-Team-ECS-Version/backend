@@ -1,0 +1,16 @@
+{
+  "componentGuid": "c41408b5-4b13-885b-ef2e-886671b6701c",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "4e2f671e-5514-4ff7-9613-126f0c9e3cf8",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "233113-DUCT-Tees"
+      }
+    }
+  ],
+  "name": "Pset_DistributionFlowElementCommon"
+}

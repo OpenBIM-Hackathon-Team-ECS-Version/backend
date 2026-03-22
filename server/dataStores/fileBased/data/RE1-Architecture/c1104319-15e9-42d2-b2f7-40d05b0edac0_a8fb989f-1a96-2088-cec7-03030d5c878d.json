@@ -1,0 +1,9 @@
+{
+  "componentGuid": "a8fb989f-1a96-2088-cec7-03030d5c878d",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "c1104319-15e9-42d2-b2f7-40d05b0edac0",
+  "entityType": "IfcBuildingElementProxyType",
+  "name": "TV - NON-COLLECTUS:-",
+  "predefinedType": "NOTDEFINED",
+  "tag": "354999"
+}

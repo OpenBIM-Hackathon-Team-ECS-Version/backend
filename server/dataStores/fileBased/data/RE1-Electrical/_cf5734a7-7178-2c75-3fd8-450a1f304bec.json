@@ -1,0 +1,14 @@
+{
+  "componentGuid": "cf5734a7-7178-2c75-3fd8-450a1f304bec",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "609db597-5377-4b26-93af-fc96902c4704",
+    "5ab51da1-3a5c-4dd1-ada9-22ebd0e68bc1",
+    "78dd2089-fc4b-4bba-89af-472bbc21fe34"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialComponent",
+    "name": "SHEV 6 AP Compact Control Unit - shev-6-ap - RAL7035"
+  }
+}

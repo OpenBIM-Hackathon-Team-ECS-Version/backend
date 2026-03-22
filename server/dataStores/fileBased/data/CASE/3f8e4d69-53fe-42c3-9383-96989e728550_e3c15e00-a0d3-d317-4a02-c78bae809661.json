@@ -1,0 +1,9 @@
+{
+  "componentGuid": "e3c15e00-a0d3-d317-4a02-c78bae809661",
+  "componentType": "IfcElectricApplianceTypeComponent",
+  "entityGuid": "3f8e4d69-53fe-42c3-9383-96989e728550",
+  "entityType": "IfcElectricApplianceType",
+  "name": "20231011_Sensor family:ArduinoSet",
+  "predefinedType": "NOTDEFINED",
+  "tag": "727512"
+}

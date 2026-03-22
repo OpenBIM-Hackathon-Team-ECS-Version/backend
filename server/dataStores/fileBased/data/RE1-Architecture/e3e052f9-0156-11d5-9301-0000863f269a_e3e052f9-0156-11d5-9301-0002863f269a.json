@@ -1,0 +1,19 @@
+{
+  "componentGuid": "e3e052f9-0156-11d5-9301-0002863f269a",
+  "componentType": "IfcRelAggregatesComponent",
+  "entityGuid": "e3e052f9-0156-11d5-9301-0000863f269a",
+  "relatedObjects": [
+    "c1104319-15e9-42d2-b2f7-40d05b0ee23e",
+    "c1104319-15e9-42d2-b2f7-40d05b0ee226",
+    "c1104319-15e9-42d2-b2f7-40d05b0ee679",
+    "c1104319-15e9-42d2-b2f7-40d05b0edabc",
+    "c1104319-15e9-42d2-b2f7-40d05b0ec2fc",
+    "c1104319-15e9-42d2-b2f7-40d05b0ec648",
+    "c1104319-15e9-42d2-b2f7-40d05b0ec63b",
+    "c1104319-15e9-42d2-b2f7-40d05b0ecfe4",
+    "c1104319-15e9-42d2-b2f7-40d05b0e2cd3",
+    "c1104319-15e9-42d2-b2f7-40d05b0e012a",
+    "c1104319-15e9-42d2-b2f7-40d05b0e7189"
+  ],
+  "relatingObject": "e3e052f9-0156-11d5-9301-0000863f269a"
+}

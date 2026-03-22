@@ -1,0 +1,16 @@
+{
+  "componentGuid": "7922d671-bb4f-1693-5631-b53dd4c77165",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "ceac8a54-1760-4f57-9ddc-b23f6abb09ed",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Kitchen"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

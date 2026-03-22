@@ -1,0 +1,15 @@
+{
+  "componentGuid": "26c0282d-5cfb-6078-539e-1d87222a4511",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Manufacturer",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "A.O. SMITH"
+      }
+    }
+  ],
+  "name": "Pset_ManufacturerTypeInformation"
+}

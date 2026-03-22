@@ -1,0 +1,15 @@
+{
+  "componentGuid": "3a9079b5-9e9f-a788-7dd1-f0c6c5500e2a",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Name",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "DomesticChairs_Sofa"
+      }
+    }
+  ],
+  "name": "Pset_ProductRequirements"
+}

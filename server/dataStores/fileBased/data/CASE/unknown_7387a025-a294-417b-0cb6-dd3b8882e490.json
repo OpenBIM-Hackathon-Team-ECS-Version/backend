@@ -1,0 +1,15 @@
+{
+  "componentGuid": "7387a025-a294-417b-0cb6-dd3b8882e490",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Description",
+      "nominalValue": {
+        "componentType": "IfcTextComponent",
+        "wrappedValue": "Chr Setu Lounge 5-star base lyris suspension seat/bck ribbon arms"
+      }
+    }
+  ],
+  "name": "Pset_FurnitureTypeCommon"
+}

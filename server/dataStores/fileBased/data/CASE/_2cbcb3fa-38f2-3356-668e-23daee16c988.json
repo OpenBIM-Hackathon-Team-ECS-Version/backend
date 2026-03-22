@@ -1,0 +1,22 @@
+{
+  "componentGuid": "2cbcb3fa-38f2-3356-668e-23daee16c988",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "c9f2a31b-bb50-9c5c-a344-162c5bedf60e",
+    "06cd7d6f-c027-4e6c-8830-af44da0c1bb7"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialListComponent",
+    "materials": [
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "NBS_Concept"
+      },
+      {
+        "componentType": "IfcMaterialComponent",
+        "name": "NBS_Glass_Single"
+      }
+    ]
+  }
+}

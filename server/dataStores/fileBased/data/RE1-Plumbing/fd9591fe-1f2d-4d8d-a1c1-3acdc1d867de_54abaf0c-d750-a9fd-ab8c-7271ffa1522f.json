@@ -1,0 +1,13 @@
+{
+  "componentGuid": "54abaf0c-d750-a9fd-ab8c-7271ffa1522f",
+  "componentType": "IfcPipeFittingTypeComponent",
+  "entityGuid": "fd9591fe-1f2d-4d8d-a1c1-3acdc1d867de",
+  "entityType": "IfcPipeFittingType",
+  "hasPropertySets": [
+    "f880a914-8dfe-7007-83fd-38b2f28be81c",
+    "8a271934-3af0-d1bd-101e-4e4fa32181b3"
+  ],
+  "name": "PIPE-Cap:-",
+  "predefinedType": "NOTDEFINED",
+  "tag": "53303"
+}

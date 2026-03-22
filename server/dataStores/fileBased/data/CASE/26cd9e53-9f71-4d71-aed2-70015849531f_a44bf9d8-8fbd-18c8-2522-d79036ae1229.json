@@ -1,0 +1,16 @@
+{
+  "componentGuid": "a44bf9d8-8fbd-18c8-2522-d79036ae1229",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "26cd9e53-9f71-4d71-aed2-70015849531f",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Work Area & Storage 2"
+      }
+    }
+  ],
+  "name": "Pset_SpaceCommon"
+}

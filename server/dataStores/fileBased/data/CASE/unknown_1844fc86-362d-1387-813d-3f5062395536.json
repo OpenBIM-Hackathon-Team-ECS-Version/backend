@@ -1,0 +1,23 @@
+{
+  "componentGuid": "1844fc86-362d-1387-813d-3f5062395536",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "FireRating",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "Fire rated to 90 minutes"
+      }
+    },
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "ConstructionType",
+      "nominalValue": {
+        "componentType": "IfcLabelComponent",
+        "wrappedValue": "WOOD"
+      }
+    }
+  ],
+  "name": "Pset_ConcreteElementGeneral"
+}

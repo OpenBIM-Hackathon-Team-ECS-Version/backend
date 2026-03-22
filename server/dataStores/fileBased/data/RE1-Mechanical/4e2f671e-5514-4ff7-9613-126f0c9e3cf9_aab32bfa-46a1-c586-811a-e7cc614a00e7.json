@@ -1,0 +1,9 @@
+{
+  "componentGuid": "aab32bfa-46a1-c586-811a-e7cc614a00e7",
+  "componentType": "IfcRelServicesBuildingsComponent",
+  "entityGuid": "4e2f671e-5514-4ff7-9613-126f0c9e3cf9",
+  "relatedBuildings": [
+    "8e3a6372-9efb-429f-bf1c-769561d20ae8"
+  ],
+  "relatingSystem": "4e2f671e-5514-4ff7-9613-126f0c9e3cf9"
+}

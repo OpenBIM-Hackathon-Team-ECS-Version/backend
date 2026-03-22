@@ -1,0 +1,9 @@
+{
+  "componentGuid": "fb296050-82d1-0031-6d1d-24b82ef70a61",
+  "componentType": "IfcBuildingElementProxyComponent",
+  "entityGuid": "41d26ebb-ae7c-4551-ab27-9f97a0efa4a9",
+  "entityType": "IfcBuildingElementProxy",
+  "name": "260900-BAS:BAS:872430",
+  "objectType": "260900-BAS:Default",
+  "tag": "872430"
+}

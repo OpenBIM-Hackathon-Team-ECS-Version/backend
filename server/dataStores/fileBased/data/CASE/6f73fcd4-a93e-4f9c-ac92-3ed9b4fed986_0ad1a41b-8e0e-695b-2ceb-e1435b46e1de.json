@@ -1,0 +1,18 @@
+{
+  "assemblyPlace": "NOTDEFINED",
+  "componentGuid": "0ad1a41b-8e0e-695b-2ceb-e1435b46e1de",
+  "componentType": "IfcFurnitureTypeComponent",
+  "entityGuid": "6f73fcd4-a93e-4f9c-ac92-3ed9b4fed986",
+  "entityType": "IfcFurnitureType",
+  "hasPropertySets": [
+    "285bdded-4b53-8051-36c3-9b46874e059d",
+    "933be468-98be-e2c0-6294-d2c845566eff",
+    "2a0d59e7-1195-63c7-3fbe-daec78d9a226",
+    "5376517f-b201-b273-e9c8-746f27f8802a",
+    "ecaab249-63ec-05fb-6f58-788243e71192",
+    "0c822c3b-4ef1-dd38-3a11-53c33b9f6035",
+    "6d97e417-ef07-2377-75ac-abd0e7c82544"
+  ],
+  "name": "NBS_Gopak_ClssrmDsksAndTbls_EN:EN-AA35760",
+  "tag": "485871"
+}

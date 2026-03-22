@@ -1,0 +1,9 @@
+{
+  "componentGuid": "083e3e80-df97-110d-2d64-e58a39dab46e",
+  "componentType": "IfcBuildingElementProxyTypeComponent",
+  "entityGuid": "4406b2b1-1146-481f-817c-2a5e0fc3ff6f",
+  "entityType": "IfcBuildingElementProxyType",
+  "name": "Indoor AHU - Horizontal - Chilled Water Coil:Unit Size 12",
+  "predefinedType": "NOTDEFINED",
+  "tag": "591379"
+}

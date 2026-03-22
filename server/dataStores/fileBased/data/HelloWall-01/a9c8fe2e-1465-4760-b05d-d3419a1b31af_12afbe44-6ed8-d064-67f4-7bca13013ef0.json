@@ -1,0 +1,10 @@
+{
+  "componentGuid": "12afbe44-6ed8-d064-67f4-7bca13013ef0",
+  "componentType": "IfcShapeRepresentationComponent",
+  "entityGuid": "a9c8fe2e-1465-4760-b05d-d3419a1b31af",
+  "representationIdentifier": "Body",
+  "representationFormat": "OBJ",
+  "items": [
+    "v 3.048 0.1016 0.0\nv 3.048 0.1016 6.096\nv -3.048 0.1016 6.096\nv -3.048 0.1016 0.0\nv -3.048 -0.1016 6.096\nv -3.048 -0.1016 0.0\nv 3.048 -0.1016 6.096\nv 3.048 -0.1016 0.0\nf 3 2 1\nf 3 1 4\nf 3 4 6\nf 5 3 6\nf 7 5 6\nf 7 6 8\nf 7 8 1\nf 2 7 1\nf 6 4 1\nf 8 6 1\nf 2 3 5\nf 2 5 7\n"
+  ]
+}

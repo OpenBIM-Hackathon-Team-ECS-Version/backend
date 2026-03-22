@@ -1,0 +1,16 @@
+{
+  "assemblyPlace": "NOTDEFINED",
+  "componentGuid": "fde2d9ac-eed6-6ce1-5b7e-f590a761d2e6",
+  "componentType": "IfcFurnitureTypeComponent",
+  "entityGuid": "461a1ec2-1024-4eef-b715-c605ed73a6ca",
+  "entityType": "IfcFurnitureType",
+  "hasPropertySets": [
+    "ca8e4cf2-2ded-57c0-b062-4f7beb95466a",
+    "ae0c5ddd-7da9-740c-54f5-c6433009c955",
+    "74997b3f-f233-9b8a-039a-277abcbe28ea",
+    "665ad3b6-04ab-57b6-0187-9b2ce7516907",
+    "35168bed-2540-8532-6443-f9421d88a9c7"
+  ],
+  "name": "Pledge_PledgeOfficeChairsLtd_OffcChrs_Key_SwivelChairs:KEY23C",
+  "tag": "498036"
+}

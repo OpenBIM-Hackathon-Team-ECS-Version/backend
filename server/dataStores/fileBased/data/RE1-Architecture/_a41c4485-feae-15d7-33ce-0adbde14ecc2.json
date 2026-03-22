@@ -1,0 +1,28 @@
+{
+  "componentGuid": "a41c4485-feae-15d7-33ce-0adbde14ecc2",
+  "componentType": "IfcRelAssociatesMaterialComponent",
+  "entityGuid": "",
+  "relatedObjects": [
+    "c1104319-15e9-42d2-b2f7-40d05b0edac0",
+    "c1104319-15e9-42d2-b2f7-40d05b0edac7",
+    "c1104319-15e9-42d2-b2f7-40d05b0e33cc",
+    "c1104319-15e9-42d2-b2f7-40d05b0e33ce",
+    "c1104319-15e9-42d2-b2f7-40d05b0e13a0",
+    "c1104319-15e9-42d2-b2f7-40d05b0e1397",
+    "c1104319-15e9-42d2-b2f7-40d05b0e1760",
+    "c1104319-15e9-42d2-b2f7-40d05b0e1757",
+    "c1104319-15e9-42d2-b2f7-40d05b0e1ad8",
+    "c1104319-15e9-42d2-b2f7-40d05b0e1adf",
+    "c1104319-15e9-42d2-b2f7-40d05b0e1daa",
+    "c1104319-15e9-42d2-b2f7-40d05b0e1d99",
+    "c1104319-15e9-42d2-b2f7-40d05b0e0512",
+    "c1104319-15e9-42d2-b2f7-40d05b0e050c",
+    "c1104319-15e9-42d2-b2f7-40d05b0e0ae1",
+    "c1104319-15e9-42d2-b2f7-40d05b0e0dbc",
+    "c1104319-15e9-42d2-b2f7-40d05b0e0dc3"
+  ],
+  "relatingMaterial": {
+    "componentType": "IfcMaterialComponent",
+    "name": "Light Grey"
+  }
+}

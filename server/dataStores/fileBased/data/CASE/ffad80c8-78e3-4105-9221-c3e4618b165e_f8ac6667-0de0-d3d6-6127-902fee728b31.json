@@ -1,0 +1,11 @@
+{
+  "componentGuid": "f8ac6667-0de0-d3d6-6127-902fee728b31",
+  "componentType": "IfcDoorComponent",
+  "entityGuid": "ffad80c8-78e3-4105-9221-c3e4618b165e",
+  "entityType": "IfcDoor",
+  "name": "Single-Flush:36\" x 84\"_No door:678328",
+  "objectType": "Single-Flush:36\" x 84\"_No door",
+  "overallHeight": 6.999999999999999,
+  "overallWidth": 3.000000000000007,
+  "tag": "678328"
+}

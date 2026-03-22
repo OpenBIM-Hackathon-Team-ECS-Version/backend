@@ -1,0 +1,16 @@
+{
+  "componentGuid": "a5d08f31-9cc5-87ef-22ee-39e06eeb8711",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "a6ef1a95-44b2-487f-bbaf-afed934a60c6",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "120V Duplex GFCI Above Counter"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

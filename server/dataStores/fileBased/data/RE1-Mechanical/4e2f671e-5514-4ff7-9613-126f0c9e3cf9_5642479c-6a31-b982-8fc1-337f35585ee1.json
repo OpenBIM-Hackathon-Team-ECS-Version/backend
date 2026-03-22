@@ -1,0 +1,8 @@
+{
+  "componentGuid": "5642479c-6a31-b982-8fc1-337f35585ee1",
+  "componentType": "IfcSystemComponent",
+  "entityGuid": "4e2f671e-5514-4ff7-9613-126f0c9e3cf9",
+  "entityType": "IfcSystem",
+  "name": "Mechanical Return Air 1",
+  "objectType": "--"
+}

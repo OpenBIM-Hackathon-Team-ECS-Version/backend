@@ -1,0 +1,16 @@
+{
+  "componentGuid": "8d8778f0-9583-a487-1357-8c7de90bd9fc",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "d4eb05a0-e2b3-480e-a698-ed1b6273f665",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "Strobe Ceiling"
+      }
+    }
+  ],
+  "name": "Pset_QuantityTakeOff"
+}

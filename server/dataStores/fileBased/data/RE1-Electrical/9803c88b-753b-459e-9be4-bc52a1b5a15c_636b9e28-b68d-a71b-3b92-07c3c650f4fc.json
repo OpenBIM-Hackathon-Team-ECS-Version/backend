@@ -1,0 +1,16 @@
+{
+  "componentGuid": "636b9e28-b68d-a71b-3b92-07c3c650f4fc",
+  "componentType": "IfcPropertySetComponent",
+  "entityGuid": "9803c88b-753b-459e-9be4-bc52a1b5a15c",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Reference",
+      "nominalValue": {
+        "componentType": "IfcIdentifierComponent",
+        "wrappedValue": "120V Special Purpose Outlet - Microwave"
+      }
+    }
+  ],
+  "name": "Pset_BuildingElementProxyCommon"
+}

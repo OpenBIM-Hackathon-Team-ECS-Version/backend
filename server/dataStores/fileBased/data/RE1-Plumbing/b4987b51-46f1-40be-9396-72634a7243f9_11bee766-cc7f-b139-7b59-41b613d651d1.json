@@ -1,0 +1,13 @@
+{
+  "componentGuid": "11bee766-cc7f-b139-7b59-41b613d651d1",
+  "componentType": "IfcPipeFittingTypeComponent",
+  "entityGuid": "b4987b51-46f1-40be-9396-72634a7243f9",
+  "entityType": "IfcPipeFittingType",
+  "hasPropertySets": [
+    "b9993867-e4df-a199-a98d-f2db5fff3825",
+    "47380048-96a8-087e-ec43-05a116647853"
+  ],
+  "name": "PIPE-Elbow - Welded:-",
+  "predefinedType": "NOTDEFINED",
+  "tag": "53306"
+}

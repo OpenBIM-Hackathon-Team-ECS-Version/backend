@@ -1,0 +1,15 @@
+{
+  "componentGuid": "e6ff8c48-fd14-29a7-89ff-585404ec1656",
+  "componentType": "IfcPropertySetComponent",
+  "hasProperties": [
+    {
+      "componentType": "IfcPropertySingleValueComponent",
+      "name": "Description",
+      "nominalValue": {
+        "componentType": "IfcTextComponent",
+        "wrappedValue": "300mm WIDE x 300mm LONG x 10mm THICK PORCELAIN TILE OVER 10mm GROUT SETTING BED, STACKED"
+      }
+    }
+  ],
+  "name": "Pset_ReinforcementBarPitchOfSlab"
+}
