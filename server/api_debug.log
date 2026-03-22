@@ -1168,3 +1168,17 @@
      Model RE1-Architecture: found 757 guids
   Found 757 total components
   Returning 1 models
+
+[GET_COMPONENTS] New request
+  models=['RE1-Architecture']
+  entity_types=None
+  entity_guids=None
+  component_types=None
+  -> Branch 3: query filters (models OR entity_types OR entity_guids)
+     search_models=['RE1-Architecture']
+     Calling _expand_entity_types_for_models(None, ['RE1-Architecture'])
+     expanded_types={}
+     Model RE1-Architecture: calling get_component_guids with entity_types=None
+     Model RE1-Architecture: found 757 guids
+  Found 757 total components
+  Returning 1 models
