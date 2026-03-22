@@ -1,6 +1,9 @@
 .vercel
+.env
 .env.local
 .venv
 __pycache__
 *.pyc
+server/__pycache__
+server/api_debug.log
 server/uploads

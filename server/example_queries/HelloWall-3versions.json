@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "savedAt": "2026-03-22T17:08:54.848Z",
+  "queries": [
+    {
+      "address": "http://localhost:5001/api/components?models=HelloWall&version=aa26196",
+      "repeat": false
+    },
+    {
+      "address": "http://localhost:5001/api/components?models=HelloWall&version=7fce713",
+      "repeat": false
+    },
+    {
+      "address": "http://localhost:5001/api/components?models=HelloWall&version=07fbe7b",
+      "repeat": false
+    }
+  ]
+}

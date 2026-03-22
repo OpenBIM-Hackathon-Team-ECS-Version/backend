@@ -177,11 +177,53 @@
 
         .data-header { border-bottom: none; }
 
+        .tree-view-switch {
+            display: inline-flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .tree-view-tab {
+            border: 1px solid #444;
+            background: #2d2d2d;
+            color: #aaa;
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .tree-view-tab.active {
+            background: #1f1f1f;
+            color: #fff;
+            border-color: #666;
+        }
+
         .tree-content {
             flex: 1;
             overflow-y: auto;
             overflow-x: hidden;
             min-height: 0;
+        }
+
+        .raw-pane {
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .raw-pane.active {
+            display: flex;
+        }
+
+        .raw-json-view {
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 11px;
+            line-height: 1.45;
+            color: #d7e0e7;
         }
 
         .tree-item { border-left: 2px solid transparent; }
@@ -536,11 +578,20 @@
         <div class="left-panel">
             <div class="left-upper">
                 <div class="tree-header">
-                    <span>Entity / Component Tree</span>
+                    <div class="tree-view-switch">
+                        <button class="tree-view-tab active" id="treeViewTabBtn">Entity / Component Tree</button>
+                        <button class="tree-view-tab" id="rawViewTabBtn">Raw Data</button>
+                    </div>
                     <span id="treeCount"></span>
                 </div>
                 <div class="tree-content" id="treeContainer">
                     <div class="empty-state">Execute a query line to load data</div>
+                </div>
+                <div class="tree-content raw-pane" id="rawContainer">
+                    <div class="data-tabs" id="rawDataTabs"></div>
+                    <div class="data-view" id="rawDataView">
+                        <div class="empty-state">Execute a query line to inspect raw JSON</div>
+                    </div>
                 </div>
             </div>
 
@@ -601,6 +652,9 @@
         selectedInstanceId: null,
         selectedEntityGuid: null,
         selectedComponentGuid: null,
+        upperViewMode: 'tree',
+        rawQueryResults: new Map(),
+        rawActiveQueryId: null,
         dataTabs: [],
         activeTabId: null
     };
@@ -1115,6 +1169,15 @@
         return `http://localhost:5000/api/${trimmed}`;
     }
 
+    function escapeHtml(value) {
+        return String(value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
     async function fetchJson(url) {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -1223,6 +1286,87 @@
         state.flat = { entities, componentsByGuid, instancesById };
 
         if (!state.visibleInstanceIds.size) {
+
+    function setUpperViewMode(mode) {
+        state.upperViewMode = mode === 'raw' ? 'raw' : 'tree';
+
+        const treeBtn = document.getElementById('treeViewTabBtn');
+        const rawBtn = document.getElementById('rawViewTabBtn');
+        const treeContainer = document.getElementById('treeContainer');
+        const rawContainer = document.getElementById('rawContainer');
+
+        if (treeBtn) treeBtn.classList.toggle('active', state.upperViewMode === 'tree');
+        if (rawBtn) rawBtn.classList.toggle('active', state.upperViewMode === 'raw');
+
+        if (treeContainer) {
+            treeContainer.style.display = state.upperViewMode === 'tree' ? '' : 'none';
+        }
+        if (rawContainer) {
+            rawContainer.classList.toggle('active', state.upperViewMode === 'raw');
+        }
+
+        if (state.upperViewMode === 'raw') {
+            renderRawDataTabs();
+        }
+    }
+
+    function renderRawDataTabs() {
+        const tabsEl = document.getElementById('rawDataTabs');
+        const viewEl = document.getElementById('rawDataView');
+        if (!tabsEl || !viewEl) return;
+
+        tabsEl.innerHTML = '';
+
+        if (!state.queryLines.length) {
+            viewEl.innerHTML = '<div class="empty-state">No query lines available</div>';
+            return;
+        }
+
+        if (!state.rawActiveQueryId || !state.queryLines.some(q => q.id === state.rawActiveQueryId)) {
+            state.rawActiveQueryId = state.queryLines[0].id;
+        }
+
+        state.queryLines.forEach((line, idx) => {
+            const btn = document.createElement('button');
+            btn.className = `data-tab${line.id === state.rawActiveQueryId ? ' active' : ''}`;
+            btn.textContent = `Q${idx + 1}`;
+            btn.title = line.address || 'Query';
+            btn.addEventListener('click', () => {
+                state.rawActiveQueryId = line.id;
+                renderRawDataTabs();
+            });
+            tabsEl.appendChild(btn);
+        });
+
+        const activeLine = state.queryLines.find(q => q.id === state.rawActiveQueryId);
+        if (!activeLine) {
+            viewEl.innerHTML = '<div class="empty-state">No active query selected</div>';
+            return;
+        }
+
+        const payload = state.rawQueryResults.get(activeLine.id);
+        if (!payload) {
+            viewEl.innerHTML = '<div class="empty-state">Execute this query to inspect raw JSON</div>';
+            return;
+        }
+
+        if (payload.error) {
+            viewEl.innerHTML = `<div class="empty-state">Query error: ${escapeHtml(payload.error)}</div>`;
+            return;
+        }
+
+        const prettyJson = escapeHtml(JSON.stringify(payload.data, null, 2));
+        const loadedAt = payload.loadedAt ? new Date(payload.loadedAt).toLocaleString() : '';
+        const urlText = escapeHtml(payload.url || activeLine.address || '');
+
+        viewEl.innerHTML = `
+            <div style="margin-bottom:8px;font-size:11px;color:#9aa5af;">
+                <div><strong>Query:</strong> ${urlText}</div>
+                <div><strong>Loaded:</strong> ${escapeHtml(loadedAt)}</div>
+            </div>
+            <pre class="raw-json-view">${prettyJson}</pre>
+        `;
+    }
             instancesById.forEach(instance => state.visibleInstanceIds.add(instance.instanceId));
         } else {
             const kept = new Set();
@@ -1843,6 +1987,12 @@
 
         try {
             const apiData = await fetchJson(url);
+            state.rawQueryResults.set(queryId, {
+                url,
+                data: apiData,
+                loadedAt: new Date().toISOString(),
+                error: null
+            });
             const components = await normalizeApiToComponents(url, apiData);
             const withMeta = components.map(component => ({
                 ...component,
@@ -1860,9 +2010,24 @@
             updateMeshesForVisibility();
             if (!fromRepeat) zoomToVisible();
 
+            if (state.upperViewMode === 'raw') {
+                if (!state.rawActiveQueryId) state.rawActiveQueryId = queryId;
+                renderRawDataTabs();
+            }
+
             setStatus(`Loaded ${state.flat.instancesById.size} component instances from ${state.queryResults.size} query line(s)`);
         } catch (error) {
+            state.rawQueryResults.set(queryId, {
+                url,
+                data: null,
+                loadedAt: new Date().toISOString(),
+                error: error.message
+            });
             if (statusEl) statusEl.textContent = 'Error';
+            if (state.upperViewMode === 'raw') {
+                if (!state.rawActiveQueryId) state.rawActiveQueryId = queryId;
+                renderRawDataTabs();
+            }
             setStatus(`Error in query ${line.index + 1}: ${error.message}`);
         }
     }
@@ -1942,6 +2107,10 @@
 
             container.appendChild(row);
         });
+
+        if (state.upperViewMode === 'raw') {
+            renderRawDataTabs();
+        }
     }
 
     function addQueryLine(address = 'http://localhost:5000/api/components', repeatEnabled = false) {
@@ -1960,6 +2129,11 @@
         if (repeatEnabled) {
             line.repeatTimer = setInterval(() => executeQueryLine(line.id, true), 60000);
         }
+
+        if (state.upperViewMode === 'raw') {
+            state.rawActiveQueryId = line.id;
+            renderRawDataTabs();
+        }
     }
 
     function deleteQueryLine(queryId) {
@@ -1969,6 +2143,11 @@
         const [line] = state.queryLines.splice(idx, 1);
         stopRepeatTimer(line);
         state.queryResults.delete(queryId);
+        state.rawQueryResults.delete(queryId);
+
+        if (state.rawActiveQueryId === queryId) {
+            state.rawActiveQueryId = state.queryLines.length ? state.queryLines[0].id : null;
+        }
 
         if (!state.queryLines.length) {
             addQueryLine('http://localhost:5000/api/components');
@@ -1980,6 +2159,9 @@
         syncTreeCheckboxes();
         updateMeshesForVisibility();
         clearDataView();
+        if (state.upperViewMode === 'raw') {
+            renderRawDataTabs();
+        }
     }
 
     function saveQueryState() {
@@ -2012,6 +2194,8 @@
         state.queryLines.forEach(stopRepeatTimer);
         state.queryLines = [];
         state.queryResults.clear();
+        state.rawQueryResults.clear();
+        state.rawActiveQueryId = null;
         state.flat = { entities: new Map(), componentsByGuid: new Map(), instancesById: new Map() };
         state.visibleInstanceIds.clear();
         state.selectedInstanceId = null;
@@ -2022,6 +2206,7 @@
         renderQueryLines();
         renderTree();
         clearDataView();
+        if (state.upperViewMode === 'raw') renderRawDataTabs();
         setStatus('Loaded query state JSON');
     }
 
@@ -2103,6 +2288,8 @@
     }
 
     function setupMenuActions() {
+        document.getElementById('treeViewTabBtn').addEventListener('click', () => setUpperViewMode('tree'));
+        document.getElementById('rawViewTabBtn').addEventListener('click', () => setUpperViewMode('raw'));
         document.getElementById('addQueryBtn').addEventListener('click', () => addQueryLine('http://localhost:5000/api/components'));
         document.getElementById('saveQueriesBtn').addEventListener('click', saveQueryState);
         document.getElementById('openQueriesBtn').addEventListener('click', () => document.getElementById('openQueriesInput').click());
@@ -2127,6 +2314,7 @@
         setupHorizontalSplitter();
         setupMenuActions();
         addQueryLine('http://localhost:5000/api/components');
+        setUpperViewMode('tree');
         renderTree();
         clearDataView();
     });
