@@ -7,7 +7,7 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 from werkzeug.utils import secure_filename
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, Response
 from flask_cors import CORS
 
 
@@ -84,7 +84,14 @@ from github_ifc import (
     fetch_ifc_bytes,
     parse_github_model_url,
 )
-from ifc_diff_service import diff_ifc_bytes
+from github_proxy import (
+    GitHubProxyError,
+    fetch_file_bytes,
+    get_repo_tree,
+    list_branches as proxy_list_branches,
+    list_commits as proxy_list_commits,
+)
+from ifc_diff_service import diff_ifc_bytes, summarize_ifc_bytes
 
 
 class IFCProcessingServer:
@@ -365,6 +372,56 @@ class IFCProcessingServer:
     def _allowed_file(self, filename):
         """Check if file extension is allowed"""
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in self.app.config.get('ALLOWED_EXTENSIONS', [])
+
+    def _resolve_github_token(self, explicit_token=None):
+        token = (
+            explicit_token
+            or request.headers.get('X-GitHub-Token')
+            or os.environ.get('GITHUB_TOKEN')
+            or ''
+        )
+        return token.strip()
+
+    def _parse_repo_query(self, require_ref=False, require_path=False):
+        repo_owner = request.args.get('owner', '').strip()
+        repo_name = request.args.get('repo', '').strip()
+        ref_name = request.args.get('ref', '').strip() or request.args.get('sha', '').strip()
+        file_path = request.args.get('path', '').strip()
+
+        missing = []
+        if not repo_owner:
+            missing.append('owner')
+        if not repo_name:
+            missing.append('repo')
+        if require_ref and not ref_name:
+            missing.append('ref')
+        if require_path and not file_path:
+            missing.append('path')
+
+        if missing:
+            raise ValueError(f"Missing query params: {', '.join(missing)}")
+
+        return repo_owner, repo_name, ref_name, file_path
+
+    def _split_csv_arg(self, value):
+        if not value:
+            return None
+        values = [item.strip() for item in value.split(',') if item.strip()]
+        return values or None
+
+    def _model_management_enabled(self):
+        if not os.getenv('VERCEL'):
+            return True
+        return os.environ.get('HACKPORTO_ALLOW_INTERNAL_MODEL_WRITES', '').lower() in ('1', 'true', 'yes')
+
+    def _model_management_guard(self):
+        if self._model_management_enabled():
+            return None
+        return jsonify({
+            'error': 'Model management is internal-only while Vercel storage is ephemeral.',
+            'storageMode': 'ephemeral',
+            'modelManagementMode': 'internal-only',
+        }), 403
     
     def _register_routes(self):
         """Register all Flask routes"""
@@ -382,6 +439,9 @@ class IFCProcessingServer:
         @self.app.route('/api/upload', methods=['POST'])
         def upload_file():
             """Handle file upload and processing"""
+            guard_response = self._model_management_guard()
+            if guard_response:
+                return guard_response
             try:
                 overwrite = request.args.get('overwrite', 'false').lower() in ('1', 'true', 'yes')
 
@@ -506,14 +566,148 @@ class IFCProcessingServer:
                 'data_store': self.data_store_type,
                 'timestamp': datetime.now().isoformat(),
                 'version': '0.1.0',
-                'latestVersion': latest_version
+                'latestVersion': latest_version,
+                'storageMode': 'ephemeral' if os.getenv('VERCEL') else 'local',
+                'modelManagementMode': 'internal-only' if os.getenv('VERCEL') else 'local-admin',
             })
+
+        @self.app.route('/api/github/branches', methods=['GET'])
+        def github_branches():
+            """Proxy GitHub branch listing for the frontend."""
+            try:
+                repo_owner, repo_name, _, _ = self._parse_repo_query()
+                per_page = int(request.args.get('perPage', 20))
+                branches = proxy_list_branches(
+                    repo_owner,
+                    repo_name,
+                    github_token=self._resolve_github_token(),
+                    per_page=per_page,
+                )
+                return jsonify(branches)
+            except ValueError as exc:
+                return jsonify({'error': str(exc)}), 400
+            except GitHubProxyError as exc:
+                return jsonify({'error': str(exc)}), exc.status_code
+
+        @self.app.route('/api/github/commits', methods=['GET'])
+        def github_commits():
+            """Proxy GitHub commit history for a branch or ref."""
+            try:
+                repo_owner, repo_name, ref_name, _ = self._parse_repo_query(require_ref=True)
+                per_page = int(request.args.get('perPage', 35))
+                commits = proxy_list_commits(
+                    repo_owner,
+                    repo_name,
+                    ref_name,
+                    github_token=self._resolve_github_token(),
+                    per_page=per_page,
+                )
+                return jsonify(commits)
+            except ValueError as exc:
+                return jsonify({'error': str(exc)}), 400
+            except GitHubProxyError as exc:
+                return jsonify({'error': str(exc)}), exc.status_code
+
+        @self.app.route('/api/github/file-history', methods=['GET'])
+        def github_file_history():
+            """Proxy GitHub commit history for one file path."""
+            try:
+                repo_owner, repo_name, ref_name, file_path = self._parse_repo_query(
+                    require_ref=True,
+                    require_path=True,
+                )
+                per_page = int(request.args.get('perPage', 20))
+                commits = proxy_list_commits(
+                    repo_owner,
+                    repo_name,
+                    ref_name,
+                    github_token=self._resolve_github_token(),
+                    per_page=per_page,
+                    path=file_path,
+                )
+                return jsonify(commits)
+            except ValueError as exc:
+                return jsonify({'error': str(exc)}), 400
+            except GitHubProxyError as exc:
+                return jsonify({'error': str(exc)}), exc.status_code
+
+        @self.app.route('/api/github/tree', methods=['GET'])
+        def github_tree():
+            """Proxy a recursive GitHub repository tree."""
+            try:
+                repo_owner, repo_name, ref_name, _ = self._parse_repo_query(require_ref=True)
+                tree_entries = get_repo_tree(
+                    repo_owner,
+                    repo_name,
+                    ref_name,
+                    github_token=self._resolve_github_token(),
+                )
+                return jsonify(tree_entries)
+            except ValueError as exc:
+                return jsonify({'error': str(exc)}), 400
+            except GitHubProxyError as exc:
+                return jsonify({'error': str(exc)}), exc.status_code
+
+        @self.app.route('/api/github/file', methods=['GET'])
+        def github_file():
+            """Stream a GitHub-hosted file through the backend."""
+            try:
+                repo_owner, repo_name, ref_name, file_path = self._parse_repo_query(
+                    require_ref=True,
+                    require_path=True,
+                )
+                file_bytes = fetch_file_bytes(
+                    repo_owner,
+                    repo_name,
+                    ref_name,
+                    file_path,
+                    github_token=self._resolve_github_token(),
+                )
+                filename = os.path.basename(file_path) or 'file.bin'
+                return Response(
+                    file_bytes,
+                    mimetype='application/octet-stream',
+                    headers={
+                        'Content-Disposition': f'inline; filename="{filename}"',
+                        'Cache-Control': 'public, max-age=300',
+                    },
+                )
+            except ValueError as exc:
+                return jsonify({'error': str(exc)}), 400
+            except GitHubFetchError as exc:
+                return jsonify({'error': str(exc)}), exc.status_code
+            except GitHubProxyError as exc:
+                return jsonify({'error': str(exc)}), exc.status_code
+
+        @self.app.route('/api/github/components', methods=['GET'])
+        def github_components():
+            """Query compact component metadata from a GitHub-hosted IFC file."""
+            try:
+                repo_owner, repo_name, ref_name, file_path = self._parse_repo_query(
+                    require_ref=True,
+                    require_path=True,
+                )
+                global_ids = self._split_csv_arg(request.args.get('guids', ''))
+                file_bytes = fetch_file_bytes(
+                    repo_owner,
+                    repo_name,
+                    ref_name,
+                    file_path,
+                    github_token=self._resolve_github_token(),
+                )
+                return jsonify(summarize_ifc_bytes(file_bytes, global_ids=global_ids))
+            except ValueError as exc:
+                return jsonify({'error': str(exc)}), 400
+            except GitHubFetchError as exc:
+                return jsonify({'error': str(exc)}), exc.status_code
+            except GitHubProxyError as exc:
+                return jsonify({'error': str(exc)}), exc.status_code
 
         @self.app.route('/api/ifc/diff', methods=['POST'])
         def diff_ifc_models():
             """Compare two GitHub-hosted IFC revisions and return diff metadata."""
             payload = request.get_json(silent=True) or {}
-            github_token = (payload.get('githubToken') or request.headers.get('X-GitHub-Token') or '').strip()
+            github_token = self._resolve_github_token(payload.get('githubToken'))
 
             def parse_model_ref(name):
                 model_payload = payload.get(name) or {}
@@ -604,11 +798,8 @@ class IFCProcessingServer:
             try:
                 # Parse query parameters
                 version = request.args.get('version')
-                models = request.args.get('models', '')
-                entity_types = request.args.get('entityTypes', '')
-                
-                models = [m.strip() for m in models.split(',')] if models else None
-                entity_types = [t.strip() for t in entity_types.split(',')] if entity_types else None
+                models = self._split_csv_arg(request.args.get('models', ''))
+                entity_types = self._split_csv_arg(request.args.get('entityTypes', ''))
 
                 tree = self._get_memory_tree(version)
                 
@@ -624,7 +815,7 @@ class IFCProcessingServer:
                     model_entity_types = None
                     if entity_types:
                         model_entity_types = expanded_types.get(model_name, [])
-                        if not model_entity_types and not entity_guids:
+                        if not model_entity_types:
                             continue
 
                     entity_guids = tree.get_entity_guids(
@@ -654,15 +845,10 @@ class IFCProcessingServer:
             try:
                 # Parse query parameters
                 version = request.args.get('version')
-                models = request.args.get('models', '')
-                entity_guids = request.args.get('entityGuids', '')
-                entity_types = request.args.get('entityTypes', '')
-                component_types = request.args.get('componentTypes', '')
-                
-                models = [m.strip() for m in models.split(',')] if models else None
-                entity_guids = [e.strip() for e in entity_guids.split(',')] if entity_guids else None
-                entity_types = [t.strip() for t in entity_types.split(',')] if entity_types else None
-                component_types = [t.strip() for t in component_types.split(',')] if component_types else None
+                models = self._split_csv_arg(request.args.get('models', ''))
+                entity_guids = self._split_csv_arg(request.args.get('entityGuids', ''))
+                entity_types = self._split_csv_arg(request.args.get('entityTypes', ''))
+                component_types = self._split_csv_arg(request.args.get('componentTypes', ''))
 
                 tree = self._get_memory_tree(version)
                 
@@ -724,41 +910,21 @@ class IFCProcessingServer:
             Returns: Dictionary mapping model names to arrays of component objects
             """
             try:
-                with open('api_debug.log', 'a') as f:
-                    f.write(f"\n[GET_COMPONENTS] New request\n")
-                
                 # Parse query parameters
                 version = request.args.get('version')
-                component_guids_param = request.args.get('componentGuids', '')
-                models = request.args.get('models', '')
-                entity_types = request.args.get('entityTypes', '')
-                entity_guids = request.args.get('entityGuids', '')
-                component_types = request.args.get('componentTypes', '')
-                
-                # Parse into lists
-                component_guids = [g.strip() for g in component_guids_param.split(',')] if component_guids_param else None
-                models = [m.strip() for m in models.split(',')] if models else None
-                entity_types = [t.strip() for t in entity_types.split(',')] if entity_types else None
-                entity_guids = [g.strip() for g in entity_guids.split(',')] if entity_guids else None
-                component_types = [t.strip() for t in component_types.split(',')] if component_types else None
+                component_guids = self._split_csv_arg(request.args.get('componentGuids', ''))
+                models = self._split_csv_arg(request.args.get('models', ''))
+                entity_types = self._split_csv_arg(request.args.get('entityTypes', ''))
+                entity_guids = self._split_csv_arg(request.args.get('entityGuids', ''))
+                component_types = self._split_csv_arg(request.args.get('componentTypes', ''))
 
                 tree = self._get_memory_tree(version)
-                
-                with open('api_debug.log', 'a') as f:
-                    f.write(f"  models={models}\n")
-                    f.write(f"  entity_types={entity_types}\n")
-                    f.write(f"  entity_guids={entity_guids}\n")
-                    f.write(f"  component_types={component_types}\n")
-                
+
                 # If specific component GUIDs provided, use those directly
                 if component_guids:
-                    with open('api_debug.log', 'a') as f:
-                        f.write(f"  -> Branch 1: component_guids\n")
                     components, guid_to_model = tree.get_components(component_guids)
                 # If component types provided, use those
                 elif component_types:
-                    with open('api_debug.log', 'a') as f:
-                        f.write(f"  -> Branch 2: component_types\n")
                     search_models = models if models else tree.get_models()
                     expanded_comp_types = self._expand_component_types_for_models(component_types, search_models, tree=tree)
                     
@@ -775,15 +941,8 @@ class IFCProcessingServer:
                     components, guid_to_model = tree.get_components(list(found_guids), models=search_models)
                 # Otherwise, use query filters to find components
                 elif models or entity_types or entity_guids:
-                    with open('api_debug.log', 'a') as f:
-                        f.write(f"  -> Branch 3: query filters (models OR entity_types OR entity_guids)\n")
                     search_models = models if models else tree.get_models()
-                    with open('api_debug.log', 'a') as f:
-                        f.write(f"     search_models={search_models}\n")
-                        f.write(f"     Calling _expand_entity_types_for_models({entity_types}, {search_models})\n")
                     expanded_types = self._expand_entity_types_for_models(entity_types, search_models, tree=tree) if entity_types else {}
-                    with open('api_debug.log', 'a') as f:
-                        f.write(f"     expanded_types={expanded_types}\n")
 
                     found_guids = set()
                     for model_name in search_models:
@@ -792,17 +951,12 @@ class IFCProcessingServer:
                             model_entity_types = expanded_types.get(model_name, [])
                             if not model_entity_types and not entity_guids:
                                 continue
-
-                        with open('api_debug.log', 'a') as f:
-                            f.write(f"     Model {model_name}: calling get_component_guids with entity_types={model_entity_types}\n")
                         
                         model_guids = tree.get_component_guids(
                             models=[model_name],
                             entity_types=model_entity_types,
                             entity_guids=entity_guids
                         )
-                        with open('api_debug.log', 'a') as f:
-                            f.write(f"     Model {model_name}: found {len(model_guids)} guids\n")
                         found_guids.update(model_guids)
 
                     # Get components, restricting search to the filtered models
@@ -811,10 +965,7 @@ class IFCProcessingServer:
                     # No filters specified - return all components from all models
                     all_guids = tree.get_component_guids()
                     components, guid_to_model = tree.get_components(all_guids)
-                
-                with open('api_debug.log', 'a') as f:
-                    f.write(f"  Found {len(components)} total components\n")
-                
+
                 # Organize components by model using the guid_to_model mapping
                 result_by_model = {}
                 for component in components:
@@ -824,10 +975,7 @@ class IFCProcessingServer:
                     if model_name not in result_by_model:
                         result_by_model[model_name] = []
                     result_by_model[model_name].append(component)
-                
-                with open('api_debug.log', 'a') as f:
-                    f.write(f"  Returning {len(result_by_model)} models\n")
-                
+
                 return jsonify(result_by_model)
             except Exception as e:
                 return jsonify({'error': str(e)}), 400
@@ -835,6 +983,9 @@ class IFCProcessingServer:
         @self.app.route('/api/refresh', methods=['POST'])
         def refresh_memory():
             """Manually refresh the in-memory tree"""
+            guard_response = self._model_management_guard()
+            if guard_response:
+                return guard_response
             try:
                 count = self._refresh_memory_tree()
                 return jsonify({
@@ -851,6 +1002,9 @@ class IFCProcessingServer:
             Parameters:
             - version: git commit SHA to query historical data (optional)
             """
+            guard_response = self._model_management_guard()
+            if guard_response:
+                return guard_response
             version = request.args.get('version')
             try:
                 tree = self._get_memory_tree(version)
@@ -862,6 +1016,9 @@ class IFCProcessingServer:
         @self.app.route('/api/models/details', methods=['GET'])
         def list_models_details():
             """List all stored models with metadata (file-based only)"""
+            guard_response = self._model_management_guard()
+            if guard_response:
+                return guard_response
             if self.data_store_type != 'fileBased':
                 return jsonify({'error': 'Model details are only available for fileBased store'}), 501
 
@@ -870,6 +1027,9 @@ class IFCProcessingServer:
         @self.app.route('/api/models/delete', methods=['POST'])
         def delete_models():
             """Delete one or more models and refresh the memory tree"""
+            guard_response = self._model_management_guard()
+            if guard_response:
+                return guard_response
             if self.data_store_type != 'fileBased':
                 return jsonify({'error': 'Delete is only available for fileBased store'}), 501
 

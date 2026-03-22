@@ -53,6 +53,23 @@ def _changed_fields(previous_data, current_data):
     return changed
 
 
+def _entity_summary(global_id, entry_type, data, status, changed_fields=None, previous_type=None):
+    """Build a compact summary for diff UI rendering."""
+
+    data = data if isinstance(data, dict) else {}
+    return {
+        "globalId": global_id,
+        "status": status,
+        "type": entry_type,
+        "previousType": previous_type,
+        "name": data.get("Name"),
+        "description": data.get("Description"),
+        "objectType": data.get("ObjectType"),
+        "tag": data.get("Tag"),
+        "changedFields": changed_fields or [],
+    }
+
+
 def _load_model_snapshot(ifc_bytes):
     """Load object-definition snapshots keyed by raw IFC GlobalId."""
 
@@ -103,9 +120,28 @@ def diff_ifc_bytes(current_bytes, last_bytes=None):
 
     added = sorted(current_ids - last_ids)
     deleted = sorted(last_ids - current_ids)
+    details_by_id = {}
 
     changed = []
     changes_by_id = {}
+    for global_id in added:
+        current_entry = current_entries[global_id]
+        details_by_id[global_id] = _entity_summary(
+            global_id,
+            current_entry["type"],
+            current_entry["data"],
+            "added",
+        )
+
+    for global_id in deleted:
+        previous_entry = last_entries[global_id]
+        details_by_id[global_id] = _entity_summary(
+            global_id,
+            previous_entry["type"],
+            previous_entry["data"],
+            "deleted",
+        )
+
     for global_id in sorted(current_ids & last_ids):
         previous_entry = last_entries[global_id]
         current_entry = current_entries[global_id]
@@ -113,10 +149,19 @@ def diff_ifc_bytes(current_bytes, last_bytes=None):
             continue
 
         changed.append(global_id)
+        changed_fields = _changed_fields(previous_entry["data"], current_entry["data"])
         changes_by_id[global_id] = {
             "type": current_entry["type"],
-            "fields": _changed_fields(previous_entry["data"], current_entry["data"]),
+            "fields": changed_fields,
         }
+        details_by_id[global_id] = _entity_summary(
+            global_id,
+            current_entry["type"],
+            current_entry["data"],
+            "changed",
+            changed_fields=changed_fields,
+            previous_type=previous_entry["type"],
+        )
 
     return {
         "summary": {
@@ -128,4 +173,25 @@ def diff_ifc_bytes(current_bytes, last_bytes=None):
         "changed": changed,
         "deleted": deleted,
         "changesById": changes_by_id,
+        "detailsById": details_by_id,
+    }
+
+
+def summarize_ifc_bytes(ifc_bytes, global_ids=None, status="current"):
+    """Return compact component summaries for a GitHub-hosted IFC model."""
+
+    entries = _load_model_snapshot(ifc_bytes)
+    selected_ids = sorted(entries.keys())
+    if global_ids:
+        requested = {global_id for global_id in global_ids if global_id}
+        selected_ids = [global_id for global_id in selected_ids if global_id in requested]
+
+    return {
+        global_id: _entity_summary(
+            global_id,
+            entries[global_id]["type"],
+            entries[global_id]["data"],
+            status,
+        )
+        for global_id in selected_ids
     }
