@@ -1,0 +1,6 @@
+.vercel
+.env.local
+.venv
+__pycache__
+*.pyc
+server/uploads

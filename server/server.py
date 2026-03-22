@@ -71,20 +71,24 @@ class IFCProcessingServer:
         CORS(self.app)
         
         # Configuration
-        UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
+        if os.getenv('VERCEL'):
+            # Vercel functions can only write inside /tmp at runtime.
+            upload_folder = os.path.join('/tmp', 'hackporto', 'uploads')
+        else:
+            upload_folder = os.path.join(os.path.dirname(__file__), 'uploads')
         ALLOWED_EXTENSIONS = {'ifc', 'json'}
         MAX_CONTENT_LENGTH = 500 * 1024 * 1024  # 500MB max file size
         
-        self.app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+        self.app.config['UPLOAD_FOLDER'] = upload_folder
         self.app.config['MAX_CONTENT_LENGTH'] = MAX_CONTENT_LENGTH
         self.app.config['DATA_STORE_TYPE'] = self.data_store_type
         self.app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
         
         # Ensure upload folder exists
-        os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+        os.makedirs(upload_folder, exist_ok=True)
         
         # Store config for use in route handlers
-        self.upload_folder = UPLOAD_FOLDER
+        self.upload_folder = upload_folder
         self.allowed_extensions = ALLOWED_EXTENSIONS
     
     def _initialize_backend(self):
@@ -92,8 +96,14 @@ class IFCProcessingServer:
         if self.data_store_type == 'fileBased':
             from fileBased import FileBasedStore
             from memoryTree import MemoryTree
+
+            if os.getenv('VERCEL'):
+                store_path = os.path.join('/tmp', 'hackporto', 'data')
+                os.makedirs(store_path, exist_ok=True)
+            else:
+                store_path = None
             
-            self.file_store = FileBasedStore()
+            self.file_store = FileBasedStore(base_path=store_path)
             self.memory_tree = MemoryTree()
             
             # Refresh memory tree on startup
