@@ -8,3 +8,5 @@ server/__pycache__
 server/api_debug.log
 server/uploads
 server/indexed-artifacts/
+*.log
+/server/__pycache__
