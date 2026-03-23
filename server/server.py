@@ -222,10 +222,14 @@ class IFCProcessingServer:
         """Initialise additive demo preindexing."""
         try:
             artifact_path = os.environ.get("PREINDEX_ARTIFACTS_PATH")
+            artifact_backend = os.environ.get("PREINDEX_STORAGE_BACKEND")
+            blob_prefix = os.environ.get("PREINDEX_BLOB_PREFIX")
             max_workers = int(os.environ.get("PREINDEX_MAX_WORKERS", "1"))
             self.indexed_artifacts = IndexedArtifactStore(
                 memory_tree_class=type(self.memory_tree),
                 base_path=artifact_path,
+                backend=artifact_backend,
+                blob_prefix=blob_prefix,
             )
             self.preindex_service = DemoPreindexService(
                 self.indexed_artifacts,
@@ -237,7 +241,8 @@ class IFCProcessingServer:
                 print("[OK] Demo preindex disabled (no tracked manifest configured)")
                 return
 
-            auto_start = os.environ.get("PREINDEX_AUTOSTART", "true").lower() not in (
+            auto_start_default = "false" if os.getenv("VERCEL") else "true"
+            auto_start = os.environ.get("PREINDEX_AUTOSTART", auto_start_default).lower() not in (
                 "0",
                 "false",
                 "no",
@@ -245,6 +250,8 @@ class IFCProcessingServer:
             if auto_start:
                 summary = self.preindex_service.enqueue_manifest(force=False)
                 print(f"[OK] Demo preindex scheduled: {summary}")
+            else:
+                print("[OK] Demo preindex autostart disabled for this runtime")
         except Exception as e:
             print(f"[WARN] Demo preindex unavailable: {e}")
             self.indexed_artifacts = None
@@ -628,6 +635,8 @@ class IFCProcessingServer:
                     "trackedCount": 0,
                     "runningCount": 0,
                     "artifacts": {
+                        "backend": "unconfigured",
+                        "durable": False,
                         "counts": {"ready": 0, "pending": 0, "failed": 0, "missing": 0},
                         "latestReadyVersion": None,
                         "totalEntries": 0,
@@ -645,6 +654,8 @@ class IFCProcessingServer:
                     preindex_status.get("artifacts", {}).get("latestReadyVersion")
                 ),
                 'storageMode': 'ephemeral' if os.getenv('VERCEL') else 'local',
+                'indexedStorageBackend': preindex_status.get("artifacts", {}).get("backend"),
+                'indexedStorageDurable': bool(preindex_status.get("artifacts", {}).get("durable")),
                 'modelManagementMode': 'internal-only' if os.getenv('VERCEL') else 'local-admin',
                 'indexingMode': 'demo-preindex' if preindex_status.get('enabled') else 'lazy-only',
                 'preindex': preindex_status,
@@ -659,6 +670,8 @@ class IFCProcessingServer:
                     'trackedCount': 0,
                     'runningCount': 0,
                     'artifacts': {
+                        'backend': 'unconfigured',
+                        'durable': False,
                         'counts': {'ready': 0, 'pending': 0, 'failed': 0, 'missing': 0},
                         'latestReadyVersion': None,
                         'totalEntries': 0,
