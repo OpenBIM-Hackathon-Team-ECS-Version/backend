@@ -1,1 +1,12 @@
+.vercel
 .env
+.env.local
+.venv
+__pycache__
+*.pyc
+server/__pycache__
+server/api_debug.log
+server/uploads
+server/indexed-artifacts/
+*.log
+/server/__pycache__
