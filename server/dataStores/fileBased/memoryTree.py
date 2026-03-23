@@ -126,17 +126,9 @@ class MemoryTree:
             if isinstance(component, dict):
                 self._index_component(model_name, component)
 
-    def refresh_from_snapshot(self, snapshot_path: str):
-        """Refresh indexes from a packed JSON or JSON.GZ snapshot."""
+    def refresh_from_snapshot_payload(self, payload: Dict):
+        """Refresh indexes from an already-loaded snapshot payload."""
         self._reset_indexes()
-
-        if not snapshot_path or not os.path.isfile(snapshot_path):
-            return
-
-        opener = gzip.open if snapshot_path.endswith('.gz') else open
-        with opener(snapshot_path, 'rt', encoding='utf-8') as handle:
-            payload = json.load(handle)
-
         models = payload.get('models') if isinstance(payload, dict) else None
         if not isinstance(models, dict):
             return
@@ -150,6 +142,18 @@ class MemoryTree:
             for component in components:
                 if isinstance(component, dict):
                     self._index_component(model_name, component)
+
+    def refresh_from_snapshot(self, snapshot_path: str):
+        """Refresh indexes from a packed JSON or JSON.GZ snapshot."""
+        if not snapshot_path or not os.path.isfile(snapshot_path):
+            self._reset_indexes()
+            return
+
+        opener = gzip.open if snapshot_path.endswith('.gz') else open
+        with opener(snapshot_path, 'rt', encoding='utf-8') as handle:
+            payload = json.load(handle)
+
+        self.refresh_from_snapshot_payload(payload)
     
     def get_entity_guids(self, 
                         models: Optional[List[str]] = None,
