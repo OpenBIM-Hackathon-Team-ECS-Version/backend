@@ -97,6 +97,13 @@ from github_proxy import (
     list_commits as proxy_list_commits,
 )
 from ifc_diff_service import diff_ifc_bytes, summarize_ifc_bytes
+from validation_service import (
+    ValidationServiceError,
+    validate_and_store,
+    load_result,
+    load_bcf,
+)
+from bcf_converter import validation_to_bcf
 from indexed_artifacts import IndexedArtifactStore
 from preindex_service import DemoPreindexService
 
@@ -936,6 +943,81 @@ class IFCProcessingServer:
             except Exception as exc:
                 return jsonify({'error': str(exc)}), 500
         
+        # ── Validation Service endpoints ──────────────────────────────
+
+        @self.app.route('/api/validate', methods=['POST'])
+        def validate_ifc():
+            """Validate an IFC file end-to-end: submit, poll, summarize, store.
+
+            One call, returns the final result. Cached results return instantly.
+
+            JSON body:
+              { "repoOwner": "...", "repoName": "...", "commitSha": "...",
+                "filePath": "...", "githubToken": "..." }
+              or { "githubUrl": "https://github.com/.../blob/sha/path.ifc" }
+
+            Query params:
+              ?format=bcf  — return result as a .bcf file download instead of JSON
+            """
+            payload = request.get_json(silent=True) or {}
+            github_token = self._resolve_github_token(payload.get('githubToken'))
+            output_format = request.args.get('format', 'json').lower()
+
+            github_url = str(payload.get('githubUrl', '')).strip()
+            if github_url:
+                ref = parse_github_model_url(github_url)
+            else:
+                missing = [
+                    f for f in ('repoOwner', 'repoName', 'commitSha', 'filePath')
+                    if not str(payload.get(f, '')).strip()
+                ]
+                if missing:
+                    return jsonify({'error': f'Missing fields: {", ".join(missing)}'}), 400
+                ref = GitHubModelRef(
+                    repo_owner=payload['repoOwner'].strip(),
+                    repo_name=payload['repoName'].strip(),
+                    commit_sha=payload['commitSha'].strip(),
+                    file_path=payload['filePath'].strip(),
+                )
+
+            commit_sha = ref.commit_sha
+            file_name = ref.file_path.rsplit('/', 1)[-1]
+
+            # Return cached result if available
+            cached = load_result(file_name, commit_sha)
+            if cached:
+                summary = cached
+            else:
+                try:
+                    file_bytes = fetch_ifc_bytes(ref, github_token=github_token)
+                except GitHubFetchError as exc:
+                    return jsonify({'error': str(exc)}), exc.status_code
+
+                try:
+                    summary = validate_and_store(file_bytes, file_name, commit_sha)
+                except ValidationServiceError as exc:
+                    return jsonify({'error': str(exc)}), exc.status_code
+                except Exception as exc:
+                    return jsonify({'error': str(exc)}), 500
+
+            if output_format == 'bcf':
+                # Serve cached BCF if available, otherwise generate
+                bcf_bytes = load_bcf(file_name, commit_sha)
+                if not bcf_bytes:
+                    bcf_bytes = validation_to_bcf(file_name, summary, commit=commit_sha)
+                safe_name = file_name.rsplit('.', 1)[0]
+                return Response(
+                    bcf_bytes,
+                    mimetype='application/octet-stream',
+                    headers={
+                        'Content-Disposition': f'attachment; filename="{safe_name}-validation.bcf"',
+                    },
+                )
+
+            if cached:
+                return jsonify({'cached': True, **summary})
+            return jsonify(summary)
+
         @self.app.route('/api/stores', methods=['GET'])
         def list_stores():
             """List available data stores"""
