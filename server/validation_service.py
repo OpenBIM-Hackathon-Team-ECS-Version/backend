@@ -12,9 +12,14 @@ import os
 import requests
 from dataclasses import dataclass, field
 from typing import Optional
-from dotenv import load_dotenv
 
-load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env"))
+try:
+    from dotenv import load_dotenv
+except ImportError:  # Optional in production when env vars are provided by the platform.
+    load_dotenv = None
+
+if load_dotenv is not None:
+    load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env"))
 
 
 VALIDATION_API_URL = "https://dev.validate.buildingsmart.org/api/v1"

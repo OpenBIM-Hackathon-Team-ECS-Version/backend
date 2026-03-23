@@ -3,3 +3,6 @@ flask-cors>=4.0,<7
 ifcopenshell>=0.8,<1
 bcf-client>=0.8,<1
 requests
+python-dotenv>=1.0,<2
+bcf-client>=0.8,<1
+requests
