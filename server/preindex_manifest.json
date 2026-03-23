@@ -2,7 +2,7 @@
   "trackedSets": [
     {
       "repoOwner": "OpenBIM-Hackathon-Team-ECS-Version",
-      "repoName": "Sample-IFC-Files",
+      "repoName": "File-Storage",
       "refs": [
         "main"
       ],
