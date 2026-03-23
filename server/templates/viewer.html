@@ -50,6 +50,11 @@
 
         .icon-btn:hover { background: #383838; }
         .icon-btn.active { border-color: #0098ff; color: #0098ff; background: #1f3345; }
+        .icon-btn.visibility-off {
+            opacity: 0.45;
+            color: #7f7f7f;
+            background: #252525;
+        }
 
         .query-section {
             background: #2d2d2d;
@@ -297,6 +302,7 @@
         .tree-icon.component-shape { color: #4fc454; }
         .tree-icon.component-classdata { color: #3b7dd9; }
         .tree-icon.component-relation { color: #b388ff; }
+        .tree-icon.component-sensor { color: #26c6da; font-weight: bold; }
         .tree-icon .icon-grid-pset {
             display: grid;
             grid-template-columns: repeat(2, 7px);
@@ -323,6 +329,7 @@
         .tree-label.component-shape { color: #4fc454; }
         .tree-label.component-classdata { color: #3b7dd9; }
         .tree-label.component-relation { color: #b388ff; }
+        .tree-label.component-sensor { color: #26c6da; }
         .tree-count { font-size: 10px; color: #888; }
 
         .tree-children {
@@ -398,14 +405,17 @@
         }
 
         td pre {
-            background: #1a1a1a;
-            border: 1px solid #444;
-            border-radius: 3px;
-            padding: 8px;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
             overflow-x: auto;
             font-size: 10px;
             line-height: 1.4;
-            margin: 4px 0;
+            margin: 0;
+            color: inherit;
+            font-family: inherit;
+            white-space: pre-wrap;
         }
 
         th:first-child,
@@ -1283,11 +1293,23 @@
             });
         });
 
+        const prevInstancesById = (state.flat && state.flat.instancesById) ? state.flat.instancesById : new Map();
         state.flat = { entities, componentsByGuid, instancesById };
 
-        if (!state.visibleInstanceIds.size) {
+        // Preserve visibility state; brand-new instances (from newly-executed queries) default to visible
+        const kept = new Set();
+        state.visibleInstanceIds.forEach(id => { if (instancesById.has(id)) kept.add(id); });
+        instancesById.forEach(instance => {
+            if (!prevInstancesById.has(instance.instanceId)) kept.add(instance.instanceId);
+        });
+        state.visibleInstanceIds = kept;
 
-    function setUpperViewMode(mode) {
+        if (state.selectedInstanceId && !instancesById.has(state.selectedInstanceId)) {
+            state.selectedInstanceId = null;
+        }
+    }
+
+    window.setUpperViewMode = function setUpperViewMode(mode) {
         state.upperViewMode = mode === 'raw' ? 'raw' : 'tree';
 
         const treeBtn = document.getElementById('treeViewTabBtn');
@@ -1308,9 +1330,9 @@
         if (state.upperViewMode === 'raw') {
             renderRawDataTabs();
         }
-    }
+    };
 
-    function renderRawDataTabs() {
+    window.renderRawDataTabs = function renderRawDataTabs() {
         const tabsEl = document.getElementById('rawDataTabs');
         const viewEl = document.getElementById('rawDataView');
         if (!tabsEl || !viewEl) return;
@@ -1366,19 +1388,7 @@
             </div>
             <pre class="raw-json-view">${prettyJson}</pre>
         `;
-    }
-            instancesById.forEach(instance => state.visibleInstanceIds.add(instance.instanceId));
-        } else {
-            const kept = new Set();
-            state.visibleInstanceIds.forEach(id => { if (instancesById.has(id)) kept.add(id); });
-            if (!kept.size) instancesById.forEach(instance => kept.add(instance.instanceId));
-            state.visibleInstanceIds = kept;
-        }
-
-        if (state.selectedInstanceId && !instancesById.has(state.selectedInstanceId)) {
-            state.selectedInstanceId = null;
-        }
-    }
+    };
 
     function getComponentTypeInfo(component) {
         if (!component) return { icon: '●', iconClass: 'component', displayName: 'Component' };
@@ -1388,6 +1398,8 @@
         
         if (componentType.startsWith('IfcRel') || componentType.includes('Relation')) {
             return { icon: '↔', iconClass: 'component-relation', displayName: 'Relation' };
+        } else if (componentType.includes('SensorData') || componentType === 'SensorDataComponent') {
+            return { icon: '+', iconClass: 'component-sensor', displayName: 'SensorData' };
         } else if (componentType.includes('PropertySet') || componentName.startsWith('Pset_')) {
             return {
                 icon: '<span class="icon-grid-pset" aria-hidden="true"><i></i><i></i><i></i><i></i></span>',
@@ -2038,6 +2050,21 @@
         line.repeatTimer = null;
     }
 
+    function isQueryVisible(queryId) {
+        let hasInstances = false;
+        let allVisible = true;
+
+        state.flat.instancesById.forEach((instance) => {
+            if (instance.queryId !== queryId) return;
+            hasInstances = true;
+            if (!state.visibleInstanceIds.has(instance.instanceId)) {
+                allVisible = false;
+            }
+        });
+
+        return !hasInstances || allVisible;
+    }
+
     function toggleQueryVisibility(queryId, show) {
         if (!state.flat || !state.flat.instancesById) return;
 
@@ -2061,25 +2088,22 @@
 
         state.queryLines.forEach((line, index) => {
             line.index = index;
+            const isVisible = isQueryVisible(line.id);
             const row = document.createElement('div');
             row.className = 'query-line';
             row.dataset.id = line.id;
 
             row.innerHTML = `
                 <input class="query-input" value="${line.address.replace(/"/g, '&quot;')}" placeholder="Enter REST query URL or /api/...">
-                <button class="icon-btn execute-btn" data-tooltip="Execute query">➜</button>
-                <button class="icon-btn repeat-btn ${line.repeatEnabled ? 'active' : ''}" data-tooltip="Repeat every 1 minute">⟳</button>
-                <button class="icon-btn show-btn" data-tooltip="Show all from this query">👁</button>
-                <button class="icon-btn hide-btn" data-tooltip="Hide all from this query">🙈</button>
+                <button class="icon-btn refresh-btn" data-tooltip="Refresh query">⟳</button>
+                <button class="icon-btn visibility-btn${isVisible ? ' active' : ' visibility-off'}" data-tooltip="${isVisible ? 'Hide all from this query' : 'Show all from this query'}">👁</button>
                 <button class="icon-btn delete-btn" data-tooltip="Delete query line">✕</button>
                 <span class="query-status">${line.lastResultCount ? `${line.lastResultCount} comps` : 'Idle'}</span>
             `;
 
             const input = row.querySelector('.query-input');
-            const executeBtn = row.querySelector('.execute-btn');
-            const repeatBtn = row.querySelector('.repeat-btn');
-            const showBtn = row.querySelector('.show-btn');
-            const hideBtn = row.querySelector('.hide-btn');
+            const refreshBtn = row.querySelector('.refresh-btn');
+            const visibilityBtn = row.querySelector('.visibility-btn');
             const deleteBtn = row.querySelector('.delete-btn');
 
             input.addEventListener('input', (e) => line.address = e.target.value);
@@ -2087,22 +2111,13 @@
                 if (e.key === 'Enter') executeQueryLine(line.id);
             });
 
-            executeBtn.addEventListener('click', () => executeQueryLine(line.id));
+            refreshBtn.addEventListener('click', () => executeQueryLine(line.id));
 
-            repeatBtn.addEventListener('click', () => {
-                line.repeatEnabled = !line.repeatEnabled;
-                repeatBtn.classList.toggle('active', line.repeatEnabled);
-                if (line.repeatEnabled) {
-                    stopRepeatTimer(line);
-                    line.repeatTimer = setInterval(() => executeQueryLine(line.id, true), 60000);
-                    executeQueryLine(line.id, true);
-                } else {
-                    stopRepeatTimer(line);
-                }
+            visibilityBtn.addEventListener('click', () => {
+                const show = !isQueryVisible(line.id);
+                toggleQueryVisibility(line.id, show);
+                renderQueryLines();
             });
-
-            showBtn.addEventListener('click', () => toggleQueryVisibility(line.id, true));
-            hideBtn.addEventListener('click', () => toggleQueryVisibility(line.id, false));
             deleteBtn.addEventListener('click', () => deleteQueryLine(line.id));
 
             container.appendChild(row);
@@ -2186,6 +2201,14 @@
         setStatus('Saved query state JSON');
     }
 
+    function showAllInstances() {
+        if (!state.flat || !state.flat.instancesById) return;
+        state.flat.instancesById.forEach(instance => state.visibleInstanceIds.add(instance.instanceId));
+        updateMeshesForVisibility();
+        syncTreeCheckboxes();
+        renderQueryLines();
+    }
+
     async function openQueryState(file) {
         const text = await file.text();
         const parsed = JSON.parse(text);
@@ -2208,6 +2231,11 @@
         clearDataView();
         if (state.upperViewMode === 'raw') renderRawDataTabs();
         setStatus('Loaded query state JSON');
+
+        for (const line of state.queryLines) {
+            if (line.address.trim()) await executeQueryLine(line.id);
+        }
+        showAllInstances();
     }
 
     function setupSplitter() {
@@ -2314,6 +2342,7 @@
         setupHorizontalSplitter();
         setupMenuActions();
         addQueryLine('http://localhost:5000/api/components');
+        executeQueryLine(state.queryLines[state.queryLines.length - 1].id).then(showAllInstances);
         setUpperViewMode('tree');
         renderTree();
         clearDataView();
