@@ -12,6 +12,9 @@ import os
 import requests
 from dataclasses import dataclass, field
 from typing import Optional
+from dotenv import load_dotenv
+
+load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env"))
 
 
 VALIDATION_API_URL = "https://dev.validate.buildingsmart.org/api/v1"
@@ -37,7 +40,7 @@ class ValidationServiceError(Exception):
 
 def _get_token():
     """Get the validation service token from environment or fallback."""
-    return os.environ.get("VALIDATION_SERVICE_TOKEN", "c0e740b50591d1c82a30ebb1f0647256fc889af6")
+    return os.environ.get("VALIDATION_TOKEN", "c0e740b50591d1c82a30ebb1f0647256fc889af6")
 
 
 def _headers(token=None):
@@ -178,8 +181,12 @@ def list_validation_outcomes(task_public_id: str, token: str = None) -> list:
     return data.get("results", data) if isinstance(data, dict) else data
 
 
-# ── Result storage ──────────────────────────────────────────────
+# ── Result storage (Vercel Blob with local fallback) ────────────
 
+BLOB_TOKEN = os.environ.get("BLOB_READ_WRITE_TOKEN", "")
+BLOB_API_URL = "https://blob.vercel-storage.com"
+
+# Local fallback (used when BLOB_READ_WRITE_TOKEN is not set)
 RESULTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "validation_results")
 
 
@@ -190,37 +197,91 @@ def _safe_stem(file_name: str, commit_sha: str) -> str:
     return f"{safe_sha}_{safe_name}"
 
 
-def _result_path(file_name: str, commit_sha: str) -> str:
-    """Build path for a stored validation result."""
-    return os.path.join(RESULTS_DIR, _safe_stem(file_name, commit_sha) + ".json")
+def _blob_key(file_name: str, commit_sha: str, ext: str = ".json") -> str:
+    """Build the blob path key."""
+    return f"validation-results/{_safe_stem(file_name, commit_sha)}{ext}"
 
 
-def _bcf_path(file_name: str, commit_sha: str) -> str:
-    """Build path for a stored BCF file."""
-    return os.path.join(RESULTS_DIR, _safe_stem(file_name, commit_sha) + ".bcf")
+def _put_blob(key: str, data: bytes, content_type: str = "application/json") -> dict:
+    """Upload bytes to Vercel Blob. Returns blob metadata including 'url'."""
+    r = requests.put(
+        f"{BLOB_API_URL}/{key}",
+        headers={
+            "Authorization": f"Bearer {BLOB_TOKEN}",
+            "content-type": content_type,
+            "x-api-version": "7",
+            "x-vercel-blob-access": "private",
+        },
+        data=data,
+        timeout=30,
+    )
+    r.raise_for_status()
+    return r.json()
+
+
+def _find_blob(pathname: str) -> Optional[dict]:
+    """Find a blob by its logical pathname. Returns the match or None.
+
+    Vercel Blob adds a random suffix to the stored URL but keeps the original
+    pathname intact, so we search by the stem prefix and then filter by exact
+    pathname match.
+    """
+    # Search by stem (without extension) to get candidates
+    stem = pathname.rsplit(".", 1)[0] if "." in pathname else pathname
+    r = requests.get(
+        BLOB_API_URL,
+        headers={"Authorization": f"Bearer {BLOB_TOKEN}", "x-api-version": "7"},
+        params={"prefix": stem, "limit": 10},
+        timeout=15,
+    )
+    r.raise_for_status()
+    for blob in r.json().get("blobs", []):
+        if blob.get("pathname") == pathname:
+            return blob
+    return None
 
 
 def load_result(file_name: str, commit_sha: str) -> Optional[dict]:
     """Load a previously stored validation result, or None if not found."""
-    path = _result_path(file_name, commit_sha)
-    if not os.path.isfile(path):
+    if not BLOB_TOKEN:
+        path = os.path.join(RESULTS_DIR, _safe_stem(file_name, commit_sha) + ".json")
+        if not os.path.isfile(path):
+            return None
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+
+    blob = _find_blob(_blob_key(file_name, commit_sha, ".json"))
+    if not blob:
         return None
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+    r = requests.get(blob["url"], headers={"Authorization": f"Bearer {BLOB_TOKEN}"}, timeout=15)
+    r.raise_for_status()
+    return r.json()
 
 
 def load_bcf(file_name: str, commit_sha: str) -> Optional[bytes]:
     """Load a previously stored BCF file, or None if not found."""
-    path = _bcf_path(file_name, commit_sha)
-    if not os.path.isfile(path):
+    if not BLOB_TOKEN:
+        path = os.path.join(RESULTS_DIR, _safe_stem(file_name, commit_sha) + ".bcf")
+        if not os.path.isfile(path):
+            return None
+        with open(path, "rb") as f:
+            return f.read()
+
+    blob = _find_blob(_blob_key(file_name, commit_sha, ".bcf"))
+    if not blob:
         return None
-    with open(path, "rb") as f:
-        return f.read()
+    r = requests.get(blob["url"], headers={"Authorization": f"Bearer {BLOB_TOKEN}"}, timeout=30)
+    r.raise_for_status()
+    return r.content
 
 
-def save_result(file_name: str, commit_sha: str, summary: dict) -> str:
-    """Store a validation result as JSON and BCF. Returns the JSON file path."""
-    os.makedirs(RESULTS_DIR, exist_ok=True)
+def save_result(file_name: str, commit_sha: str, summary: dict) -> dict:
+    """Store validation result JSON and BCF.
+
+    When BLOB_READ_WRITE_TOKEN is set, uploads to Vercel Blob and returns
+    {'json_url': ..., 'bcf_url': ...} with public URLs the frontend can use.
+    Otherwise falls back to local disk.
+    """
     entry = {
         "file_name": file_name,
         "commit": commit_sha,
@@ -229,18 +290,35 @@ def save_result(file_name: str, commit_sha: str, summary: dict) -> str:
         "normative": summary["normative"],
         "industry_practices": summary["industry_practices"],
     }
-    path = _result_path(file_name, commit_sha)
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(entry, f, indent=2)
 
-    # Also save BCF
     from bcf_converter import validation_to_bcf
     bcf_bytes = validation_to_bcf(file_name, entry, commit=commit_sha)
-    bcf_path = _bcf_path(file_name, commit_sha)
-    with open(bcf_path, "wb") as f:
-        f.write(bcf_bytes)
 
-    return path
+    if not BLOB_TOKEN:
+        os.makedirs(RESULTS_DIR, exist_ok=True)
+        json_path = os.path.join(RESULTS_DIR, _safe_stem(file_name, commit_sha) + ".json")
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(entry, f, indent=2)
+        bcf_path = os.path.join(RESULTS_DIR, _safe_stem(file_name, commit_sha) + ".bcf")
+        with open(bcf_path, "wb") as f:
+            f.write(bcf_bytes)
+        return {"json_url": json_path, "bcf_url": bcf_path}
+
+    json_blob = _put_blob(
+        _blob_key(file_name, commit_sha, ".json"),
+        json.dumps(entry).encode(),
+        content_type="application/json",
+    )
+    bcf_blob = _put_blob(
+        _blob_key(file_name, commit_sha, ".bcf"),
+        bcf_bytes,
+        content_type="application/octet-stream",
+    )
+
+    print(f"[validate] Blob JSON: {json_blob.get('url', '')}", flush=True)
+    print(f"[validate] Blob BCF:  {bcf_blob.get('url', '')}", flush=True)
+
+    return {"json_url": json_blob.get("url", ""), "bcf_url": bcf_blob.get("url", "")}
 
 
 def validate_and_store(file_bytes: bytes, file_name: str, commit_sha: str, token: str = None, poll_interval: int = 5) -> dict:
@@ -284,9 +362,12 @@ def validate_and_store(file_bytes: bytes, file_name: str, commit_sha: str, token
     print(f"[validate] Done — schema:{summary['schema']} syntax:{summary['syntax']} normative:{summary['normative']} industry:{summary['industry_practices']}", flush=True)
 
     # Save and return
-    path = save_result(file_name, commit_sha, summary)
-    print(f"[validate] Saved to {path}", flush=True)
-    return load_result(file_name, commit_sha)
+    urls = save_result(file_name, commit_sha, summary)
+    print(f"[validate] Saved: {urls}", flush=True)
+    result = load_result(file_name, commit_sha)
+    if result and BLOB_TOKEN:
+        result["bcf_url"] = urls.get("bcf_url", "")
+    return result
 
 
 if __name__ == "__main__":
