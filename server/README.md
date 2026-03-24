@@ -1,6 +1,6 @@
 # IFC Processing Server
 
-This server ingests IFC or JSON component data, stores the result in the configured backend, and exposes HTTP endpoints for querying models, entities, component GUIDs, and component payloads.
+This server ingests IFC or JSON component data, stores the result in the configured backend, and exposes HTTP endpoints for querying models, entities, component GUIDs, validation results, GitHub-hosted IFC metadata, and indexed summaries.
 
 ## What the server does
 
@@ -9,6 +9,8 @@ This server ingests IFC or JSON component data, stores the result in the configu
 - Stores components in the configured backend.
 - Serves model data through HTTP APIs.
 - Supports git-backed version lookup for historical queries when git versioning is configured.
+- Can fetch IFC revisions directly from GitHub for diff, validation, and summary workflows.
+- Can cache validation JSON/BCF outputs and preindexed IFC summaries.
 
 ## Run the server
 
@@ -41,17 +43,26 @@ The server loads `.env` values automatically from either:
 
 Existing process environment variables take precedence over `.env` values.
 
-A template is provided in [server/.env.example](c:/_LOCAL/GitHub/backend/server/.env.example).
+A template is provided in [`.env.example`](.env.example).
 
 ### Supported environment variables
 
 - `GIT_PUSH_REMOTE_URL`: remote repo URL to push model-version commits to.
 - `GIT_PUSH_BRANCH`: branch to push to.
-- `GITHUB_TOKEN`: GitHub token for HTTPS push.
+- `GITHUB_TOKEN`: GitHub token used for HTTPS push and authenticated GitHub API/file access.
+- `VALIDATION_TOKEN`: buildingSMART validation API token used by `/api/validate`.
 - `GIT_USER_NAME`: git commit author name.
 - `GIT_USER_EMAIL`: git commit author email.
 - `VERSION_REPO_ROOT`: local git repo used to resolve `version=` queries.
 - `VERSION_DATA_REL_PATH`: path inside the version repo that contains model data.
+- `PREINDEX_STORAGE_BACKEND`: indexed artifact backend, one of `filesystem`, `blob`, or `auto`.
+- `PREINDEX_ARTIFACTS_PATH`: local filesystem path for indexed artifacts.
+- `PREINDEX_BLOB_PREFIX`: blob prefix for indexed artifacts when blob storage is enabled.
+- `PREINDEX_AUTOSTART`: whether tracked-file preindexing starts automatically on boot.
+- `PREINDEX_MANIFEST_PATH`: JSON manifest path that lists tracked GitHub IFC files/sets.
+- `PREINDEX_MANIFEST_JSON`: inline JSON manifest override.
+- `PREINDEX_MAX_WORKERS`: worker count for background preindex jobs.
+- `BLOB_READ_WRITE_TOKEN`: Vercel Blob token for durable indexed artifacts and validation result storage.
 
 ## Web pages
 
@@ -63,7 +74,7 @@ URL:
 http://localhost:5001/
 ```
 
-The admin page is served by [server/templates/admin.html](c:/_LOCAL/GitHub/backend/server/templates/admin.html).
+The admin page is served by [`templates/admin.html`](templates/admin.html).
 
 What it supports:
 
@@ -90,6 +101,45 @@ http://localhost:5001/viewer
 ```
 
 This serves the advanced viewer template.
+
+## GitHub-backed workflows
+
+Several endpoints work directly against GitHub-hosted IFC files instead of the local store.
+
+Supported request styles:
+
+- Explicit repo coordinates: `repoOwner`, `repoName`, `commitSha` or `ref`, and `filePath`
+- GitHub URL: `https://github.com/<owner>/<repo>/blob/<sha>/<path>` or `https://raw.githubusercontent.com/...`
+
+These routes use the GitHub token from the request payload when supplied, otherwise `GITHUB_TOKEN`.
+
+## Validation and cached artifacts
+
+`POST /api/validate` fetches an IFC from GitHub, submits it to the buildingSMART validation API, polls until completion, summarizes the result, and caches both the JSON summary and BCF output.
+
+Behavior:
+
+- Cached validation results are returned immediately on repeated requests for the same `commitSha + filePath`.
+- `?format=bcf` returns a downloadable `.bcf` file instead of JSON.
+- Validation artifacts are stored in local `server/validation_results` unless `BLOB_READ_WRITE_TOKEN` is configured, in which case they are stored in Vercel Blob.
+
+The summarized JSON includes top-level pass/fail booleans for:
+
+- `schema`
+- `syntax`
+- `normative`
+- `industry_practices`
+
+## Demo preindexing
+
+Tracked GitHub IFC files can be preindexed in the background so the frontend can query compact component summaries without reparsing IFC files on demand.
+
+Behavior:
+
+- The tracked set is defined by `preindex_manifest.json`, `PREINDEX_MANIFEST_PATH`, or `PREINDEX_MANIFEST_JSON`.
+- Local runtimes autostart preindexing by default.
+- Vercel runtimes default to read/query mode and disable autostart unless explicitly enabled.
+- `GET /api/versions` prefers preindexed versions when available and falls back to git history otherwise.
 
 ## Versioned queries
 
@@ -145,6 +195,9 @@ Response fields:
 - `timestamp`
 - `version`
 - `latestVersion` when git versioning is available
+- `latestIndexedVersion` when a preindexed artifact is ready
+- `storageMode`, `indexedStorageBackend`, `indexedStorageDurable`, `modelManagementMode`, `indexingMode`
+- `preindex` with tracked-file/artifact status details
 
 Example:
 
@@ -161,6 +214,37 @@ Example:
 ```text
 http://localhost:5001/api/stores
 ```
+
+### `GET /api/preindex/status`
+
+Returns demo preindex readiness plus the latest tracked artifact state.
+
+Query parameters:
+
+- `limit` optional, default `25`
+
+Example:
+
+```text
+http://localhost:5001/api/preindex/status
+```
+
+### `POST /api/preindex/trigger`
+
+Queues tracked IFC files for background preindexing.
+
+JSON body:
+
+```json
+{
+  "force": true
+}
+```
+
+Behavior:
+
+- Returns `501` if preindexing is not configured.
+- Requires model management to be enabled for the runtime.
 
 ### `POST /api/upload`
 
@@ -190,6 +274,135 @@ Overwrite example:
 ```bash
 curl -X POST -F "file=@HelloWall.ifc" "http://localhost:5001/api/upload?overwrite=true"
 ```
+
+### `GET /api/github/branches`
+
+Lists branches for a GitHub repository.
+
+Query parameters:
+
+- `repoOwner` required
+- `repoName` required
+- `perPage` optional, default `20`
+
+### `GET /api/github/commits`
+
+Lists commits for a GitHub ref.
+
+Query parameters:
+
+- `repoOwner` required
+- `repoName` required
+- `ref` required
+- `perPage` optional, default `35`
+
+### `GET /api/github/file-history`
+
+Lists commits that touched one file path.
+
+Query parameters:
+
+- `repoOwner` required
+- `repoName` required
+- `ref` required
+- `filePath` required
+- `perPage` optional, default `20`
+
+### `GET /api/github/tree`
+
+Returns a recursive tree for a GitHub ref.
+
+Query parameters:
+
+- `repoOwner` required
+- `repoName` required
+- `ref` required
+
+### `GET /api/github/file`
+
+Streams one GitHub-hosted file through the backend.
+
+Query parameters:
+
+- `repoOwner` required
+- `repoName` required
+- `ref` required
+- `filePath` required
+
+### `GET /api/github/components`
+
+Returns compact component metadata from a GitHub-hosted IFC file.
+
+Query parameters:
+
+- `repoOwner` required
+- `repoName` required
+- `ref` required
+- `filePath` required
+- `guids` optional comma-separated GlobalIds
+
+Behavior:
+
+- Uses a preindexed summary when available.
+- Falls back to parsing the IFC file on demand when no indexed artifact exists.
+
+### `POST /api/ifc/diff`
+
+Compares two GitHub-hosted IFC revisions and returns diff metadata.
+
+JSON body:
+
+```json
+{
+  "current": {
+    "repoOwner": "OpenBIM-Hackathon-Team-ECS-Version",
+    "repoName": "Sample-IFC-Files",
+    "commitSha": "abc1234",
+    "filePath": "models/Building.ifc"
+  },
+  "last": {
+    "repoOwner": "OpenBIM-Hackathon-Team-ECS-Version",
+    "repoName": "Sample-IFC-Files",
+    "commitSha": "def5678",
+    "filePath": "models/Building.ifc"
+  }
+}
+```
+
+Each side can also use `githubUrl` instead of explicit repo coordinates.
+
+### `POST /api/validate`
+
+Runs end-to-end validation for a GitHub-hosted IFC file.
+
+JSON body:
+
+```json
+{
+  "repoOwner": "OpenBIM-Hackathon-Team-ECS-Version",
+  "repoName": "Sample-IFC-Files",
+  "commitSha": "abc1234",
+  "filePath": "models/Building.ifc"
+}
+```
+
+Alternative body:
+
+```json
+{
+  "githubUrl": "https://github.com/OpenBIM-Hackathon-Team-ECS-Version/Sample-IFC-Files/blob/abc1234/models/Building.ifc"
+}
+```
+
+Query parameters:
+
+- `format=json|bcf` optional, default `json`
+
+Behavior:
+
+- Returns `400` for missing repo/file fields or invalid GitHub URLs.
+- Returns cached results when available.
+- Returns a binary BCF attachment when `format=bcf`.
 
 ### `GET /api/models`
 
@@ -378,6 +591,7 @@ Response shape:
 ```json
 {
   "latest": "<full_sha>",
+  "source": "preindex",
   "versions": [
     {
       "versionId": "<full_sha>",
@@ -444,6 +658,7 @@ Common API errors:
 - `409 Conflict`: upload model already exists and overwrite is not enabled.
 - `413 Payload Too Large`: upload exceeded 500 MB.
 - `501 Not Implemented`: endpoint not available for the active backend.
+- `502+`: upstream GitHub or validation service failure.
 
 Version-specific errors:
 
@@ -466,7 +681,8 @@ Version-specific errors:
 
 ## Relevant files
 
-- [server/server.py](c:/_LOCAL/GitHub/backend/server/server.py)
-- [server/templates/admin.html](c:/_LOCAL/GitHub/backend/server/templates/admin.html)
-- [server/git_versioning.py](c:/_LOCAL/GitHub/backend/server/git_versioning.py)
-- [server/.env.example](c:/_LOCAL/GitHub/backend/server/.env.example)
+- [`server.py`](server.py)
+- [`templates/admin.html`](templates/admin.html)
+- [`git_versioning.py`](git_versioning.py)
+- [`validation_service.py`](validation_service.py)
+- [`.env.example`](.env.example)

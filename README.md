@@ -10,9 +10,13 @@ Backend server for the **openBIM Hackathon 2026** ECS-Version project. It ingest
 - IFC-to-ECS component decomposition via IfcOpenShell
 - Pluggable storage backends (file-based, MongoDB)
 - Git-backed model versioning with historical queries
+- GitHub-backed IFC fetch, commit history, tree, and file proxy endpoints
+- IFC diff service for comparing two GitHub revisions
+- IFC validation via the buildingSMART validation API with cached JSON/BCF output
+- Demo preindexing for tracked GitHub IFC files with reusable indexed summaries
 - REST API for querying models, entities, components, and versions
 - Admin UI for uploads and model management
-- IFC diff service for comparing model versions
+- Viewer UI for query and comparison workflows
 
 ## Tech Stack
 
@@ -53,11 +57,21 @@ python server.py --debug
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | `GET` | `/api/status` | Server status and version info |
+| `GET` | `/api/preindex/status` | Preindex readiness and artifact state |
+| `POST` | `/api/preindex/trigger` | Queue tracked IFCs for preindexing |
 | `GET` | `/api/models` | List model names |
 | `GET` | `/api/models/details` | Model metadata (file-based only) |
 | `POST` | `/api/upload` | Upload an IFC or JSON file |
 | `POST` | `/api/models/delete` | Delete models (file-based only) |
 | `POST` | `/api/refresh` | Refresh in-memory index |
+| `GET` | `/api/github/branches` | List GitHub branches for a repo |
+| `GET` | `/api/github/commits` | List commits for a ref |
+| `GET` | `/api/github/file-history` | List commits for one file path |
+| `GET` | `/api/github/tree` | Fetch a recursive GitHub tree |
+| `GET` | `/api/github/file` | Stream a GitHub-hosted file |
+| `GET` | `/api/github/components` | Summarize components from a GitHub IFC |
+| `POST` | `/api/ifc/diff` | Compare two GitHub-hosted IFC revisions |
+| `POST` | `/api/validate` | Validate a GitHub-hosted IFC and optionally return BCF |
 | `GET` | `/api/entityTypes` | Entity types in selected models |
 | `GET` | `/api/componentTypes` | Component types in selected models |
 | `GET` | `/api/entityGuids` | Entity GUIDs by model |
@@ -66,7 +80,7 @@ python server.py --debug
 | `GET` | `/api/versions` | Git-backed version history |
 | `GET` | `/api/stores` | Available store backends |
 
-Most read endpoints support optional `version=<git-sha>` and `models=` query parameters. See `server/README.md` for full API documentation.
+Most read endpoints support optional `version=<git-sha>` and `models=` query parameters. GitHub-backed endpoints accept either explicit repo coordinates or a GitHub blob/raw URL. See [`server/README.md`](server/README.md) for the full API surface.
 
 ## Project Structure
 
@@ -93,12 +107,21 @@ backend/
 | `GIT_PUSH_REMOTE_URL` | Remote repo URL for model version commits |
 | `GIT_PUSH_BRANCH` | Branch to push version commits to |
 | `GITHUB_TOKEN` | GitHub token for HTTPS push |
+| `VALIDATION_TOKEN` | buildingSMART validation API token |
 | `GIT_USER_NAME` | Git commit author name |
 | `GIT_USER_EMAIL` | Git commit author email |
 | `VERSION_REPO_ROOT` | Local git repo for version queries |
 | `VERSION_DATA_REL_PATH` | Data path inside the version repo |
+| `PREINDEX_STORAGE_BACKEND` | Indexed artifact storage backend (`filesystem`, `blob`, `auto`) |
+| `PREINDEX_ARTIFACTS_PATH` | Local path for indexed artifacts |
+| `PREINDEX_BLOB_PREFIX` | Blob key prefix for indexed artifacts |
+| `PREINDEX_AUTOSTART` | Enable tracked-file preindexing on startup |
+| `PREINDEX_MANIFEST_PATH` | Manifest file path for tracked IFC sets |
+| `PREINDEX_MANIFEST_JSON` | Inline JSON manifest for tracked IFC sets |
+| `PREINDEX_MAX_WORKERS` | Max background workers for preindexing |
+| `BLOB_READ_WRITE_TOKEN` | Vercel Blob token for durable indexed/validation artifacts |
 
-See `server/.env.example` for a template.
+See [`server/.env.example`](server/.env.example) for the local template.
 
 ## License
 
